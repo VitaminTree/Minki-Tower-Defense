@@ -1,2 +1,12 @@
-res://ui.tscn
-res://IceMinkiPanel.tscn
+res://main.tscn
+res://Scripts/BasicEnemy.gd
+res://Enemies/Wisp.tscn
+res://Enemies/Dragoon.tscn
+res://Towers/IceMinki.tscn
+res://UI/ui.tscn
+res://UI/IceMinkiPanel.tscn
+res://Scripts/ExitToMainMenu.gd
+res://Scripts/PlayButton.gd
+res://UI/MainMenu.tscn
+res://UI/GameOverScreen.tscn
+res://README.md

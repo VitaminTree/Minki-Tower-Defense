@@ -1,7 +1,7 @@
 extends Button
 
 
-@onready var pauseMenu = preload("res://PauseMenu.tscn")
+@onready var pauseMenu = preload("res://UI/PauseMenu.tscn")
 
 func _ready() -> void:
 	pass

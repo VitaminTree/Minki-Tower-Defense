@@ -5,7 +5,7 @@ extends Panel
 
 @onready var hpUI = $HBoxContainer/HealthLabel
 @onready var moneyUI = $HBoxContainer/MoneyLabel
-@onready var loseMenu = preload("res://GameOverScrren.tscn")
+@onready var loseMenu = preload("res://UI/GameOverScreen.tscn")
 
 func _ready() -> void:
 	hpUI.text = str(Health)

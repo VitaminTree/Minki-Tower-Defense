@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	path.set_progress(path.get_progress()+speed*delta)
 	if path.get_progress_ratio() == 1:
 		SignalMessenger.HEALTH_UPDATE.emit(-1*damage)
-		get_parent().get_parent().queue_free()
+		get_parent().queue_free()
 	
 	if health <= 0:
 		SignalMessenger.MONEY_PAYMENT.emit(payment)

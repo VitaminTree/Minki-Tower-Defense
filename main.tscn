@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2314ouwd5gbi"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
-[ext_resource type="Script" path="res://LevelOne.gd" id="2_77ecl"]
+[ext_resource type="Script" path="res://Scripts/LevelOne.gd" id="2_b56o8"]
 [ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
 [ext_resource type="Script" path="res://Scripts/BespokePauseRemoveLater.gd" id="4_pknsf"]
-[ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://ui.tscn" id="4_uwnil"]
+[ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
 
 [sub_resource type="Curve2D" id="Curve2D_s8aae"]
 _data = {
@@ -21,7 +21,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="Track" type="Sprite2D" parent="."]
 texture = ExtResource("1_2o82f")
 centered = false
-script = ExtResource("2_77ecl")
+script = ExtResource("2_b56o8")
 metadata/_edit_lock_ = true
 
 [node name="Path" type="Area2D" parent="Track"]
