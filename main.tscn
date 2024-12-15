@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2314ouwd5gbi"]
+
+[ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
+[ext_resource type="Script" path="res://LevelOne.gd" id="2_77ecl"]
+[ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
+[ext_resource type="Script" path="res://Scripts/BespokePauseRemoveLater.gd" id="4_pknsf"]
+[ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://ui.tscn" id="4_uwnil"]
+
+[sub_resource type="Curve2D" id="Curve2D_s8aae"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 38, 141, 0, 0, 0, 0, 109, 145, 0, 0, 0, 0, 294, 154, 0, 0, 0, 0, 405, 191, 0, 0, 0, 0, 478, 265, 0, 0, 0, 0, 498, 389, 0, 0, 0, 0, 499, 536, 0, 0, 0, 0, 522, 633, 0, 0, 0, 0, 586, 727, 0, 0, 0, 0, 688, 746, 0, 0, 0, 0, 829, 750, 0, 0, 0, 0, 968, 757, 0, 0, 0, 0, 1057, 732, 0, 0, 0, 0, 1088, 649, 0, 0, 0, 0, 1097, 523, 0, 0, 0, 0, 1141, 427, 0, 0, 0, 0, 1249, 368, 0, 0, 0, 0, 1416, 378, 0, 0, 0, 0, 1510, 438, 0, 0, 0, 0, 1518, 526, 0, 0, 0, 0, 1528, 669, 0, 0, 0, 0, 1527, 805, 0, 0, 0, 0, 1509, 919, 0, 0, 0, 0, 1508, 1039)
+}
+point_count = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_audou"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="Track" type="Sprite2D" parent="."]
+texture = ExtResource("1_2o82f")
+centered = false
+script = ExtResource("2_77ecl")
+metadata/_edit_lock_ = true
+
+[node name="Path" type="Area2D" parent="Track"]
+
+[node name="PathCollision" type="CollisionPolygon2D" parent="Track/Path"]
+texture_repeat = 2
+polygon = PackedVector2Array(1, 92, 318, 101, 461, 162, 531, 237, 562, 373, 554, 592, 574, 662, 638, 690, 935, 720, 1012, 712, 1047, 665, 1059, 546, 1109, 387, 1226, 329, 1398, 322, 1493, 350, 1551, 442, 1555, 871, 1544, 1095, 1467, 1095, 1490, 712, 1435, 431, 1236, 420, 1169, 472, 1117, 772, 1020, 806, 593, 784, 449, 646, 407, 248, 330, 212, -11, 199, -11, 87)
+
+[node name="Water" type="Area2D" parent="Track"]
+
+[node name="WaterCollision" type="CollisionPolygon2D" parent="Track/Water"]
+texture_repeat = 2
+polygon = PackedVector2Array(172, 681, 281, 722, 393, 839, 381, 951, 347, 996, 221, 1027, 124, 1002, 63, 910, 51, 801, 84, 730)
+
+[node name="PathSpawner" type="Node2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("3_0amyu")
+
+[node name="Path2D" type="Path2D" parent="PathSpawner"]
+curve = SubResource("Curve2D_s8aae")
+
+[node name="Timer" type="Timer" parent="PathSpawner"]
+one_shot = true
+
+[node name="Towers" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("4_uwnil")]
+
+[node name="BespokePauseRemoveLater" type="Button" parent="."]
+offset_left = 1146.0
+offset_top = 95.0
+offset_right = 1299.0
+offset_bottom = 172.0
+theme_override_font_sizes/font_size = 50
+text = "pause"
+script = ExtResource("4_pknsf")
+
+[node name="NextLevelButton" type="Button" parent="."]
+offset_left = 905.0
+offset_top = 984.0
+offset_right = 1120.0
+offset_bottom = 1047.0
+theme_override_font_sizes/font_size = 40
+text = "Next Wave"
+
+[node name="CurrentWaveLabel" type="Label" parent="."]
+offset_left = 870.0
+offset_top = 908.0
+offset_right = 1148.0
+offset_bottom = 980.0
+theme_override_font_sizes/font_size = 25
+text = "Wave 1 of 4"
+label_settings = SubResource("LabelSettings_audou")
+
+[connection signal="mouse_entered" from="Track/Path" to="Track" method="_on_path_mouse_entered"]
+[connection signal="mouse_exited" from="Track/Path" to="Track" method="_on_path_mouse_exited"]
+[connection signal="mouse_entered" from="Track/Water" to="Track" method="_on_water_mouse_entered"]
+[connection signal="mouse_exited" from="Track/Water" to="Track" method="_on_water_mouse_exited"]
+[connection signal="pressed" from="BespokePauseRemoveLater" to="BespokePauseRemoveLater" method="_on_pressed"]
+[connection signal="pressed" from="NextLevelButton" to="PathSpawner" method="_on_next_level_button_pressed"]

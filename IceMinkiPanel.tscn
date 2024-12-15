@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg4juqoye2wvi"]
+
+[ext_resource type="Script" path="res://Scripts/IceMinkiPanel.gd" id="1_0ww28"]
+[ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="2_k6280"]
+
+[node name="IceMinkiPanel" type="Panel"]
+custom_minimum_size = Vector2(120, 160)
+script = ExtResource("1_0ww28")
+price = 500
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 110.0
+offset_bottom = 160.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_k6280")
+expand_mode = 5
+
+[node name="PriceLabel" type="Label" parent="VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "250"
+horizontal_alignment = 1
+clip_text = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
