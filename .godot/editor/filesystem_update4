@@ -1,9 +1,2 @@
-res://LevelOne.gd
-res://main.tscn
-res://Scripts/IceMinkiPanel.gd
-res://Towers/IceMinki.tscn
-res://validPlacement.tres
-res://Enemies/Wisp.tscn
-res://Enemies/Dragoon.tscn
 res://ui.tscn
 res://IceMinkiPanel.tscn

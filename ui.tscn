@@ -12,7 +12,7 @@ offset_left = 900.0
 offset_right = 1340.0
 offset_bottom = 58.0
 script = ExtResource("2_smqts")
-Health = 1
+Health = 150
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Resource Panel"]
 layout_mode = 0
