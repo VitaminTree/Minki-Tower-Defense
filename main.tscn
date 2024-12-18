@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2314ouwd5gbi"]
+[gd_scene load_steps=12 format=3 uid="uid://b2314ouwd5gbi"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
 [ext_resource type="Script" path="res://Scripts/LevelOne.gd" id="2_b56o8"]
 [ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
+[ext_resource type="PackedScene" uid="uid://nakpgq5gx5jj" path="res://Enemies/Wisp.tscn" id="4_3rbwm"]
 [ext_resource type="Script" path="res://Scripts/BespokePauseRemoveLater.gd" id="4_pknsf"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
+[ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="7_tywtp"]
+[ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="8_7nb2a"]
 
 [sub_resource type="Curve2D" id="Curve2D_s8aae"]
 _data = {
@@ -15,6 +18,12 @@ point_count = 24
 [sub_resource type="LabelSettings" id="LabelSettings_audou"]
 font_size = 50
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrog5"]
+texture = ExtResource("8_7nb2a")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(1, 0.184314, 1, 1)
 
 [node name="Main" type="Node2D"]
 
@@ -42,6 +51,38 @@ script = ExtResource("3_0amyu")
 
 [node name="Path2D" type="Path2D" parent="PathSpawner"]
 curve = SubResource("Curve2D_s8aae")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathSpawner/Path2D"]
+position = Vector2(481.611, 287.391)
+progress = 500.0
+rotates = false
+loop = false
+
+[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D" instance=ExtResource("4_3rbwm")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="PathSpawner/Path2D"]
+position = Vector2(497.563, 386.289)
+progress = 600.0
+rotates = false
+loop = false
+
+[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D2" instance=ExtResource("4_3rbwm")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="PathSpawner/Path2D"]
+position = Vector2(498.661, 486.113)
+progress = 700.0
+rotates = false
+loop = false
+
+[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D3" instance=ExtResource("4_3rbwm")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="PathSpawner/Path2D"]
+position = Vector2(510.561, 584.759)
+progress = 800.0
+rotates = false
+loop = false
+
+[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D4" instance=ExtResource("4_3rbwm")]
 
 [node name="Timer" type="Timer" parent="PathSpawner"]
 one_shot = true
@@ -75,6 +116,23 @@ offset_bottom = 980.0
 theme_override_font_sizes/font_size = 25
 text = "Wave 1 of 4"
 label_settings = SubResource("LabelSettings_audou")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(806, 442)
+texture = ExtResource("7_tywtp")
+
+[node name="Panel" type="Panel" parent="Sprite2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -132.0
+offset_right = -131.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wrog5")
 
 [connection signal="mouse_entered" from="Track/Path" to="Track" method="_on_path_mouse_entered"]
 [connection signal="mouse_exited" from="Track/Path" to="Track" method="_on_path_mouse_exited"]

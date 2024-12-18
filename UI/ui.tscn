@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=9 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/IceMinkiPanel.tscn" id="1_1ld0t"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
 [ext_resource type="Script" path="res://Scripts/Resource Panel.gd" id="2_smqts"]
 [ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="3_rrbvd"]
+[ext_resource type="PackedScene" uid="uid://41ht1veq4f77" path="res://Towers/IceMinki.tscn" id="5_kdb6q"]
+[ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="6_yx21i"]
+[ext_resource type="PackedScene" uid="uid://biw7a1ylgrqcu" path="res://Towers/PurpleMinki.tscn" id="7_03ng4"]
+[ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="8_lc4wy"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -76,9 +80,16 @@ grow_vertical = 2
 
 [node name="IceMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
+tower = ExtResource("5_kdb6q")
+texture = ExtResource("6_yx21i")
 
 [node name="IceMinkiPanel2" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
+tower = ExtResource("5_kdb6q")
+texture = ExtResource("6_yx21i")
 
 [node name="IceMinkiPanel3" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
+price = 150
+tower = ExtResource("7_03ng4")
+texture = ExtResource("8_lc4wy")

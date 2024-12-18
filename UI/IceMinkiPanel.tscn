@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg4juqoye2wvi"]
 
-[ext_resource type="Script" path="res://Scripts/IceMinkiPanel.gd" id="1_0ww28"]
+[ext_resource type="Script" path="res://Scripts/TowerPanel.gd" id="1_ts8j7"]
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="2_k6280"]
 
-[node name="IceMinkiPanel" type="Panel"]
+[node name="TowerPanel" type="Panel"]
 custom_minimum_size = Vector2(120, 160)
-script = ExtResource("1_0ww28")
+script = ExtResource("1_ts8j7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

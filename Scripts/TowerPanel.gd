@@ -1,8 +1,9 @@
 extends Panel
 
 @export var price: int = 250
+@export var tower: PackedScene
+@export var texture: CompressedTexture2D
 
-@onready var tower = preload("res://Towers/IceMinki.tscn")
 @onready var green: StyleBoxFlat = preload("res://validPlacement.tres")
 @onready var red: StyleBoxFlat = preload("res://InvalidPlacement.tres")
 
@@ -15,10 +16,12 @@ var overPath: bool = false
 
 func _ready() -> void:
 	$VBoxContainer/PriceLabel.text = str(price)
+	$VBoxContainer/TextureRect.texture = texture
 	SignalMessenger.connect("BALANCE_UPDATED", can_afford)
 	SignalMessenger.connect("MOUSE_OVER_WATER", toggle_water)
 	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
 	SignalMessenger.MONEY_PAYMENT.emit(0) # hack to check balance at game start
+	
 
 func can_afford(balance: int)-> void:
 	canPurchase = balance >= price
