@@ -1,7 +1,7 @@
 extends Panel
 
 @export var price: int = 250
-@export var tower: PackedScene
+@export var unit: PackedScene
 @export var texture: CompressedTexture2D
 
 @onready var green: StyleBoxFlat = preload("res://validPlacement.tres")
@@ -36,7 +36,7 @@ func toggle_path(state: bool) -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	var tempTower = tower.instantiate()
+	var tempTower = unit.instantiate()
 	tempTower.visible = false
 	
 	if event is InputEventMouseButton and event.button_mask == 1 and canPurchase: # left mouse button click

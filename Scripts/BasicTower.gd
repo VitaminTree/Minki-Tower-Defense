@@ -1,14 +1,13 @@
 class_name Tower extends Node2D
 
-@export var dartDamage = 1
 @export var projectile: PackedScene
-@export var projectileContainer: Node
 @export var rangeHitbox: Area2D
 @export var projectileOrigin: Marker2D
 @export var timer: Timer
 
 var objectsInRange = []
 var target
+
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
 # Do not call this if a custom tower:
@@ -20,39 +19,40 @@ var target
 func _process(_delta: float) -> void:
 	# If the target enemy dies or leaves the range of the tower, look for a new target
 	if not is_instance_valid(target):
-		refresh_targets()
+		refresh_targets(rangeHitbox)
 		return
 	# If there is a wisp to shoot at, look at it and shoot
 	#self.look_at(target.global_position)
 	if timer.is_stopped(): 
-		attack(target)
+		attack(target, projectile, projectileOrigin)
 		timer.start()
 
 
-func attack(tgt) -> void:
-	var dart = projectile.instantiate()
-	# global_position of a detached script i.e. a class will return (0,0) regardless of position of inheriting class
-	dart.direction = projectileOrigin.global_position.direction_to(target.global_position)
-	dart.dartDamage = dartDamage
-	#TODO: Have BulletOrigin rotate about the tower w/o having the whole tower rotate. 
-	#projectileOrigin.look_at(tgt.global_position) 
-	projectileContainer.add_child(dart)
-	dart.global_position = projectileOrigin.global_position
-	dart.look_at(tgt.global_position)
+func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
+	if is_instance_valid(tgt):
+		var dart = atk.instantiate()
+		# global_position of a detached script i.e. a class will return (0,0) regardless of position of inheriting class
+		dart.direction = origin.global_position.direction_to(tgt.global_position)
+		#TODO: Have BulletOrigin rotate about the tower w/o having the whole tower rotate. 
+		#projectileOrigin.look_at(tgt.global_position) 
+		#projectileContainer.add_child(dart)
+		origin.add_child(dart)
+		dart.global_position = origin.global_position
+		dart.look_at(tgt.global_position)
 
 
-func refresh_targets() -> void:
-	objectsInRange = rangeHitbox.get_overlapping_bodies()
+func refresh_targets(area: Area2D) -> Node2D:
+	objectsInRange = area.get_overlapping_bodies()
 	var enemiesInRange = []
 	
 	for i in objectsInRange:
 		if "enemy" in i.name:
 			enemiesInRange.append(i)
 	
-	target_last(enemiesInRange)
+	return target_last(enemiesInRange)
 
 
-func target_last(enemies: Array) -> void:
+func target_last(enemies: Array) -> Node2D:
 	var furthestTarget = null
 	for i in enemies:
 		if furthestTarget == null:
@@ -63,3 +63,4 @@ func target_last(enemies: Array) -> void:
 			if i.get_parent().get_progress() > furthestTarget.get_parent().get_progress():
 				furthestTarget = i
 	target = furthestTarget
+	return target

@@ -80,16 +80,16 @@ grow_vertical = 2
 
 [node name="IceMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
-tower = ExtResource("5_kdb6q")
+unit = ExtResource("5_kdb6q")
 texture = ExtResource("6_yx21i")
 
 [node name="IceMinkiPanel2" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
-tower = ExtResource("5_kdb6q")
+unit = ExtResource("5_kdb6q")
 texture = ExtResource("6_yx21i")
 
 [node name="IceMinkiPanel3" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
 price = 150
-tower = ExtResource("7_03ng4")
+unit = ExtResource("7_03ng4")
 texture = ExtResource("8_lc4wy")

@@ -2,11 +2,12 @@ extends Area2D
 
 @onready var timer: Timer = $Timer
 
-@export var speed: int = 1000
+@export var speed: int = 1250
 @export var penetration: int = 1
 
+var dartDamage = 1
 var direction
-var dartDamage 
+ 
 
 
 func _physics_process(delta: float) -> void:

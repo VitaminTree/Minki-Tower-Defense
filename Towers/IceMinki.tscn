@@ -12,10 +12,9 @@ size = Vector2(109, 110)
 [sub_resource type="CircleShape2D" id="CircleShape2D_cil23"]
 radius = 350.0
 
-[node name="IceMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("projectileContainer", "rangeHitbox", "projectileOrigin", "timer")]
+[node name="IceMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer")]
 script = ExtResource("1_0cejt")
 projectile = ExtResource("2_sgmp3")
-projectileContainer = NodePath("BulletContainer")
 rangeHitbox = NodePath("BulletRange")
 projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
