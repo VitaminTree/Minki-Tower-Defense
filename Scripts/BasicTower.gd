@@ -10,12 +10,16 @@ class_name Tower extends Node2D
 var objectsInRange = []
 var target
 
-
+# The generic Tower _process function seeks enemies as targets and throws a projectile at it.
+# Do not call this if a custom tower:
+# 		1. Does not have an attack
+#		2. Targets friendly units
+#		3. Indescriminately attacks w/o a specified target
+# This function may become defunct if certain targets need to be untargetable by default towers
+# For example, camoflaged enemies, flying enemies, disguised enemies
 func _process(_delta: float) -> void:
-	# Deletes all darts originating from this tower if there is no wisp in range, or if the target wisp died before a new one could be rechosen
+	# If the target enemy dies or leaves the range of the tower, look for a new target
 	if not is_instance_valid(target):
-		for i in projectileContainer.get_child_count(): 
-			projectileContainer.get_child(i).queue_free()
 		refresh_targets()
 		return
 	# If there is a wisp to shoot at, look at it and shoot
@@ -54,6 +58,8 @@ func target_last(enemies: Array) -> void:
 		if furthestTarget == null:
 			furthestTarget = i
 		else:
+			# All enemies follow a path: All enemies therefore have a PathFollow2D as a parent.
+			# If this statement ever becomes untrue, then this line needs to be revised.
 			if i.get_parent().get_progress() > furthestTarget.get_parent().get_progress():
 				furthestTarget = i
 	target = furthestTarget

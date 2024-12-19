@@ -1,14 +1,23 @@
 extends Area2D
 
-@export var speed = 200
+@onready var timer: Timer = $Timer
+
+@export var speed: int = 1000
+@export var penetration: int = 1
+
 var direction
 var dartDamage 
 
 
 func _physics_process(delta: float) -> void:
+	if timer.is_stopped():
+		queue_free()
 	translate(direction*speed*delta)
 
 func _on_body_entered(body: Node2D) -> void:
 	if "enemy" in body.name:
+		print("pen value: ", str(penetration))
 		body.health -= dartDamage
+		penetration -= 1
+	if penetration <= 0:
 		queue_free() 
