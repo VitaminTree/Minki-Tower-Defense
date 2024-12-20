@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2314ouwd5gbi"]
+[gd_scene load_steps=13 format=3 uid="uid://b2314ouwd5gbi"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
 [ext_resource type="Script" path="res://Scripts/LevelOne.gd" id="2_b56o8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nakpgq5gx5jj" path="res://Enemies/Wisp.tscn" id="4_3rbwm"]
 [ext_resource type="Script" path="res://Scripts/BespokePauseRemoveLater.gd" id="4_pknsf"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
+[ext_resource type="PackedScene" uid="uid://wdufakg0ncw0" path="res://Enemies/Dragoon.tscn" id="5_egsf6"]
 [ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="7_tywtp"]
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="8_7nb2a"]
 
@@ -84,6 +85,14 @@ loop = false
 
 [node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D4" instance=ExtResource("4_3rbwm")]
 
+[node name="PathFollow2D5" type="PathFollow2D" parent="PathSpawner/Path2D"]
+position = Vector2(550.376, 674.677)
+progress = 900.0
+rotates = false
+loop = false
+
+[node name="enemy_Dragoon" parent="PathSpawner/Path2D/PathFollow2D5" instance=ExtResource("5_egsf6")]
+
 [node name="Timer" type="Timer" parent="PathSpawner"]
 one_shot = true
 
@@ -118,6 +127,7 @@ text = "Wave 1 of 4"
 label_settings = SubResource("LabelSettings_audou")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 clip_children = 1
 position = Vector2(806, 442)
 texture = ExtResource("7_tywtp")

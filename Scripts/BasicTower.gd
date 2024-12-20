@@ -1,4 +1,4 @@
-class_name Tower extends Node2D
+class_name Tower extends StaticBody2D
 
 @export var projectile: PackedScene
 @export var rangeHitbox: Area2D
