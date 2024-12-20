@@ -18,14 +18,12 @@ projectile = ExtResource("2_sgmp3")
 rangeHitbox = NodePath("BulletRange")
 projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
-number = 500
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_tr8sk")
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(44, 0)
 
 [node name="BulletRange" type="Area2D" parent="."]
 
@@ -46,7 +44,6 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_l4cng")
 
 [node name="BulletCooldown" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="Area" type="Panel" parent="."]

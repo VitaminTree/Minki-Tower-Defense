@@ -10,19 +10,15 @@ var target
 
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
-# Do not call this if a custom tower:
-# 		1. Does not have an attack
-#		2. Targets friendly units
-#		3. Indescriminately attacks w/o a specified target
+# 
 # This function may become defunct if certain targets need to be untargetable by default towers
 # For example, camoflaged enemies, flying enemies, disguised enemies
 func _process(_delta: float) -> void:
 	# If the target enemy dies or leaves the range of the tower, look for a new target
+	refresh_targets(rangeHitbox)
 	if not is_instance_valid(target):
-		refresh_targets(rangeHitbox)
 		return
-	# If there is a wisp to shoot at, look at it and shoot
-	#self.look_at(target.global_position)
+	# If there is a wisp to shoot at, shoot
 	if timer.is_stopped(): 
 		attack(target, projectile, projectileOrigin)
 		timer.start()
@@ -31,11 +27,9 @@ func _process(_delta: float) -> void:
 func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 	if is_instance_valid(tgt):
 		var dart = atk.instantiate()
-		# global_position of a detached script i.e. a class will return (0,0) regardless of position of inheriting class
 		dart.direction = origin.global_position.direction_to(tgt.global_position)
 		#TODO: Have BulletOrigin rotate about the tower w/o having the whole tower rotate. 
 		#projectileOrigin.look_at(tgt.global_position) 
-		#projectileContainer.add_child(dart)
 		origin.add_child(dart)
 		dart.global_position = origin.global_position
 		dart.look_at(tgt.global_position)

@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if "enemy" in body.name:
-		print("pen value: ", str(penetration))
 		body.health -= dartDamage
 		penetration -= 1
 	if penetration <= 0:

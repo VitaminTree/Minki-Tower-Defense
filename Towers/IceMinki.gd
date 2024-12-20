@@ -2,5 +2,16 @@ class_name IceMinki extends Tower
 
 # !!! Only implement functions that you intend to overrite basic behavior. !!!
 
-func attack(_tgt: Node2D, _atk: PackedScene, _origin: Marker2D) -> void:
-	print("Custom!")
+# Multishot attacking in all directions
+# At least 1 shot is facing the targeted enemy
+func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
+	var shots: int = 36
+	var initialAngle = origin.global_position.direction_to(tgt.global_position) # (x,y) with values between -1 and 1
+	for i in shots:
+		var angle = deg_to_rad(360/shots)*i
+		var dart = atk.instantiate()
+		dart.direction = initialAngle.rotated(angle)
+		origin.add_child(dart)
+		dart.global_position = origin.global_position
+		dart.look_at(tgt.global_position)
+		dart.rotate(angle)
