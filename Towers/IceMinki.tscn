@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Towers/IceMinki.gd" id="1_0cejt"]
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="1_l4cng"]
+[ext_resource type="PackedScene" uid="uid://bcmnoqb8yygww" path="res://Towers/aoeDarts.tscn" id="2_hnokn"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_itq45"]
-[ext_resource type="PackedScene" uid="uid://coqnc4e8k7cxg" path="res://Towers/Dart.tscn" id="2_sgmp3"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_ku0nn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
@@ -14,7 +14,7 @@ radius = 350.0
 
 [node name="IceMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer")]
 script = ExtResource("1_0cejt")
-projectile = ExtResource("2_sgmp3")
+projectile = ExtResource("2_hnokn")
 rangeHitbox = NodePath("BulletRange")
 projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
@@ -36,8 +36,6 @@ modulate = Color(0.0588235, 1, 1, 0.368627)
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("2_itq45")
-
-[node name="BulletContainer" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

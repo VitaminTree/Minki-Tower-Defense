@@ -1,52 +1,67 @@
-[gd_scene load_steps=8 format=3 uid="uid://crfdqi0d4a3rg"]
+[gd_scene load_steps=10 format=3 uid="uid://crfdqi0d4a3rg"]
 
 [ext_resource type="Script" path="res://Scripts/BasicTower.gd" id="1_25dh4"]
-[ext_resource type="PackedScene" uid="uid://coqnc4e8k7cxg" path="res://Towers/Dart.tscn" id="2_6fvmx"]
+[ext_resource type="PackedScene" uid="uid://b7gb1iqm44gk5" path="res://Towers/melee_strike.tscn" id="2_lm4r5"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_t4d8p"]
+[ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="4_3uu44"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_af4iy"]
 [ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="4_x0qtk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_621q7"]
-size = Vector2(109, 110)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v47a8"]
+size = Vector2(63, 63)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xrn15"]
-radius = 350.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_odref"]
+radius = 105.0
 
-[node name="Tower" type="Node2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer")]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b6igf"]
+texture = ExtResource("4_3uu44")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(1, 0.188235, 0.823529, 1)
+
+[node name="Tower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer")]
+collision_layer = 2
 script = ExtResource("1_25dh4")
-projectile = ExtResource("2_6fvmx")
+projectile = ExtResource("2_lm4r5")
 rangeHitbox = NodePath("BulletRange")
 projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_621q7")
+shape = SubResource("RectangleShape2D_v47a8")
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(44, 0)
 
 [node name="BulletRange" type="Area2D" parent="."]
 
 [node name="BulletRangeShape" type="CollisionShape2D" parent="BulletRange"]
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_xrn15")
+shape = SubResource("CircleShape2D_odref")
 
 [node name="BulletRangeVisual" type="Sprite2D" parent="."]
 modulate = Color(0.0588235, 1, 1, 0.368627)
 position = Vector2(0, 1)
-scale = Vector2(2, 2)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_t4d8p")
 
-[node name="BulletContainer" type="Node" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, 1.90735e-06)
-scale = Vector2(0.890625, 0.90625)
+[node name="TowerAppearance" type="Sprite2D" parent="."]
+clip_children = 1
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_x0qtk")
 
+[node name="Panel" type="Panel" parent="TowerAppearance"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b6igf")
+
 [node name="BulletCooldown" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.75
 one_shot = true
 
 [node name="Area" type="Panel" parent="."]
@@ -56,11 +71,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -57.0
-offset_top = -58.0
-offset_right = 57.0
-offset_bottom = 58.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("4_af4iy")
-metadata/_edit_use_anchors_ = true
