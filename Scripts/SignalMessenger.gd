@@ -18,3 +18,5 @@ signal ALL_LIVES_LOST
 
 signal MOUSE_OVER_PATH(state: bool)
 signal MOUSE_OVER_WATER(state: bool)
+
+signal STATUS_APPLIED

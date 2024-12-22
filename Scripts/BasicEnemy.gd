@@ -22,6 +22,8 @@ var health: int:
 		if health < progress_bar.max_value:
 			progress_bar.visible = true
 
+var statusEffects: Array = []
+
 @export var healthpoints: int = 1
 @export var speed = 200
 @export var damage = 1
@@ -40,3 +42,32 @@ func _process(delta: float) -> void:
 	if path.get_progress_ratio() == 1:
 		SignalMessenger.HEALTH_UPDATE.emit(-1*damage)
 		get_parent().queue_free()
+	
+	# Tick down the duration of evey current effect, unless it's persistent
+	for i in range(statusEffects.size()):
+		var effect = statusEffects[i]
+		if not effect.persistent:
+			effect.duration -= delta
+	
+	# Remove effects that have reached the end of their lifetime.
+	# Note: Only 1 effect can be removed per cycle. May be worth visiting if granularity is needed
+	for j in range(statusEffects.size()):
+		var effect = statusEffects[j]
+		if effect.duration < 0:
+			effect.on_remove(self)
+			statusEffects.remove_at(j)
+			reapply_status()
+			break
+
+func apply_status(effect: Status) -> void:
+	for i in range(statusEffects.size()):
+		if statusEffects[i].name == effect.name:
+			statusEffects[i].duration = effect.duration
+			return
+
+	statusEffects.append(effect)
+	effect.on_apply(self)
+
+func reapply_status() -> void:
+	for i in statusEffects:
+		apply_status(i)
