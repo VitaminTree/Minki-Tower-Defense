@@ -6,7 +6,7 @@ func _init(time: float = 3.0):
 	name = "Slow"
 
 func on_apply(target: Node) -> void:
-	target.speed *= 0.2
+	target.speed *= 0.4
 
 func on_remove(target: Node) -> void:
-	target.speed *= 5.0
+	target.speed *= 2.5

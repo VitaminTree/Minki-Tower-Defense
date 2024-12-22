@@ -9,7 +9,7 @@ class_name enemy extends CharacterBody2D
 # SOLUTION: Another variable "healthpoints" is created as a variable to be exported.
 # 	The enemy has no health when being created, but is assigned the value of healthpoints when entering the scene
 #	via the _ready() function
-var health: int:
+var health: float:
 	get:
 		return health
 	set(value): 

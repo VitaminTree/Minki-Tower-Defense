@@ -4,22 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="2_3ux0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhhm1"]
-size = Vector2(41.7391, 24)
+size = Vector2(86.9565, 47)
 
 [node name="speedReducingDart" type="Area2D"]
 script = ExtResource("1_h8w7q")
+speed = 750
+penetration = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.999998, 0)
+position = Vector2(-2, -0.5)
 scale = Vector2(0.575, 1)
 shape = SubResource("RectangleShape2D_hhhm1")
 
 [node name="Dart" type="Sprite2D" parent="."]
 rotation = 3.14159
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_3ux0t")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.33
 one_shot = true
 autostart = true
 
