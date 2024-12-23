@@ -9,6 +9,7 @@
 radius = 26.0
 
 [node name="enemy_Wisp" type="CharacterBody2D" groups=["Enemy"]]
+input_pickable = true
 script = ExtResource("1_rnsfu")
 healthpoints = 10
 damage = 5

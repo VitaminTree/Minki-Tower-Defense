@@ -5,6 +5,7 @@
 
 [node name="TowerPanel" type="Panel"]
 custom_minimum_size = Vector2(120, 160)
+mouse_filter = 1
 script = ExtResource("1_ts8j7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

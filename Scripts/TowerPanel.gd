@@ -39,7 +39,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	var tempTower = unit.instantiate()
 	tempTower.visible = false
 	
-	if event is InputEventMouseButton and event.button_mask == 1 and canPurchase: # left mouse button click
+	if event is InputEventMouseButton and event.pressed and canPurchase: # left mouse button click
 		validClick = true
 		add_child(tempTower)
 		tempTower.process_mode = Node.PROCESS_MODE_DISABLED

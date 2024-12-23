@@ -1,17 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://xr1agxks51pu"]
+[gd_scene load_steps=13 format=3 uid="uid://xr1agxks51pu"]
 
 [ext_resource type="Script" path="res://Towers/FreezingMinki.gd" id="1_5q48e"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_0qrcm"]
 [ext_resource type="PackedScene" uid="uid://n5t6bvwnw0g6" path="res://Towers/slowdownDart.tscn" id="2_8gw5k"]
 [ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="3_agnm8"]
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="4_swocw"]
+[ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_v05mu"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="5_11a7t"]
+[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="8_1q51o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6r78o"]
-size = Vector2(109, 110)
+size = Vector2(128, 128)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2a75o"]
 radius = 350.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gaqyr"]
+shader = ExtResource("4_v05mu")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 6.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_up0c0"]
 texture = ExtResource("4_swocw")
@@ -19,15 +29,17 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(0.14902, 0.188235, 0.823529, 1)
 
-[node name="FreezingMinki" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer")]
+[node name="FreezingMinki" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline")]
+input_pickable = true
 script = ExtResource("1_5q48e")
 projectile = ExtResource("2_8gw5k")
 rangeHitbox = NodePath("BulletRange")
 projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
+contextMenu = NodePath("TowerMenu")
+spriteOutline = NodePath("OutlineShader")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_6r78o")
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
@@ -35,21 +47,27 @@ shape = SubResource("RectangleShape2D_6r78o")
 [node name="BulletRange" type="Area2D" parent="."]
 
 [node name="BulletRangeShape" type="CollisionShape2D" parent="BulletRange"]
-position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_2a75o")
 
 [node name="BulletRangeVisual" type="Sprite2D" parent="."]
 modulate = Color(0.0588235, 1, 1, 0.368627)
-position = Vector2(0, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("2_0qrcm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-clip_children = 1
+[node name="OutlineShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gaqyr")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_agnm8")
 
-[node name="Panel" type="Panel" parent="Sprite2D"]
+[node name="ModulateTexture" type="Sprite2D" parent="."]
+clip_children = 2
+visibility_layer = 3
+material = SubResource("ShaderMaterial_gaqyr")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_agnm8")
+
+[node name="Panel" type="Panel" parent="ModulateTexture"]
+show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -59,13 +77,16 @@ offset_right = -128.0
 offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_up0c0")
+metadata/_edit_use_anchors_ = true
 
 [node name="BulletCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [node name="Area" type="Panel" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.694118)
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,3 +100,11 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("5_11a7t")
+
+[node name="TowerMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("8_1q51o")]
+tower = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -71,3 +71,4 @@ func apply_status(effect: Status) -> void:
 func reapply_status() -> void:
 	for i in statusEffects:
 		apply_status(i)
+

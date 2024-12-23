@@ -4,10 +4,17 @@ class_name Tower extends StaticBody2D
 @export var rangeHitbox: Area2D
 @export var projectileOrigin: Marker2D
 @export var timer: Timer
+@export var contextMenu: Panel
+@export var spriteOutline: Sprite2D
 
 var objectsInRange = []
 var target
+var selected: bool = false
 
+func _ready() -> void:
+	set_process_input(false)
+	contextMenu.visible = false
+	spriteOutline.visible = false
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
 # 
@@ -58,3 +65,18 @@ func target_last(enemies: Array) -> Node2D:
 				furthestTarget = i
 	target = furthestTarget
 	return target
+
+
+func _on_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		contextMenu.visible = true
+		selected = true
+
+
+func _on_mouse_entered():
+	spriteOutline.visible = true
+
+
+func _on_mouse_exited():
+	if selected == false:
+		spriteOutline.visible = false
