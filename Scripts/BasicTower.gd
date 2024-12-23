@@ -10,6 +10,7 @@ class_name Tower extends StaticBody2D
 var objectsInRange = []
 var target
 var selected: bool = false
+var hovering: bool = false
 
 func _ready() -> void:
 	set_process_input(false)
@@ -67,16 +68,34 @@ func target_last(enemies: Array) -> Node2D:
 	return target
 
 
+# This function appears to trigger second 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		contextMenu.visible = true
 		selected = true
 
 
+# This function appears to trigger first
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if not hovering:
+			selected = false
+			contextMenu.visible = false
+			draw_outline()
+
+
 func _on_mouse_entered():
-	spriteOutline.visible = true
+	hovering = true
+	draw_outline()
 
 
 func _on_mouse_exited():
-	if selected == false:
+	hovering = false
+	draw_outline()
+
+
+func draw_outline() -> void:
+	if hovering or selected:
+		spriteOutline.visible = true
+	else:
 		spriteOutline.visible = false
