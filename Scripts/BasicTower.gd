@@ -6,13 +6,18 @@ class_name Tower extends StaticBody2D
 @export var timer: Timer
 @export var contextMenu: Panel
 @export var spriteOutline: Sprite2D
+@export var equipMenu: Panel
 
 var objectsInRange = []
 var target
 var selected: bool = false
 var hovering: bool = false
 
+# Do not prefill this; Exported for debugging purposes
+@export var upgrades: Array[ItemData] = []
+
 func _ready() -> void:
+	SignalMessenger.connect("TOWER_UPGRADED", place_items)
 	set_process_input(false)
 	contextMenu.visible = false
 	spriteOutline.visible = false
@@ -67,6 +72,15 @@ func target_last(enemies: Array) -> Node2D:
 	target = furthestTarget
 	return target
 
+func place_items() -> void:
+	var size = upgrades.size()
+	if size > 0:
+		equipMenu.index_one.texture = upgrades[0].texture
+	if size > 1:
+		equipMenu.index_two.texture = upgrades[1].texture
+	if size > 2:
+		equipMenu.index_three.texture = upgrades[2].texture
+
 
 # This function appears to trigger second 
 func _on_input_event(_viewport, event, _shape_idx):
@@ -79,7 +93,10 @@ func _on_input_event(_viewport, event, _shape_idx):
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if not hovering:
-			selected = false
+			if selected:
+				SignalMessenger.INVENTORY_TOGGLED.emit(self, false)
+				selected = false
+			equipMenu.visible = false
 			contextMenu.visible = false
 			draw_outline()
 

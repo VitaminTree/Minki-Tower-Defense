@@ -20,3 +20,10 @@ signal MOUSE_OVER_PATH(state: bool)
 signal MOUSE_OVER_WATER(state: bool)
 
 signal STATUS_APPLIED
+
+signal INVENTORY_TOGGLED(tower: Tower, make_visible: bool)
+# signal ITEM_CLICKED(index: int) [RELOCATED TO SlotPanel]
+signal INVENTORY_PROCESSED(backpack_data: BackpackData, index: int)
+signal INVENTORY_UPDATED(backpack_data: BackpackData)
+
+signal TOWER_UPGRADED

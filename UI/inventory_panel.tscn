@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnll5myl1ee0f"]
+
+[ext_resource type="Script" path="res://UI/Inventory/BackpackPanel.gd" id="1_x7qhe"]
+[ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="2_yfai1"]
+
+[node name="InventoryPanel" type="PanelContainer"]
+offset_left = 22.0
+offset_top = 903.0
+offset_right = 714.0
+offset_bottom = 1060.0
+script = ExtResource("1_x7qhe")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 10
+
+[node name="Slot" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot2" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot3" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot4" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot5" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot6" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot7" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot8" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot9" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot10" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot11" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot12" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot13" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot14" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot15" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2
+
+[node name="Slot16" parent="MarginContainer/ItemGrid" instance=ExtResource("2_yfai1")]
+layout_mode = 2

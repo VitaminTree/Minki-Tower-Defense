@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://biw7a1ylgrqcu"]
+[gd_scene load_steps=14 format=3 uid="uid://biw7a1ylgrqcu"]
 
 [ext_resource type="Script" path="res://Scripts/BasicTower.gd" id="1_1s836"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="1_y6rsb"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="3_uqt4y"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_6wx7a"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="8_xb7pb"]
+[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://UI/TowerUpgradeMenu.tscn" id="9_8haqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
 size = Vector2(109, 110)
@@ -29,7 +30,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(1, 0.188235, 0.823529, 1)
 
-[node name="TempMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline")]
+[node name="TempMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline", "equipMenu")]
 input_pickable = true
 script = ExtResource("1_1s836")
 projectile = ExtResource("2_afh23")
@@ -38,6 +39,7 @@ projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
 contextMenu = NodePath("TowerMenu")
 spriteOutline = NodePath("OutlineShader")
+equipMenu = NodePath("EquipMenu")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -103,6 +105,11 @@ theme_override_styles/panel = ExtResource("3_uqt4y")
 offset_top = -120.0
 offset_bottom = -75.0
 tower = NodePath("..")
+
+[node name="EquipMenu" parent="." instance=ExtResource("9_8haqs")]
+visible = false
+offset_top = 90.0
+offset_bottom = 165.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

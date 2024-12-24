@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://41ht1veq4f77"]
+[gd_scene load_steps=12 format=3 uid="uid://41ht1veq4f77"]
 
 [ext_resource type="Script" path="res://Towers/IceMinki.gd" id="1_0cejt"]
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="1_l4cng"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_ku0nn"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="5_n7kc0"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="6_v4eli"]
+[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://UI/TowerUpgradeMenu.tscn" id="8_xm4dd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
 size = Vector2(109, 110)
@@ -22,7 +23,7 @@ shader_parameter/pattern = 1
 shader_parameter/inside = false
 shader_parameter/add_margins = true
 
-[node name="IceMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline")]
+[node name="IceMinkiTower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline", "equipMenu")]
 input_pickable = true
 script = ExtResource("1_0cejt")
 projectile = ExtResource("2_hnokn")
@@ -31,6 +32,7 @@ projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
 contextMenu = NodePath("TowerMenu")
 spriteOutline = NodePath("OutlineShader")
+equipMenu = NodePath("EquipMenu")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -83,6 +85,9 @@ metadata/_edit_use_anchors_ = true
 offset_top = -111.0
 offset_bottom = -66.0
 tower = NodePath("..")
+
+[node name="EquipMenu" parent="." instance=ExtResource("8_xm4dd")]
+visible = false
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

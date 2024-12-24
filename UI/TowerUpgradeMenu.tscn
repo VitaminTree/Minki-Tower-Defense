@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://db2dyj0u6qlg5"]
+
+[ext_resource type="Texture2D" uid="uid://qdhh7sji4y2j" path="res://Assets/plus.png" id="1_83r2e"]
+[ext_resource type="Script" path="res://UI/TowerUpgradeMenu.gd" id="1_rffj1"]
+
+[node name="EquipMenu" type="Panel"]
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_rffj1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -31.5
+offset_right = 121.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureButton" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_83r2e")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="TextureButton2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_83r2e")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="TextureButton3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_83r2e")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crfdqi0d4a3rg"]
+[gd_scene load_steps=14 format=3 uid="uid://crfdqi0d4a3rg"]
 
 [ext_resource type="Script" path="res://Scripts/BasicTower.gd" id="1_25dh4"]
 [ext_resource type="PackedScene" uid="uid://b7gb1iqm44gk5" path="res://Towers/melee_strike.tscn" id="2_lm4r5"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_af4iy"]
 [ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="4_x0qtk"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="7_gom1h"]
+[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://UI/TowerUpgradeMenu.tscn" id="9_wps7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v47a8"]
 size = Vector2(64, 64)
@@ -29,7 +30,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(1, 0.188235, 0.823529, 1)
 
-[node name="Tower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline")]
+[node name="Tower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline", "equipMenu")]
 collision_layer = 3
 input_pickable = true
 script = ExtResource("1_25dh4")
@@ -39,6 +40,7 @@ projectileOrigin = NodePath("BulletOrigin")
 timer = NodePath("BulletCooldown")
 contextMenu = NodePath("TowerMenu")
 spriteOutline = NodePath("OutlineShader")
+equipMenu = NodePath("EquipMenu")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v47a8")
@@ -106,6 +108,11 @@ offset_top = -87.0
 offset_bottom = -42.0
 tower = NodePath("..")
 metadata/_edit_use_anchors_ = true
+
+[node name="EquipMenu" parent="." instance=ExtResource("9_wps7p")]
+visible = false
+offset_top = 49.0
+offset_bottom = 124.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

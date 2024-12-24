@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BackpackData" load_steps=14 format=3 uid="uid://c3cn3wx7r1a77"]
+
+[ext_resource type="Script" path="res://UI/Inventory/BackpackData.gd" id="1_l6x2s"]
+[ext_resource type="Resource" uid="uid://brhrsx7wkrp1h" path="res://Items/apple.tres" id="2_k3tg7"]
+[ext_resource type="Script" path="res://UI/Inventory/SlotData.gd" id="3_pqesc"]
+[ext_resource type="Resource" uid="uid://djcbhkiqt2b1c" path="res://Items/fish.tres" id="4_1d3o0"]
+[ext_resource type="Resource" uid="uid://12rue67sdqr" path="res://Items/Shades.tres" id="4_pg57f"]
+[ext_resource type="Resource" uid="uid://dwxqlv1mqhnk5" path="res://Items/donut.tres" id="5_0nyna"]
+
+[sub_resource type="Resource" id="Resource_yw6kw"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("2_k3tg7")
+
+[sub_resource type="Resource" id="Resource_bm520"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("4_1d3o0")
+
+[sub_resource type="Resource" id="Resource_vaqeb"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("2_k3tg7")
+
+[sub_resource type="Resource" id="Resource_fnuqy"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("4_1d3o0")
+
+[sub_resource type="Resource" id="Resource_arl3i"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("4_1d3o0")
+
+[sub_resource type="Resource" id="Resource_4wfc5"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("5_0nyna")
+
+[sub_resource type="Resource" id="Resource_kub2q"]
+script = ExtResource("3_pqesc")
+item_data = ExtResource("4_pg57f")
+
+[resource]
+script = ExtResource("1_l6x2s")
+slot_datas = Array[ExtResource("3_pqesc")]([SubResource("Resource_yw6kw"), SubResource("Resource_bm520"), SubResource("Resource_vaqeb"), SubResource("Resource_fnuqy"), SubResource("Resource_arl3i"), SubResource("Resource_4wfc5"), SubResource("Resource_kub2q"), null])

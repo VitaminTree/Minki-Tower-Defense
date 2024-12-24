@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=14 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/IceMinkiPanel.tscn" id="1_1ld0t"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="8_lc4wy"]
 [ext_resource type="PackedScene" uid="uid://xr1agxks51pu" path="res://Towers/FreezingMinki.tscn" id="11_0f5dw"]
 [ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="12_hu68y"]
+[ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/inventory_panel.tscn" id="13_smvxm"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -104,3 +105,7 @@ layout_mode = 2
 price = 400
 unit = ExtResource("11_0f5dw")
 texture = ExtResource("12_hu68y")
+
+[node name="InventoryPanel" parent="." node_paths=PackedStringArray("money") instance=ExtResource("13_smvxm")]
+visible = false
+money = NodePath("../Resource Panel/HBoxContainer/MoneyLabel")

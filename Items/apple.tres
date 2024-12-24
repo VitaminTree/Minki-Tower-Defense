@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://brhrsx7wkrp1h"]
+
+[ext_resource type="Script" path="res://Items/ItemData.gd" id="1_axr3s"]
+[ext_resource type="Texture2D" uid="uid://cdevvlae5rgyj" path="res://Assets/apple.png" id="2_pluxq"]
+
+[resource]
+script = ExtResource("1_axr3s")
+name = "Apple"
+description = "One a day keeps them away. Attacks travel a bit faster"
+texture = ExtResource("2_pluxq")
+price = 75

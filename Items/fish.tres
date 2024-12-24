@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://djcbhkiqt2b1c"]
+
+[ext_resource type="Script" path="res://Items/ItemData.gd" id="1_sudy4"]
+[ext_resource type="Texture2D" uid="uid://c6j88y2ek4etw" path="res://Assets/fish.png" id="2_obilp"]
+
+[resource]
+script = ExtResource("1_sudy4")
+name = "Blue Fish"
+description = "Quite Stinky."
+texture = ExtResource("2_obilp")
+price = 500
