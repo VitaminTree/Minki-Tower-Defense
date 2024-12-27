@@ -1,11 +1,6 @@
 class_name Wave
 
-var repeat = 1
-var interval = 0.5
+var spawns : Array[Spawn] = []
 
-var spawns = []
-
-func _init(_repeat = 1, _interval = 0.5, _spawns = []):
-	repeat = _repeat
-	interval = _interval
+func _init(_spawns : Array[Spawn]= []):
 	spawns = _spawns
