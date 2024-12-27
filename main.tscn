@@ -54,7 +54,7 @@ loop = false
 [node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D" instance=ExtResource("4_3rbwm")]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="PathSpawner/Path2D"]
-position = Vector2(497.563, 386.289)
+position = Vector2(497.563, 386.29)
 progress = 600.0
 rotates = false
 loop = false
