@@ -5,23 +5,38 @@ extends Node2D
 @onready var dragoonBasic = preload("res://Enemies/Dragoon.tscn")
 @onready var label = $"../CurrentWaveLabel"
 
-var nextWave: int = 1
+var currentWave: int = 0
 var pathIndex: int = 0
 
 
+@onready
+var waves = [
+	Wave.new([
+		Spawn.new(10, 1, [wispBasic])
+	]),
+	Wave.new([
+		Spawn.new(8, 0.5, [dragoonBasic])
+	]),
+	Wave.new([
+		Spawn.new(5, 0.4, [wispBasic]),
+		Spawn.new(5, 0.4, [dragoonBasic])
+	]),
+	Wave.new([
+		Spawn.new(20, 0.2, [wispBasic, dragoonBasic])
+	])
+	
+	]
+
+
+
 func _on_next_level_button_pressed() -> void:
-	match nextWave:
-		1:
-			wave_one()
-		2:
-			wave_two()
-		3:
-			wave_three()
-		4:
-			wave_four()
-		_:
-			label.text = "Winner is you!"
-	nextWave += 1
+	if currentWave >= waves.size():
+		label.text = "You win"
+	else:
+		label.text = "Wave %d of %d" % [(currentWave + 1), waves.size()]
+		summon_wave(waves[currentWave])
+		
+		currentWave += 1
 
 
 func summon_distributed(seconds: float, summon: PackedScene) -> void:
@@ -42,31 +57,10 @@ func summon_distributed(seconds: float, summon: PackedScene) -> void:
 	# If the level has multiple paths, increment pathIndex so it'll point to a different one for next time
 	pathIndex = (pathIndex+1)%(get_child_count()-1)
 
-
-func wave_one() -> void:
-	label.text = "Wave 1 of 4"
-	for i in 10:
-		await summon_distributed(1, wispBasic)
-
-
-func wave_two() -> void:
-	label.text = "Wave 2 of 4"
-	for i in 8:
-		await summon_distributed(0.5, dragoonBasic)
-
-
-func wave_three() -> void:
-	label.text = "Wave 3 of 4"
-	for i in 5:
-		await summon_distributed(0.4, wispBasic)
-	for j in 5:
-		await summon_distributed(0.4, dragoonBasic)
-
-
-func wave_four() -> void:
-	label.text = "Wave 4 of 4"
-	for i in 20:
-		await summon_distributed(0.2, wispBasic)
-		await summon_distributed(0.2, dragoonBasic)
-
+func summon_wave(wave: Wave) -> void:
+	
+	for spawn in wave.spawns:
+		for i in range(spawn.repeat):
+			for enemy in spawn.enemies:
+				await summon_distributed(spawn.interval, enemy)
 

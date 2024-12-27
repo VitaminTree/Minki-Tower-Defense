@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2314ouwd5gbi"]
+[gd_scene load_steps=8 format=3 uid="uid://b2314ouwd5gbi"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
 [ext_resource type="Script" path="res://Scripts/LevelOne.gd" id="2_b56o8"]
 [ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
-[ext_resource type="PackedScene" uid="uid://nakpgq5gx5jj" path="res://Enemies/Wisp.tscn" id="4_3rbwm"]
 [ext_resource type="Script" path="res://Scripts/BespokePauseRemoveLater.gd" id="4_pknsf"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
-[ext_resource type="PackedScene" uid="uid://wdufakg0ncw0" path="res://Enemies/Dragoon.tscn" id="5_egsf6"]
 
 [sub_resource type="Curve2D" id="Curve2D_s8aae"]
 _data = {
@@ -44,46 +42,6 @@ script = ExtResource("3_0amyu")
 
 [node name="Path2D" type="Path2D" parent="PathSpawner"]
 curve = SubResource("Curve2D_s8aae")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="PathSpawner/Path2D"]
-position = Vector2(481.611, 287.391)
-progress = 500.0
-rotates = false
-loop = false
-
-[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D" instance=ExtResource("4_3rbwm")]
-
-[node name="PathFollow2D2" type="PathFollow2D" parent="PathSpawner/Path2D"]
-position = Vector2(497.563, 386.289)
-progress = 600.0
-rotates = false
-loop = false
-
-[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D2" instance=ExtResource("4_3rbwm")]
-
-[node name="PathFollow2D3" type="PathFollow2D" parent="PathSpawner/Path2D"]
-position = Vector2(498.661, 486.113)
-progress = 700.0
-rotates = false
-loop = false
-
-[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D3" instance=ExtResource("4_3rbwm")]
-
-[node name="PathFollow2D4" type="PathFollow2D" parent="PathSpawner/Path2D"]
-position = Vector2(510.561, 584.759)
-progress = 800.0
-rotates = false
-loop = false
-
-[node name="enemy_Wisp" parent="PathSpawner/Path2D/PathFollow2D4" instance=ExtResource("4_3rbwm")]
-
-[node name="PathFollow2D5" type="PathFollow2D" parent="PathSpawner/Path2D"]
-position = Vector2(550.376, 674.677)
-progress = 900.0
-rotates = false
-loop = false
-
-[node name="enemy_Dragoon" parent="PathSpawner/Path2D/PathFollow2D5" instance=ExtResource("5_egsf6")]
 
 [node name="Timer" type="Timer" parent="PathSpawner"]
 one_shot = true
