@@ -12,7 +12,9 @@ var objectsInRange = []
 var target
 var selected: bool = false
 var hovering: bool = false
-
+# Every tower will recieve the tower upgraded signal. Therefore, each tower must
+# keep a memory of which upgrades have already been applied.
+var upgradesApplied: int = 0
 # Do not prefill this; Exported for debugging purposes
 @export var upgrades: Array[ItemData] = []
 
@@ -46,6 +48,10 @@ func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 		origin.add_child(dart)
 		dart.global_position = origin.global_position
 		dart.look_at(tgt.global_position)
+		
+		for item in upgrades:
+			item.buff_projectile(dart)
+		print("\n")
 
 
 func refresh_targets(area: Area2D) -> Node2D:
@@ -72,6 +78,7 @@ func target_last(enemies: Array) -> Node2D:
 	target = furthestTarget
 	return target
 
+# TODO: Support removal of upgrades
 func place_items() -> void:
 	var size = upgrades.size()
 	if size > 0:
@@ -80,6 +87,13 @@ func place_items() -> void:
 		equipMenu.index_two.texture = upgrades[1].texture
 	if size > 2:
 		equipMenu.index_three.texture = upgrades[2].texture
+	
+	# THIS BLOCK WORKS ON THE ASSUMPTION THAT 
+	# 1) UPGRADES COME IN ONE AT A TIME
+	# 2) THE NEWEST UPGRADE IS ALWAYS THE ONE AT THE END OF THE ARRAY
+	if size > upgradesApplied:
+		upgrades[size-1].apply_upgrade(self)
+		upgradesApplied = size
 
 
 # This function appears to trigger second 

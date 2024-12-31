@@ -7,7 +7,7 @@ func slot_clicked(index: int) -> void:
 	SignalMessenger.INVENTORY_PROCESSED.emit(self, index)
 
 
-func purchase_slot_data(index: int, balance) -> SlotData:
+func purchase_slot_data(index: int, balance: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	if not slot_data: 
 		return null

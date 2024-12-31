@@ -2,7 +2,7 @@ class_name Dart extends Area2D
 
 @onready var timer: Timer = $Timer
 
-@export var speed: int = 1250
+@export var speed: float = 1250
 @export var penetration: int = 1
 
 var dartDamage: float = 1
@@ -21,7 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 		penetration -= 1
 		on_hit_effect(body)
 	if penetration <= 0:
-		queue_free() 
+		queue_free()
 
 # A basic dart does nothing besides reducing health,
 # but darts inherting the basic dart can override to apply extra effects
