@@ -2,7 +2,6 @@ class_name BackpackData extends Resource
 
 @export var slot_datas: Array[SlotData]
 
-
 func slot_clicked(index: int) -> void:
 	SignalMessenger.INVENTORY_PROCESSED.emit(self, index)
 

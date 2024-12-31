@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://12rue67sdqr"]
+[gd_resource type="Resource" script_class="shades" load_steps=3 format=3 uid="uid://12rue67sdqr"]
 
-[ext_resource type="Script" path="res://Items/ItemData.gd" id="1_oo28j"]
+[ext_resource type="Script" path="res://Items/shades.gd" id="1_73yi1"]
 [ext_resource type="Texture2D" uid="uid://daqpuvgbr81d5" path="res://Assets/shades.png" id="2_i7lh8"]
 
 [resource]
-script = ExtResource("1_oo28j")
+script = ExtResource("1_73yi1")
 name = "Sunglasses"
 description = "Never let them know your next move. Damage up, range down."
 texture = ExtResource("2_i7lh8")

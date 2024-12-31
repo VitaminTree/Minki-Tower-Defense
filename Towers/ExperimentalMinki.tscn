@@ -30,17 +30,11 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(1, 0.188235, 0.823529, 1)
 
-[node name="Tower" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline", "equipMenu")]
+[node name="Tower" type="StaticBody2D"]
 collision_layer = 3
 input_pickable = true
 script = ExtResource("1_25dh4")
 projectile = ExtResource("2_lm4r5")
-rangeHitbox = NodePath("BulletRange")
-projectileOrigin = NodePath("BulletOrigin")
-timer = NodePath("BulletCooldown")
-contextMenu = NodePath("TowerMenu")
-spriteOutline = NodePath("OutlineShader")
-equipMenu = NodePath("EquipMenu")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v47a8")

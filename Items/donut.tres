@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dwxqlv1mqhnk5"]
+[gd_resource type="Resource" script_class="donut" load_steps=3 format=3 uid="uid://dwxqlv1mqhnk5"]
 
-[ext_resource type="Script" path="res://Items/ItemData.gd" id="1_e1lmn"]
+[ext_resource type="Script" path="res://Items/donut.gd" id="1_dbsn7"]
 [ext_resource type="Texture2D" uid="uid://dshgc8wiethbt" path="res://Assets/donut.png" id="2_2k125"]
 
 [resource]
-script = ExtResource("1_e1lmn")
+script = ExtResource("1_dbsn7")
 name = "Pink Frosted Donut"
 description = "Very bad for your diet"
 texture = ExtResource("2_2k125")

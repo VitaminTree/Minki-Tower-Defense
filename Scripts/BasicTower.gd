@@ -1,12 +1,14 @@
 class_name Tower extends StaticBody2D
 
 @export var projectile: PackedScene
-@export var rangeHitbox: Area2D
-@export var projectileOrigin: Marker2D
-@export var timer: Timer
-@export var contextMenu: Panel
-@export var spriteOutline: Sprite2D
-@export var equipMenu: Panel
+
+@onready var rangeHitbox: Area2D = $BulletRange
+@onready var rangeVisual: Sprite2D = $BulletRangeVisual
+@onready var projectileOrigin: Marker2D = $BulletOrigin
+@onready var timer: Timer = $BulletCooldown
+@onready var contextMenu: Panel = $TowerMenu
+@onready var spriteOutline: Sprite2D = $OutlineShader
+@onready var equipMenu: Panel = $EquipMenu
 
 var objectsInRange = []
 var target
@@ -51,7 +53,6 @@ func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 		
 		for item in upgrades:
 			item.buff_projectile(dart)
-		print("\n")
 
 
 func refresh_targets(area: Area2D) -> Node2D:
@@ -99,6 +100,7 @@ func place_items() -> void:
 # This function appears to trigger second 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		rangeVisual.visible = true
 		contextMenu.visible = true
 		selected = true
 
@@ -110,6 +112,7 @@ func _unhandled_input(event):
 			if selected:
 				SignalMessenger.INVENTORY_TOGGLED.emit(self, false)
 				selected = false
+			rangeVisual.visible = false
 			equipMenu.visible = false
 			contextMenu.visible = false
 			draw_outline()
