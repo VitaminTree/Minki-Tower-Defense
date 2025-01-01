@@ -30,16 +30,10 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(0.14902, 0.188235, 0.823529, 1)
 
-[node name="FreezingMinki" type="StaticBody2D" node_paths=PackedStringArray("rangeHitbox", "projectileOrigin", "timer", "contextMenu", "spriteOutline", "equipMenu")]
+[node name="FreezingMinki" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_5q48e")
 projectile = ExtResource("2_8gw5k")
-rangeHitbox = NodePath("BulletRange")
-projectileOrigin = NodePath("BulletOrigin")
-timer = NodePath("BulletCooldown")
-contextMenu = NodePath("TowerMenu")
-spriteOutline = NodePath("OutlineShader")
-equipMenu = NodePath("EquipMenu")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6r78o")
@@ -88,7 +82,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Area" type="Panel" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.694118)
 anchors_preset = 8
 anchor_left = 0.5

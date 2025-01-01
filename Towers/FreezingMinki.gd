@@ -13,3 +13,6 @@ func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 	dart.global_position = origin.global_position
 	dart.look_at(tgt.global_position)
 	dart.rotate(offset)
+	
+	for item in upgrades:
+		item.buff_projectile(dart)
