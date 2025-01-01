@@ -4,10 +4,12 @@ extends Node2D
 @onready var wispBasic = preload("res://Enemies/Wisp.tscn")
 @onready var dragoonBasic = preload("res://Enemies/Dragoon.tscn")
 @onready var label = $"../CurrentWaveLabel"
+@onready var button = $"../NextLevelButton"
 
 var currentWave: int = 0
 var pathIndex: int = 0
 
+@export var totalEnemies: int = 0
 
 @onready
 var waves = [
@@ -54,15 +56,31 @@ var waves = [
 	
 	]
 
+func _ready() -> void:
+	SignalMessenger.connect("ENEMY_LEFT", on_enemy_removal)
+
+func on_enemy_removal() -> void:
+	totalEnemies -= 1
+	if totalEnemies < 1:
+		button.disabled = false
+
+
+func count_enemies_in_wave(wave: Wave) -> int:
+	var count: int = 0
+	for spawn in wave.spawns:
+		if spawn.enemies[0]:
+			count += ( spawn.enemies.size() * spawn.repeat )
+	return count
 
 
 func _on_next_level_button_pressed() -> void:
+	button.disabled = true
 	if currentWave >= waves.size():
 		label.text = "You win"
 	else:
 		label.text = "Wave %d of %d" % [(currentWave + 1), waves.size()]
+		totalEnemies = count_enemies_in_wave(waves[currentWave])
 		summon_wave(waves[currentWave])
-		
 		currentWave += 1
 
 

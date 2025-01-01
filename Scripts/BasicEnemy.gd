@@ -17,6 +17,7 @@ var health: float:
 		progress_bar.value = value
 		if health <= 0:
 			SignalMessenger.MONEY_PAYMENT.emit(payment)
+			SignalMessenger.ENEMY_LEFT.emit()
 			get_parent().queue_free()
 			return
 		if health < progress_bar.max_value:
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 	path.set_progress(path.get_progress()+speed*delta)
 	if path.get_progress_ratio() == 1:
 		SignalMessenger.HEALTH_UPDATE.emit(-1*damage)
+		SignalMessenger.ENEMY_LEFT.emit()
 		get_parent().queue_free()
 	
 	# Tick down the duration of evey current effect, unless it's persistent
