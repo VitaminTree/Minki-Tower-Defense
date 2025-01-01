@@ -11,18 +11,45 @@ var pathIndex: int = 0
 
 @onready
 var waves = [
+	# When the wave starts, it waits 1 second then spawns a wisp.
+	# It will repeat the wait-and-spawn 10 times
 	Wave.new([
-		Spawn.new(10, 1, [wispBasic])
+		Spawn.new(10, 1, [wispBasic]) 
 	]),
-	Wave.new([
-		Spawn.new(8, 0.5, [dragoonBasic])
-	]),
+	# A wave can have multiple Spawns.
+	# It will fully resolve the first Spawn before processing the next one.
 	Wave.new([
 		Spawn.new(5, 0.4, [wispBasic]),
 		Spawn.new(5, 0.4, [dragoonBasic])
 	]),
+	# This wave spawns a group of 5 wisps, then waits 3 seconds for the next group of 5.
+	#
+	# The spawner takes "repeat" x "interval" x "number of enemies" time in seconds to resolve the Spawn's instruction.
+	#
+	# For a Gap Spawn:
+	# If the first digit is 0, or the array is empty, then the spawner will not wait at all.
+	# if the first digit is greater than 1, or there are multiple nulls in the array,
+	# then, the spawner will wait for much longer than the Wait time given.
+	Wave.new([
+		Spawn.new(5, 0.3, [wispBasic]), 
+		Spawn.new(1, 3, [null]), 
+		Spawn.new(5, 0.3, [wispBasic]),
+		Spawn.new(1, 3, [null]), 
+		Spawn.new(5, 0.3, [wispBasic])
+	]),
+	Wave.new([
+		Spawn.new(8, 0.5, [dragoonBasic])
+	]),
+	# When the array has multiple enemies, it will look at the first index, spawn 1 enemy of that type,
+	# wait the given delay, then do the same for the next entry.
+	# Once it reaches the end of the array, it will repeat this until the array has been fully read
+	# the "repeat" number of times
 	Wave.new([
 		Spawn.new(20, 0.2, [wispBasic, dragoonBasic])
+	]),
+	# This wave spawns a wisp, a wisp, a dragoon, then repeats the pattern 14 more times
+	Wave.new([
+		Spawn.new(15, 0.2, [wispBasic, wispBasic, dragoonBasic])
 	])
 	
 	]
@@ -45,6 +72,9 @@ func summon_distributed(seconds: float, summon: PackedScene) -> void:
 	# Set a timer and wait for it to end
 	get_node("Timer").start(seconds)
 	await get_node("Timer").timeout
+	# Write this down later
+	if not summon:
+		return
 	# Add PathFollow node for the enemy to use
 	var route = PathFollow2D.new()
 	route.rotates = false

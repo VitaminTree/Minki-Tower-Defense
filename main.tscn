@@ -75,7 +75,7 @@ offset_top = 908.0
 offset_right = 1148.0
 offset_bottom = 980.0
 theme_override_font_sizes/font_size = 25
-text = "Wave 1 of 4"
+text = "Click to begin"
 label_settings = SubResource("LabelSettings_audou")
 
 [connection signal="mouse_entered" from="Track/Path" to="Track" method="_on_path_mouse_entered"]
