@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2314ouwd5gbi"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
-[ext_resource type="Script" path="res://Scripts/LevelOne.gd" id="2_b56o8"]
+[ext_resource type="Script" path="res://Scripts/LevelOneTerrain.gd" id="2_s538d"]
 [ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
-[ext_resource type="Script" path="res://Scripts/BespokePauseRemoveLater.gd" id="4_pknsf"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
+[ext_resource type="Script" path="res://Scripts/PauseButton.gd" id="5_lkpo7"]
 
 [sub_resource type="Curve2D" id="Curve2D_s8aae"]
 _data = {
@@ -21,7 +21,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="Track" type="Sprite2D" parent="."]
 texture = ExtResource("1_2o82f")
 centered = false
-script = ExtResource("2_b56o8")
+script = ExtResource("2_s538d")
 metadata/_edit_lock_ = true
 
 [node name="Path" type="Area2D" parent="Track"]
@@ -50,7 +50,7 @@ one_shot = true
 
 [node name="UI" parent="." instance=ExtResource("4_uwnil")]
 
-[node name="BespokePauseRemoveLater" type="Button" parent="."]
+[node name="PauseButton" type="Button" parent="."]
 offset_left = 1146.0
 offset_top = 95.0
 offset_right = 1299.0
@@ -58,7 +58,7 @@ offset_bottom = 172.0
 mouse_filter = 1
 theme_override_font_sizes/font_size = 50
 text = "pause"
-script = ExtResource("4_pknsf")
+script = ExtResource("5_lkpo7")
 
 [node name="NextLevelButton" type="Button" parent="."]
 offset_left = 905.0
@@ -82,5 +82,5 @@ label_settings = SubResource("LabelSettings_audou")
 [connection signal="mouse_exited" from="Track/Path" to="Track" method="_on_path_mouse_exited"]
 [connection signal="mouse_entered" from="Track/Water" to="Track" method="_on_water_mouse_entered"]
 [connection signal="mouse_exited" from="Track/Water" to="Track" method="_on_water_mouse_exited"]
-[connection signal="pressed" from="BespokePauseRemoveLater" to="BespokePauseRemoveLater" method="_on_pressed"]
+[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="NextLevelButton" to="PathSpawner" method="_on_next_level_button_pressed"]

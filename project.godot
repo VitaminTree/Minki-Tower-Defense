@@ -20,7 +20,8 @@ config/windows_native_icon="res://Assets/Wisp.ico"
 
 [autoload]
 
-SignalMessenger="*res://Scripts/SignalMessenger.gd"
+SignalMessenger="*res://Scripts/Autoloads/SignalMessenger.gd"
+GameData="*res://Scripts/Autoloads/GameData.gd"
 
 [display]
 
