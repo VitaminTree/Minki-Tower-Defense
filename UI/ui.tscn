@@ -21,8 +21,6 @@ offset_left = 900.0
 offset_right = 1340.0
 offset_bottom = 58.0
 script = ExtResource("2_smqts")
-Health = 150
-Money = 2900
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Resource Panel"]
 layout_mode = 0
@@ -89,20 +87,21 @@ layout_mode = 2
 unit = ExtResource("5_kdb6q")
 texture = ExtResource("6_yx21i")
 
-[node name="IceMinkiPanel2" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
+[node name="SwordMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
+price = 500
 unit = ExtResource("7_iwc5e")
 texture = ExtResource("8_2joi5")
 
-[node name="IceMinkiPanel3" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
+[node name="BasicMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
 price = 150
 unit = ExtResource("7_03ng4")
 texture = ExtResource("8_lc4wy")
 
-[node name="TowerPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
+[node name="FreezeMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
-price = 400
+price = 750
 unit = ExtResource("11_0f5dw")
 texture = ExtResource("12_hu68y")
 

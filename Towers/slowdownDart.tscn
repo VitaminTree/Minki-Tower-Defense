@@ -9,7 +9,6 @@ size = Vector2(86.9565, 47)
 [node name="speedReducingDart" type="Area2D"]
 script = ExtResource("1_h8w7q")
 speed = 750
-penetration = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -0.5)

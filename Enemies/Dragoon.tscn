@@ -10,7 +10,8 @@ radius = 26.0
 
 [node name="enemy_Dragoon" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_wqbbq")
-speed = 450
+healthpoints = 3
+speed = 300
 damage = 10
 payment = 50
 
@@ -28,6 +29,7 @@ offset_left = -50.0
 offset_top = -54.0
 offset_right = 50.0
 offset_bottom = -44.0
+step = 0.0
 value = 99.0
 texture_over = ExtResource("3_2x1xh")
 texture_progress = ExtResource("4_a62ah")

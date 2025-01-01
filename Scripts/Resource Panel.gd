@@ -1,6 +1,6 @@
 extends Panel
 
-@export var Health: int = 250
+@export var Health: int = 150
 @export var Money: int = 1000
 
 @onready var hpUI = $HBoxContainer/HealthLabel
