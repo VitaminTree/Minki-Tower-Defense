@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b7gb1iqm44gk5"]
 
-[ext_resource type="Script" path="res://Towers/sword.gd" id="1_slj8e"]
+[ext_resource type="Script" path="res://Towers/Sword Minki/sword.gd" id="1_slj8e"]
 [ext_resource type="Texture2D" uid="uid://bohr82hxvoq58" path="res://Assets/attack/sword1.png" id="2_oiilj"]
 [ext_resource type="Texture2D" uid="uid://dejlly5fbncts" path="res://Assets/attack/sword2.png" id="3_23f51"]
 [ext_resource type="Texture2D" uid="uid://b0y7s720you46" path="res://Assets/attack/sword3.png" id="4_ecw1o"]

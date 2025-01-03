@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcmnoqb8yygww"]
 
-[ext_resource type="Script" path="res://Towers/IceMinkiDarts.gd" id="1_nqwt4"]
+[ext_resource type="Script" path="res://Towers/Circle Attacking Minki/IceMinkiDarts.gd" id="1_e0l5r"]
 [ext_resource type="Texture2D" uid="uid://bbncoopr6si70" path="res://Assets/dart.png" id="2_a2ub2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7dkl"]
 size = Vector2(128, 15)
 
 [node name="Dart" type="Area2D"]
-script = ExtResource("1_nqwt4")
+script = ExtResource("1_e0l5r")
 speed = 2000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

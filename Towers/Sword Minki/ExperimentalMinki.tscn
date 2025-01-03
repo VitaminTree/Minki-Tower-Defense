@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://crfdqi0d4a3rg"]
 
 [ext_resource type="Script" path="res://Scripts/BasicTower.gd" id="1_25dh4"]
-[ext_resource type="PackedScene" uid="uid://b7gb1iqm44gk5" path="res://Towers/melee_strike.tscn" id="2_lm4r5"]
+[ext_resource type="PackedScene" uid="uid://b7gb1iqm44gk5" path="res://Towers/Sword Minki/melee_strike.tscn" id="2_lm4r5"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_t4d8p"]
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="4_3uu44"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_74t88"]

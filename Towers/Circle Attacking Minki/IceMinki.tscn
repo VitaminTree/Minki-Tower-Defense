@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://41ht1veq4f77"]
 
-[ext_resource type="Script" path="res://Towers/IceMinki.gd" id="1_0cejt"]
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="1_l4cng"]
-[ext_resource type="PackedScene" uid="uid://bcmnoqb8yygww" path="res://Towers/aoeDarts.tscn" id="2_hnokn"]
+[ext_resource type="Script" path="res://Towers/Circle Attacking Minki/IceMinki.gd" id="1_wycnd"]
+[ext_resource type="PackedScene" uid="uid://bcmnoqb8yygww" path="res://Towers/Circle Attacking Minki/aoeDarts.tscn" id="2_hnokn"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_itq45"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_ku0nn"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="5_n7kc0"]
@@ -25,7 +25,7 @@ shader_parameter/add_margins = true
 
 [node name="IceMinkiTower" type="StaticBody2D"]
 input_pickable = true
-script = ExtResource("1_0cejt")
+script = ExtResource("1_wycnd")
 projectile = ExtResource("2_hnokn")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]

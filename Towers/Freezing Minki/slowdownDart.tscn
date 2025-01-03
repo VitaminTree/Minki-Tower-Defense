@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://n5t6bvwnw0g6"]
 
-[ext_resource type="Script" path="res://Towers/Snowflake.gd" id="1_h8w7q"]
-[ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="2_3ux0t"]
+[ext_resource type="Script" path="res://Towers/Freezing Minki/Snowflake.gd" id="1_7lb7v"]
+[ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="2_0nihl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhhm1"]
 size = Vector2(86.9565, 47)
 
 [node name="speedReducingDart" type="Area2D"]
-script = ExtResource("1_h8w7q")
+script = ExtResource("1_7lb7v")
 speed = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,7 +17,7 @@ shape = SubResource("RectangleShape2D_hhhm1")
 
 [node name="Dart" type="Sprite2D" parent="."]
 rotation = 3.14159
-texture = ExtResource("2_3ux0t")
+texture = ExtResource("2_0nihl")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.33

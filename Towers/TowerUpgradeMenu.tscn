@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://db2dyj0u6qlg5"]
 
-[ext_resource type="Texture2D" uid="uid://qdhh7sji4y2j" path="res://Assets/plus.png" id="1_83r2e"]
-[ext_resource type="Script" path="res://UI/TowerUpgradeMenu.gd" id="1_rffj1"]
+[ext_resource type="Script" path="res://Towers/TowerUpgradeMenu.gd" id="1_3rxsi"]
+[ext_resource type="Texture2D" uid="uid://qdhh7sji4y2j" path="res://Assets/plus.png" id="2_01idr"]
 
 [node name="EquipMenu" type="Panel"]
 offset_left = -150.0
 offset_top = 75.0
 offset_right = 150.0
 offset_bottom = 150.0
-script = ExtResource("1_rffj1")
+script = ExtResource("1_3rxsi")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -28,7 +28,7 @@ alignment = 1
 [node name="TextureButton" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_83r2e")
+texture = ExtResource("2_01idr")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true
@@ -36,7 +36,7 @@ flip_h = true
 [node name="TextureButton2" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_83r2e")
+texture = ExtResource("2_01idr")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true
@@ -44,7 +44,7 @@ flip_h = true
 [node name="TextureButton3" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_83r2e")
+texture = ExtResource("2_01idr")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true

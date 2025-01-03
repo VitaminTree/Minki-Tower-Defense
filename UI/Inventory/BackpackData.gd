@@ -8,7 +8,7 @@ func slot_clicked(index: int) -> void:
 
 func purchase_slot_data(index: int, balance: int) -> SlotData:
 	var slot_data = slot_datas[index]
-	if not slot_data: 
+	if not slot_data:
 		return null
 	if balance < slot_data.item_data.price:
 		return null
