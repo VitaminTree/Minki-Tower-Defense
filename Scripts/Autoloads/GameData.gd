@@ -9,3 +9,5 @@ extends Node
 #  - Experience? Idk
 #
 # For now, this script will remain empty until the next realease is shipped, then I may consider refactoring
+
+var items = preload("res://UI/Inventory/OneOfEverything.tres")

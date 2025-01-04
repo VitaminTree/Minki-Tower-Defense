@@ -18,13 +18,15 @@ var hovering: bool = false
 # keep a memory of which upgrades have already been applied.
 var upgradesApplied: int = 0
 # Do not prefill this; Exported for debugging purposes
-@export var upgrades: Array[ItemData] = []
+@export var upgrades: Array[ItemData] = [null, null, null]
 
 func _ready() -> void:
-	SignalMessenger.connect("TOWER_UPGRADED", place_items)
+	SignalMessenger.connect("TOWER_UPGRADED", draw_items)
 	set_process_input(false)
 	contextMenu.visible = false
 	spriteOutline.visible = false
+	var a = find_item("Apple")
+	var b = find_item("cherry")
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
 # 
@@ -79,22 +81,32 @@ func target_last(enemies: Array) -> Node2D:
 	target = furthestTarget
 	return target
 
-# TODO: Support removal of upgrades
-func place_items() -> void:
-	var size = upgrades.size()
-	if size > 0:
+
+func draw_items() -> void:
+	if upgrades[0]:
 		equipMenu.index_one.texture = upgrades[0].texture
-	if size > 1:
+	if upgrades[1]:
 		equipMenu.index_two.texture = upgrades[1].texture
-	if size > 2:
+	if upgrades[2]:
 		equipMenu.index_three.texture = upgrades[2].texture
-	
-	# THIS BLOCK WORKS ON THE ASSUMPTION THAT 
-	# 1) UPGRADES COME IN ONE AT A TIME
-	# 2) THE NEWEST UPGRADE IS ALWAYS THE ONE AT THE END OF THE ARRAY
-	if size > upgradesApplied:
-		upgrades[size-1].apply_upgrade(self)
-		upgradesApplied = size
+
+
+func equip_item(item: ItemData) -> void:
+	for i in upgrades.size():
+		if not upgrades[i]:
+			upgrades[i] = item
+			item.apply_upgrade(self)
+			upgradesApplied += 1
+			return
+	print("Upgrade limit reached: Item not equiped")
+
+
+func find_item(name: String) -> ItemData:
+	for item in GameData.items.slot_datas:
+		if item.item_data.name == name:
+			return item.item_data
+	print("Item was not found. Misspelled?")
+	return null
 
 
 # This function appears to trigger second 

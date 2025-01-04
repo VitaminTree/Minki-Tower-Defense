@@ -58,12 +58,13 @@ func show_backpack(tower: Tower, make_visible: bool) -> void:
 
 func on_inventory_interact(backpack_data: BackpackData, index: int) -> void:
 	var balance = int(money.text)
-	var tower_upgrade_count = target_tower.upgrades.size()
+	var tower_upgrade_count = target_tower.upgradesApplied
 	if tower_upgrade_count < 3:
 		var grabbed_slot_data = backpack_data.purchase_slot_data(index, balance)
 		print(grabbed_slot_data)
 		if grabbed_slot_data:
-			target_tower.upgrades.append(grabbed_slot_data.item_data)
+			target_tower.equip_item(grabbed_slot_data.item_data)
+			#target_tower.upgrades.append(grabbed_slot_data.item_data)
 			SignalMessenger.TOWER_UPGRADED.emit()
 	else:
 		print("UPGRADE LIMIT REACHED FOR THIS TOWER")
