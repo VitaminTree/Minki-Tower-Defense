@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="4_swocw"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_v05mu"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="5_11a7t"]
-[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="8_1q51o"]
-[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://UI/TowerUpgradeMenu.tscn" id="9_meioc"]
+[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="8_1q51o"]
+[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://Towers/TowerUpgradeMenu.tscn" id="9_meioc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6r78o"]
 size = Vector2(128, 128)

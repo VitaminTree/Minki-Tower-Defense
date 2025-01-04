@@ -25,8 +25,8 @@ func _ready() -> void:
 	set_process_input(false)
 	contextMenu.visible = false
 	spriteOutline.visible = false
-	var a = find_item("Apple")
-	var b = find_item("cherry")
+#	var a = GameData.find_item("Apple")
+#	var b = GameData.find_item("cherry")
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
 # 
@@ -54,7 +54,8 @@ func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 		dart.look_at(tgt.global_position)
 		
 		for item in upgrades:
-			item.buff_projectile(dart)
+			if item:
+				item.buff_projectile(dart)
 
 
 func refresh_targets(area: Area2D) -> Node2D:
@@ -99,14 +100,6 @@ func equip_item(item: ItemData) -> void:
 			upgradesApplied += 1
 			return
 	print("Upgrade limit reached: Item not equiped")
-
-
-func find_item(name: String) -> ItemData:
-	for item in GameData.items.slot_datas:
-		if item.item_data.name == name:
-			return item.item_data
-	print("Item was not found. Misspelled?")
-	return null
 
 
 # This function appears to trigger second 
