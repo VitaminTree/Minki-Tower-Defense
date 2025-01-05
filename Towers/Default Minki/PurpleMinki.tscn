@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="5_xdy8v"]
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="6_tf6vr"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="7_4er6j"]
-[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="8_w1pmt"]
-[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://UI/TowerUpgradeMenu.tscn" id="9_3oi0l"]
+[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="8_w1pmt"]
+[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://Towers/TowerUpgradeMenu.tscn" id="9_3oi0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
 size = Vector2(109, 110)
@@ -33,6 +33,7 @@ modulate_color = Color(1, 0.188235, 0.823529, 1)
 [node name="TempMinkiTower" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_dnbjb")
+Name = "Default Minki"
 projectile = ExtResource("2_6uhc4")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]

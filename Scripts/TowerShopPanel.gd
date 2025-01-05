@@ -70,8 +70,12 @@ func _on_gui_input(event: InputEvent) -> void:
 			tempTower.visible = true
 			var path = get_tree().get_root().get_node("Main/Towers")
 			
-			path.add_child(tempTower)
 			tempTower.global_position = get_viewport().get_mouse_position()
+			tempTower.position.x = int(tempTower.position.x)
+			tempTower.position.y = int(tempTower.position.y)
+			path.add_child(tempTower)
+			tempTower.set_data()
+			GameData.towers.append(tempTower.data)
 			tempTower.get_node("Area").hide()
 			tempTower.get_node("BulletRangeVisual").hide()
 			

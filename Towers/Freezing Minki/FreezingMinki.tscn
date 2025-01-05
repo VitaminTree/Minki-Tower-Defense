@@ -33,6 +33,7 @@ modulate_color = Color(0.14902, 0.188235, 0.823529, 1)
 [node name="FreezingMinki" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_5q48e")
+Name = "Freeze Minki"
 projectile = ExtResource("2_8gw5k")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]

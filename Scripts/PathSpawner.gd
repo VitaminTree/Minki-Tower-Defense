@@ -65,6 +65,7 @@ func _ready() -> void:
 
 func on_enemy_removal() -> void:
 	totalEnemies -= 1
+	print("Enemies left: %d" % [totalEnemies])
 	if totalEnemies < 1:
 		GameData.isWaveActive = false
 		GameData.WavesCleared = currentWave
@@ -87,6 +88,7 @@ func _on_next_level_button_pressed() -> void:
 		GameData.isWaveActive = true
 		label.text = "Wave %d of %d" % [(currentWave + 1), waves.size()]
 		totalEnemies = count_enemies_in_wave(waves[currentWave])
+		print("Total enemies: %d" % [totalEnemies])
 		summon_wave(waves[currentWave])
 		currentWave += 1
 

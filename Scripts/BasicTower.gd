@@ -1,6 +1,8 @@
 class_name Tower extends StaticBody2D
 
+@export var Name: String
 @export var projectile: PackedScene
+
 
 @onready var rangeHitbox: Area2D = $BulletRange
 @onready var rangeVisual: Sprite2D = $BulletRangeVisual
@@ -16,17 +18,19 @@ var selected: bool = false
 var hovering: bool = false
 # Every tower will recieve the tower upgraded signal. Therefore, each tower must
 # keep a memory of which upgrades have already been applied.
-var upgradesApplied: int = 0
+var upgradesApplied: Array[bool] = [false,false,false]
 # Do not prefill this; Exported for debugging purposes
 @export var upgrades: Array[ItemData] = [null, null, null]
 
+var data: TowerData
+
 func _ready() -> void:
+	print(Name)
 	SignalMessenger.connect("TOWER_UPGRADED", draw_items)
 	set_process_input(false)
 	contextMenu.visible = false
 	spriteOutline.visible = false
-#	var a = GameData.find_item("Apple")
-#	var b = GameData.find_item("cherry")
+
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
 # 
@@ -41,6 +45,15 @@ func _process(_delta: float) -> void:
 	if timer.is_stopped(): 
 		attack(target, projectile, projectileOrigin)
 		timer.start()
+
+
+func set_data() -> void:
+	data = TowerData.new()
+	data.Name = Name
+	data.location[0] = int(global_position.x)
+	data.location[1] = int(global_position.y)
+	data.upgrades = upgrades
+	data.upgradecount = upgradesApplied
 
 
 func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
@@ -91,15 +104,25 @@ func draw_items() -> void:
 	if upgrades[2]:
 		equipMenu.index_three.texture = upgrades[2].texture
 
-
-func equip_item(item: ItemData) -> void:
+# If index is set, the function will attempt to equip the item ONLY in the given index.
+func equip_item(item: ItemData, index: int = -1) -> void:
 	for i in upgrades.size():
-		if not upgrades[i]:
-			upgrades[i] = item
-			item.apply_upgrade(self)
-			upgradesApplied += 1
-			return
+		if index < 0 or i == index:
+			if item and not upgrades[i]:
+				upgrades[i] = item
+				item.apply_upgrade(self)
+				upgradesApplied[i] = true
+				set_data()
+				GameData.update_tower_data(data)
+				return
 	print("Upgrade limit reached: Item not equiped")
+
+
+func check_capacity() -> bool:
+	for state in upgradesApplied:
+		if not state:
+			return true
+	return false
 
 
 # This function appears to trigger second 

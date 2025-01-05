@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2314ouwd5gbi"]
+[gd_scene load_steps=9 format=3 uid="uid://b2314ouwd5gbi"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
+[ext_resource type="Script" path="res://LevelInstantiation.gd" id="1_unxxj"]
 [ext_resource type="Script" path="res://Scripts/LevelOneTerrain.gd" id="2_s538d"]
 [ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
@@ -17,6 +18,7 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_unxxj")
 
 [node name="Track" type="Sprite2D" parent="."]
 texture = ExtResource("1_2o82f")

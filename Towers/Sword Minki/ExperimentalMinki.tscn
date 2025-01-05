@@ -7,8 +7,8 @@
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_74t88"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_af4iy"]
 [ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="4_x0qtk"]
-[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://UI/TowerContextMenu.tscn" id="7_gom1h"]
-[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://UI/TowerUpgradeMenu.tscn" id="9_wps7p"]
+[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="7_gom1h"]
+[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://Towers/TowerUpgradeMenu.tscn" id="9_wps7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v47a8"]
 size = Vector2(64, 64)
@@ -34,6 +34,7 @@ modulate_color = Color(1, 0.188235, 0.823529, 1)
 collision_layer = 3
 input_pickable = true
 script = ExtResource("1_25dh4")
+Name = "Sword Minki"
 projectile = ExtResource("2_lm4r5")
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
