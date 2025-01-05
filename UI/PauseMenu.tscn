@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkaq5i1gngwvn"]
+[gd_scene load_steps=4 format=3 uid="uid://dkaq5i1gngwvn"]
 
 [ext_resource type="Script" path="res://Scripts/ContinueButton.gd" id="1_dtxau"]
+[ext_resource type="Script" path="res://Scripts/SaveGame.gd" id="2_3bgma"]
 [ext_resource type="Script" path="res://Scripts/ExitToMainMenu.gd" id="2_b48em"]
 
 [node name="PauseUI" type="CanvasLayer"]
@@ -49,6 +50,29 @@ theme_override_font_sizes/font_size = 50
 text = "Continue"
 script = ExtResource("1_dtxau")
 
+[node name="SaveButton" type="Button" parent="VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Save Game"
+script = ExtResource("2_3bgma")
+
+[node name="WaveActiveNotifier" type="Label" parent="VBoxContainer/SaveButton"]
+visible = false
+layout_mode = 0
+offset_left = 59.0
+offset_top = 111.0
+offset_right = 440.0
+offset_bottom = 148.0
+theme_override_font_sizes/font_size = 24
+text = "Can't save while a wave is active!"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.1
+
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 process_mode = 2
 layout_mode = 2
@@ -57,4 +81,5 @@ text = "Quit to Main Menu"
 script = ExtResource("2_b48em")
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="VBoxContainer/ContinueButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveButton" to="VBoxContainer/SaveButton" method="_on_ingame_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_pressed"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://c406kls43bbdo"]
+
+[ext_resource type="Script" path="res://Loading.gd" id="1_8ssna"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7simi"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ssna")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7simi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1434.0
+offset_top = 954.0
+offset_right = 1702.0
+offset_bottom = 1045.0
+
+[node name="Loading" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Loading"
+
+[node name="Dots" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "."
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="FakeLoading" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true

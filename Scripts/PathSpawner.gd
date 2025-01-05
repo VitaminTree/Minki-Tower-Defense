@@ -58,10 +58,16 @@ var waves = [
 
 func _ready() -> void:
 	SignalMessenger.connect("ENEMY_LEFT", on_enemy_removal)
+	if GameData.NEW_GAME:
+		GameData.WavesCleared = currentWave
+	else:
+		currentWave = GameData.WavesCleared
 
 func on_enemy_removal() -> void:
 	totalEnemies -= 1
 	if totalEnemies < 1:
+		GameData.isWaveActive = false
+		GameData.WavesCleared = currentWave
 		button.disabled = false
 
 
@@ -78,6 +84,7 @@ func _on_next_level_button_pressed() -> void:
 	if currentWave >= waves.size():
 		label.text = "You win"
 	else:
+		GameData.isWaveActive = true
 		label.text = "Wave %d of %d" % [(currentWave + 1), waves.size()]
 		totalEnemies = count_enemies_in_wave(waves[currentWave])
 		summon_wave(waves[currentWave])

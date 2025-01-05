@@ -21,7 +21,7 @@ func _ready() -> void:
 	SignalMessenger.connect("MOUSE_OVER_WATER", toggle_water)
 	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
 	SignalMessenger.MONEY_PAYMENT.emit(0) # hack to check balance at game start
-	
+
 
 func can_afford(balance: int)-> void:
 	canPurchase = balance >= price

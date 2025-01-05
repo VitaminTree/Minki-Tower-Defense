@@ -1,7 +1,6 @@
 extends PanelContainer
 
 const Slot = preload("res://UI/Inventory/slot.tscn")
-var ITEM_REFERENCES = preload("res://UI/Inventory/OneOfEverything.tres")
 var inv_data = preload("res://UI/Inventory/TestInventory.tres")
 
 @onready var item_grid = $MarginContainer/ItemGrid
@@ -38,12 +37,13 @@ func fill_item_grid(backpack_data: BackpackData) -> void:
 
 # Debug function for testing upgrades while a method for aquiring items is unimplemented
 func fill_inventory(backpack_data: BackpackData) -> void:
+	var temp = GameData.ALL_ITEMS
 	for i in 20:
-		var random_index: int = randi() % ITEM_REFERENCES.slot_datas.size()
+		var random_index: int = randi() % temp.slot_datas.size()
 		if i < backpack_data.slot_datas.size():
-			backpack_data.slot_datas[i] = ITEM_REFERENCES.slot_datas[random_index]
+			backpack_data.slot_datas[i] = temp.slot_datas[random_index]
 		else:
-			backpack_data.slot_datas.append(ITEM_REFERENCES.slot_datas[random_index])
+			backpack_data.slot_datas.append(temp.slot_datas[random_index])
 
 
 # Debug function for testing upgrades while a method for aquiring items is unimplemented

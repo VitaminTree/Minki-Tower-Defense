@@ -8,6 +8,12 @@ extends Panel
 @onready var loseMenu = preload("res://UI/GameOverScreen.tscn")
 
 func _ready() -> void:
+	if GameData.NEW_GAME:
+		GameData.health = Health
+		GameData.money = Money
+	else:
+		Health = GameData.health
+		Money = GameData.money
 	hpUI.text = str(Health)
 	moneyUI.text = str(Money)
 	SignalMessenger.connect("MONEY_PAYMENT", update_money)
@@ -17,11 +23,13 @@ func _ready() -> void:
 func update_money(amount: int) -> void:
 	Money += amount
 	moneyUI.text = str(Money)
+	GameData.money = Money
 	SignalMessenger.BALANCE_UPDATED.emit(Money)
 
 func update_health(amount: int) -> void:
 	Health += amount
 	hpUI.text = str(Health)
+	GameData.health = Health
 	if Health <= 0:
 		SignalMessenger.ALL_LIVES_LOST.emit()
 
