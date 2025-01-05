@@ -9,13 +9,16 @@ class_name enemy extends CharacterBody2D
 # SOLUTION: Another variable "healthpoints" is created as a variable to be exported.
 # 	The enemy has no health when being created, but is assigned the value of healthpoints when entering the scene
 #	via the _ready() function
+
 var health: float:
 	get:
 		return health
 	set(value): 
+		var previous = health
 		health = value
 		progress_bar.value = value
-		if health <= 0:
+		if health <= 0 and previous > 0:
+			print("enemy died")
 			SignalMessenger.MONEY_PAYMENT.emit(payment)
 			SignalMessenger.ENEMY_LEFT.emit()
 			get_parent().queue_free()
