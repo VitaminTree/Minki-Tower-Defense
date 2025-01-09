@@ -12,7 +12,6 @@ radius = 26.0
 input_pickable = true
 script = ExtResource("1_rnsfu")
 healthpoints = 2
-damage = 5
 
 [node name="Wisp2" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var wispBasic = preload("res://Enemies/Wisp.tscn")
 @onready var dragoonBasic = preload("res://Enemies/Dragoon.tscn")
+@onready var wispRich = preload("res://Enemies/RichWisp.tscn")
 @onready var label = $"../CurrentWaveLabel"
 @onready var button = $"../NextLevelButton"
 
@@ -42,6 +43,9 @@ var waves = [
 	Wave.new([
 		Spawn.new(8, 0.5, [dragoonBasic])
 	]),
+	Wave.new([
+		Spawn.new(1, 0, [wispRich])
+	]),
 	# When the array has multiple enemies, it will look at the first index, spawn 1 enemy of that type,
 	# wait the given delay, then do the same for the next entry.
 	# Once it reaches the end of the array, it will repeat this until the array has been fully read
@@ -53,7 +57,6 @@ var waves = [
 	Wave.new([
 		Spawn.new(15, 0.2, [wispBasic, wispBasic, dragoonBasic])
 	])
-	
 	]
 
 func _ready() -> void:

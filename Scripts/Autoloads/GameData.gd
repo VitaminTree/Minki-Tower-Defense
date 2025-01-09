@@ -17,6 +17,7 @@ var NEW_GAME: bool = true
 @export var money: int = 150
 
 # Level advancement
+@export var LevelName: String = ""
 @export var WavesCleared: int = 0
 var isWaveActive: bool = false
 
@@ -32,15 +33,32 @@ func find_item(title: String) -> ItemData:
 	print("Item \"%d\" was not found. Misspelled?" % [title])
 	return null
 
+
+func find_tower_data_index(tower_data: TowerData) -> int:
+	for index in towers.size():
+		if towers[index].Name == tower_data.Name:
+			if towers[index].location[0] == tower_data.location[0]:
+				if towers[index].location[1] == tower_data.location[1]:
+					return index
+	return -1
+
+
 func update_tower_data(tower_data: TowerData) -> void:
-	for data in towers:
-		if data.Name == tower_data.Name:
-			if data.location[0] == tower_data.location[0]:
-				if data.location[1] == tower_data.location[1]:
-					data.upgrades = tower_data.upgrades
-					data.upgradecount = tower_data.upgradecount
-					return
+	var index = find_tower_data_index(tower_data)
+	if index > -1:
+		towers[index].upgrades = tower_data.upgrades
+		towers[index].upgradecount = tower_data.upgradecount
+		return
 	print("Couldn't find that tower")
+
+
+func remove_tower(tower_data: TowerData) -> void:
+	var index = find_tower_data_index(tower_data)
+	if index > -1:
+		towers.remove_at(index)
+		return
+	print("Couldn't Remove that tower from the data list")
+
 
 func save_gamestate() -> Dictionary:
 	var tower_dict = {}
@@ -50,6 +68,7 @@ func save_gamestate() -> Dictionary:
 		i += 1
 	
 	var resources = {
+		"level" : LevelName,
 		"health" : health,
 		"money" : money,
 		"waves" : WavesCleared,
@@ -57,7 +76,11 @@ func save_gamestate() -> Dictionary:
 	}
 	return resources
 
-func load_gamestate(data: Dictionary) -> void:
+func load_gamestate(data: Dictionary) -> void: 
+	# Check if files have the data first to preserve compatability with older saves
+	if data.has("level"):
+		LevelName = data["level"]
+	
 	health = data["health"]
 	money = data["money"]
 	WavesCleared = data["waves"]

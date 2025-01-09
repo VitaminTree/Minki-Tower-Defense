@@ -5,4 +5,5 @@ extends Button
 
 func _on_pressed() -> void:
 	get_tree().paused = false
+	GameData.isWaveActive = false
 	get_tree().change_scene_to_file("res://UI/MainMenu.tscn")

@@ -13,7 +13,7 @@
 size = Vector2(109, 110)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cil23"]
-radius = 350.0
+radius = 175.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y1r5x"]
 shader = ExtResource("5_n7kc0")
@@ -43,8 +43,6 @@ shape = SubResource("CircleShape2D_cil23")
 
 [node name="BulletRangeVisual" type="Sprite2D" parent="."]
 modulate = Color(0.0588235, 1, 1, 0.368627)
-position = Vector2(0, 1)
-scale = Vector2(2, 2)
 texture = ExtResource("2_itq45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

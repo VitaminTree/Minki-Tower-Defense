@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfpgbbb2xtr0f"]
 
 [ext_resource type="Texture2D" uid="uid://bo6enshxcuyip" path="res://Assets/Mint ded.png" id="1_cdc3a"]
-[ext_resource type="Script" path="res://Scripts/PlayButton.gd" id="2_057qn"]
+[ext_resource type="Script" path="res://UI/GameOverRestart.gd" id="2_hfvfe"]
 [ext_resource type="Script" path="res://Scripts/ExitToMainMenu.gd" id="3_ujew4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ticoj"]
@@ -52,7 +52,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 text = "Retry"
-script = ExtResource("2_057qn")
+script = ExtResource("2_hfvfe")
 
 [node name="Control" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2

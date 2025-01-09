@@ -1,10 +1,7 @@
 class_name donut extends ItemData
 
-func apply_upgrade(_tower: Tower) -> void:
-	print("Hello")
+func apply_upgrade(tower: Tower) -> void:
+	tower.timer.wait_time *= 0.66
 
-func remove_upgrade(_tower: Tower) -> void:
-	print("Goodbye")
-	
-func buff_projectile(_dart: Dart) -> void:
-	print("Dart upgrade attempted")
+func remove_upgrade(tower: Tower) -> void:
+	tower.timer.wait_time *= 1.5

@@ -11,7 +11,7 @@ func _on_backpack_button_pressed():
 
 func _on_sell_button_pressed():
 	SignalMessenger.INVENTORY_TOGGLED.emit(tower, false)
-	GameData.remove_tower(tower)
+	GameData.remove_tower(tower.data)
 	SignalMessenger.MONEY_PAYMENT.emit(50)
 	tower.queue_free()
 

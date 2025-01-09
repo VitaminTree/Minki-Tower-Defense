@@ -1,11 +1,15 @@
-extends Node2D
+class_name Level extends Node2D
 
 @onready var tower_node = $Towers
+@export var level_name = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameData.LevelName = level_name
 	if not GameData.NEW_GAME:
 		load_towers()
+	else:
+		GameData.towers = []
 
 
 func load_towers() -> void:

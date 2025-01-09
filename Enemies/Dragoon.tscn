@@ -10,10 +10,10 @@ radius = 26.0
 
 [node name="enemy_Dragoon" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_wqbbq")
-healthpoints = 3
-speed = 300
+healthpoints = 2
+speed = 250
 damage = 10
-payment = 50
+payment = 15
 
 [node name="DraggonSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

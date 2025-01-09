@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://btre0xf6ager1"]
+
+[ext_resource type="Script" path="res://UI/MapPreview.gd" id="1_xe5q5"]
+[ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="2_cu857"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_xe5q5")
+
+[node name="CurrentLevelLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.5
+offset_top = -180.0
+offset_right = 564.5
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Current level: SAMPLE TEXT"
+
+[node name="MapPreviewImage" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -91.0
+offset_right = 663.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cu857")
+expand_mode = 2
+stretch_mode = 5

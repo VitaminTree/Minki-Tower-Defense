@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2314ouwd5gbi"]
 
-[ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_2o82f"]
-[ext_resource type="Script" path="res://LevelInstantiation.gd" id="1_unxxj"]
-[ext_resource type="Script" path="res://Scripts/LevelOneTerrain.gd" id="2_s538d"]
-[ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="3_0amyu"]
-[ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="4_uwnil"]
-[ext_resource type="Script" path="res://Scripts/PauseButton.gd" id="5_lkpo7"]
+[ext_resource type="Script" path="res://LevelInstantiation.gd" id="1_e07ec"]
+[ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="2_hw5f7"]
+[ext_resource type="Script" path="res://Scripts/LevelOneTerrain.gd" id="3_gvp2n"]
+[ext_resource type="Script" path="res://Scripts/PathSpawner.gd" id="4_6tgyr"]
+[ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/ui.tscn" id="5_c80bu"]
+[ext_resource type="Script" path="res://Scripts/PauseButton.gd" id="6_b2puf"]
 
 [sub_resource type="Curve2D" id="Curve2D_s8aae"]
 _data = {
@@ -18,12 +18,13 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_unxxj")
+script = ExtResource("1_e07ec")
+level_name = "One"
 
 [node name="Track" type="Sprite2D" parent="."]
-texture = ExtResource("1_2o82f")
+texture = ExtResource("2_hw5f7")
 centered = false
-script = ExtResource("2_s538d")
+script = ExtResource("3_gvp2n")
 metadata/_edit_lock_ = true
 
 [node name="Path" type="Area2D" parent="Track"]
@@ -40,7 +41,7 @@ polygon = PackedVector2Array(172, 681, 281, 722, 393, 839, 381, 951, 347, 996, 2
 
 [node name="PathSpawner" type="Node2D" parent="."]
 position = Vector2(1, 0)
-script = ExtResource("3_0amyu")
+script = ExtResource("4_6tgyr")
 
 [node name="Path2D" type="Path2D" parent="PathSpawner"]
 curve = SubResource("Curve2D_s8aae")
@@ -50,7 +51,7 @@ one_shot = true
 
 [node name="Towers" type="Node2D" parent="."]
 
-[node name="UI" parent="." instance=ExtResource("4_uwnil")]
+[node name="UI" parent="." instance=ExtResource("5_c80bu")]
 
 [node name="PauseButton" type="Button" parent="."]
 offset_left = 1146.0
@@ -60,7 +61,7 @@ offset_bottom = 172.0
 mouse_filter = 1
 theme_override_font_sizes/font_size = 50
 text = "pause"
-script = ExtResource("5_lkpo7")
+script = ExtResource("6_b2puf")
 
 [node name="NextLevelButton" type="Button" parent="."]
 offset_left = 905.0

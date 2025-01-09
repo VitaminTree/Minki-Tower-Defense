@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_dbsn7")
 name = "Pink Frosted Donut"
-description = "Very bad for your diet"
+description = "Very bad for your diet. Attacks come out faster, for some reason."
 texture = ExtResource("2_2k125")
-price = 1000
+price = 125

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://m5xxgibw6n6i"]
+[gd_scene load_steps=6 format=3 uid="uid://m5xxgibw6n6i"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_e4cqi"]
-[ext_resource type="Script" path="res://Scripts/PlayButton.gd" id="2_a7khd"]
-[ext_resource type="Script" path="res://Scripts/QuitButton.gd" id="3_qn8ly"]
-[ext_resource type="Script" path="res://UI/OptionsButton.gd" id="3_va6rq"]
+[ext_resource type="PackedScene" uid="uid://btre0xf6ager1" path="res://UI/ProgressPreview.tscn" id="2_isvq5"]
+[ext_resource type="Script" path="res://UI/MainMenuButtons.gd" id="2_mr26y"]
+[ext_resource type="Script" path="res://UI/LevelSelect.gd" id="3_jnj1n"]
+[ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="4_1ytmm"]
 
 [node name="MainMenu" type="CanvasLayer"]
 
@@ -28,36 +29,107 @@ text = "This is the Main Menu!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 253.0
-offset_top = 462.0
-offset_right = 1640.0
-offset_bottom = 632.0
-size_flags_vertical = 4
-theme_override_constants/separation = 200
+[node name="Preview" parent="." instance=ExtResource("2_isvq5")]
+visible = false
+
+[node name="LevelSelect" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("3_jnj1n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect"]
+offset_left = 756.0
+offset_top = 436.0
+offset_right = 1816.0
+offset_bottom = 706.0
+theme_override_constants/separation = 100
+
+[node name="Icon01" type="TextureButton" parent="LevelSelect/HBoxContainer"]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+texture_normal = ExtResource("1_e4cqi")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Icon02" type="TextureButton" parent="LevelSelect/HBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+texture_normal = ExtResource("4_1ytmm")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label01" type="Label" parent="LevelSelect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = 173.0
+offset_right = 97.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Level 01"
+
+[node name="label02" type="Label" parent="LevelSelect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 548.0
+offset_top = 173.0
+offset_right = 690.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Level 02"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -670.0
+offset_top = -376.0
+offset_right = -320.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="HBoxContainer"]
+[node name="NewGameButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
-text = "Play"
-script = ExtResource("2_a7khd")
+disabled = true
+text = "Continue"
+script = ExtResource("2_mr26y")
 
 [node name="OptionsButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "Options"
-script = ExtResource("3_va6rq")
 
 [node name="QuitButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "Quit"
-script = ExtResource("3_qn8ly")
 
-[connection signal="pressed" from="HBoxContainer/PlayButton" to="HBoxContainer/PlayButton" method="_on_pressed"]
-[connection signal="pressed" from="HBoxContainer/OptionsButton" to="HBoxContainer/OptionsButton" method="_on_pressed"]
-[connection signal="pressed" from="HBoxContainer/QuitButton" to="HBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/Icon01" to="LevelSelect" method="_on_icon_01_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/Icon02" to="LevelSelect" method="_on_icon_02_pressed"]
+[connection signal="pressed" from="HBoxContainer/NewGameButton" to="HBoxContainer/ContinueButton" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ContinueButton" to="HBoxContainer/ContinueButton" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/OptionsButton" to="HBoxContainer/ContinueButton" method="_on_options_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/QuitButton" to="HBoxContainer/ContinueButton" method="_on_quit_button_pressed"]

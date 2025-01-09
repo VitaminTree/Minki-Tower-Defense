@@ -106,9 +106,11 @@ func draw_items() -> void:
 
 # If index is set, the function will attempt to equip the item ONLY in the given index.
 func equip_item(item: ItemData, index: int = -1) -> void:
+	if not item:
+		return
 	for i in upgrades.size():
 		if index < 0 or i == index:
-			if item and not upgrades[i]:
+			if not upgrades[i]:
 				upgrades[i] = item
 				item.apply_upgrade(self)
 				upgradesApplied[i] = true

@@ -8,4 +8,4 @@ script = ExtResource("1_f28x1")
 name = "Blue Fish"
 description = "Quite Stinky. Attacks can hit 1 more enemy."
 texture = ExtResource("2_obilp")
-price = 500
+price = 50
