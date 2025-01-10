@@ -12,8 +12,10 @@ signal SIGNAL_WITH(arguments)
 
 signal MONEY_PAYMENT(amount: int)
 signal HEALTH_UPDATE(amount: int)
+signal SPIRIT_PAYMENT(amount:int)
 
 signal BALANCE_UPDATED(amount: int)
+signal SPIRIT_UPDATED(amount: int)
 signal ALL_LIVES_LOST
 
 signal MOUSE_OVER_PATH(state: bool)
@@ -29,3 +31,5 @@ signal INVENTORY_UPDATED(backpack_data: BackpackData)
 signal TOWER_UPGRADED
 
 signal ENEMY_LEFT
+
+signal SHOP_READY

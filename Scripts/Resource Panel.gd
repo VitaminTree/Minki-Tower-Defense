@@ -2,9 +2,12 @@ extends Panel
 
 @export var Health: int = 150
 @export var Money: int = 1000
+@export var Spirits: int = 5
 
 @onready var hpUI = $HBoxContainer/HealthLabel
 @onready var moneyUI = $HBoxContainer/MoneyLabel
+@onready var spiritUI = $HBoxContainer/SpiritsContainer
+@onready var spiritSprite = preload("res://UI/SpiritIcon.tscn")
 @onready var loseMenu = preload("res://UI/GameOverScreen.tscn")
 
 func _ready() -> void:
@@ -18,6 +21,7 @@ func _ready() -> void:
 	moneyUI.text = str(Money)
 	SignalMessenger.connect("MONEY_PAYMENT", update_money)
 	SignalMessenger.connect("HEALTH_UPDATE", update_health)
+	SignalMessenger.connect("SPIRIT_PAYMENT", update_spirt)
 	SignalMessenger.connect("ALL_LIVES_LOST", game_over)
 
 func update_money(amount: int) -> void:
@@ -33,8 +37,40 @@ func update_health(amount: int) -> void:
 	if Health <= 0:
 		SignalMessenger.ALL_LIVES_LOST.emit()
 
+func update_spirt(amount: int) -> void:
+	Spirits += amount
+	if Spirits > 5:
+		Spirits = 5
+	if Spirits < 0:
+		Spirits = 0
+	SignalMessenger.SPIRIT_UPDATED.emit(Spirits)
+	redraw_spirits()
+
+func redraw_spirits() -> void:
+	for child in spiritUI.get_children():
+		child.queue_free()
+	
+	for i in Spirits:
+		var active_spirit = spiritSprite.instantiate()
+		spiritUI.add_child(active_spirit)
+	
+	for j in (5 - Spirits):
+		var spent_spirit = spiritSprite.instantiate()
+		spent_spirit.material = ShaderMaterial.new()
+		var shader = load("res://grayscale.gdshader")
+		spent_spirit.material.shader = shader
+		spiritUI.add_child(spent_spirit)
+
 func game_over() -> void:
 	get_tree().paused = true
 	
 	var lose = loseMenu.instantiate()
 	get_tree().get_root().get_node("Main").add_child(lose)
+
+
+func _on_add_button_pressed():
+	update_spirt(1)
+
+
+func _on_remove_button_pressed():
+	update_spirt(-1)

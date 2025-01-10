@@ -5,8 +5,8 @@ var inv_data = preload("res://UI/Inventory/TestInventory.tres")
 
 @onready var item_grid = $MarginContainer/ItemGrid
 
-@export var money: RichTextLabel
-
+#@export var money: RichTextLabel
+var spirit_count: int = 5
 var target_tower: Tower
 
 # !! NOTICE !!
@@ -16,7 +16,12 @@ func _ready() -> void:
 	SignalMessenger.connect("INVENTORY_TOGGLED", show_backpack)
 	SignalMessenger.connect("INVENTORY_PROCESSED", on_inventory_interact) # likely to need to move to anotehr location, but that's the beauty of using signals
 	SignalMessenger.connect("INVENTORY_UPDATED", fill_item_grid)
+	SignalMessenger.connect("SPIRIT_UPDATED", update_spirit_count)
 	fill_item_grid(inv_data)
+
+
+func update_spirit_count(count: int) -> void:
+	spirit_count = count
 
 
 func fill_item_grid(backpack_data: BackpackData) -> void:
@@ -57,10 +62,10 @@ func show_backpack(tower: Tower, make_visible: bool) -> void:
 
 
 func on_inventory_interact(backpack_data: BackpackData, index: int) -> void:
-	var balance = int(money.text)
+	#var balance = int(money.text)
 	var tower_upgrades_able = target_tower.check_capacity()
 	if tower_upgrades_able:
-		var grabbed_slot_data = backpack_data.purchase_slot_data(index, balance)
+		var grabbed_slot_data = backpack_data.purchase_slot_data(index, spirit_count)
 		print(grabbed_slot_data)
 		if grabbed_slot_data:
 			target_tower.equip_item(grabbed_slot_data.item_data)

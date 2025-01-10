@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=16 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/MinkiShopPanel.tscn" id="1_1ld0t"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
 [ext_resource type="Script" path="res://Scripts/Resource Panel.gd" id="2_smqts"]
 [ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="3_rrbvd"]
+[ext_resource type="PackedScene" uid="uid://b5ddaq3ros3ja" path="res://UI/SpiritIcon.tscn" id="4_xdhk0"]
 [ext_resource type="PackedScene" uid="uid://41ht1veq4f77" path="res://Towers/Circle Attacking Minki/IceMinki.tscn" id="5_kdb6q"]
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="6_yx21i"]
 [ext_resource type="PackedScene" uid="uid://biw7a1ylgrqcu" path="res://Towers/Default Minki/PurpleMinki.tscn" id="7_03ng4"]
@@ -13,18 +14,20 @@
 [ext_resource type="PackedScene" uid="uid://xr1agxks51pu" path="res://Towers/Freezing Minki/FreezingMinki.tscn" id="11_0f5dw"]
 [ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="12_hu68y"]
 [ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/Inventory/inventory_panel.tscn" id="13_smvxm"]
+[ext_resource type="Script" path="res://UI/SummonShopButton.gd" id="15_plkbj"]
 
 [node name="UI" type="CanvasLayer"]
 
 [node name="Resource Panel" type="Panel" parent="."]
 offset_left = 900.0
-offset_right = 1340.0
+offset_right = 1587.0
 offset_bottom = 58.0
 script = ExtResource("2_smqts")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Resource Panel"]
 layout_mode = 0
-offset_right = 438.0
+offset_top = 1.0
+offset_right = 674.0
 offset_bottom = 56.0
 
 [node name="HealthIcon" type="TextureRect" parent="Resource Panel/HBoxContainer"]
@@ -49,12 +52,29 @@ expand_mode = 2
 [node name="MoneyLabel" type="RichTextLabel" parent="Resource Panel/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 40
 text = "1000
 "
 fit_content = true
 autowrap_mode = 0
+
+[node name="SpiritsContainer" type="HBoxContainer" parent="Resource Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Spirit" parent="Resource Panel/HBoxContainer/SpiritsContainer" instance=ExtResource("4_xdhk0")]
+layout_mode = 2
+
+[node name="Spirit2" parent="Resource Panel/HBoxContainer/SpiritsContainer" instance=ExtResource("4_xdhk0")]
+layout_mode = 2
+
+[node name="Spirit3" parent="Resource Panel/HBoxContainer/SpiritsContainer" instance=ExtResource("4_xdhk0")]
+layout_mode = 2
+
+[node name="Spirit4" parent="Resource Panel/HBoxContainer/SpiritsContainer" instance=ExtResource("4_xdhk0")]
+layout_mode = 2
+
+[node name="Spirit5" parent="Resource Panel/HBoxContainer/SpiritsContainer" instance=ExtResource("4_xdhk0")]
+layout_mode = 2
 
 [node name="ShopPanel" type="Panel" parent="."]
 anchors_preset = 6
@@ -89,22 +109,45 @@ texture = ExtResource("6_yx21i")
 
 [node name="SwordMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
-price = 500
 unit = ExtResource("7_iwc5e")
 texture = ExtResource("8_2joi5")
 
 [node name="BasicMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
-price = 150
 unit = ExtResource("7_03ng4")
 texture = ExtResource("8_lc4wy")
 
 [node name="FreezeMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
 layout_mode = 2
-price = 750
 unit = ExtResource("11_0f5dw")
 texture = ExtResource("12_hu68y")
 
-[node name="InventoryPanel" parent="." node_paths=PackedStringArray("money") instance=ExtResource("13_smvxm")]
+[node name="InventoryPanel" parent="." instance=ExtResource("13_smvxm")]
 visible = false
-money = NodePath("../Resource Panel/HBoxContainer/MoneyLabel")
+
+[node name="AddButton" type="Button" parent="."]
+offset_left = 569.0
+offset_top = 23.0
+offset_right = 699.0
+offset_bottom = 84.0
+text = "Add Spirit"
+
+[node name="removeButton" type="Button" parent="."]
+offset_left = 729.0
+offset_top = 23.0
+offset_right = 879.0
+offset_bottom = 76.0
+text = "Remove Spirit"
+
+[node name="ShopButton" type="Button" parent="."]
+offset_left = 301.0
+offset_top = 27.0
+offset_right = 483.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 24
+text = "Empower Shop (0/2)"
+script = ExtResource("15_plkbj")
+
+[connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
+[connection signal="pressed" from="removeButton" to="Resource Panel" method="_on_remove_button_pressed"]
+[connection signal="pressed" from="ShopButton" to="ShopButton" method="_on_pressed"]

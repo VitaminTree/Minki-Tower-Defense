@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://rsnuj4tloy4n"]
+
+[ext_resource type="Script" path="res://ItemShop.gd" id="1_qo4lb"]
+[ext_resource type="Resource" uid="uid://c3cn3wx7r1a77" path="res://UI/Inventory/TestInventory.tres" id="2_34b84"]
+[ext_resource type="PackedScene" uid="uid://b6gsmty5ljyvi" path="res://UI/shop_panel.tscn" id="3_ivfqa"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_qo4lb")
+inventory = ExtResource("2_34b84")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -667.0
+offset_top = -462.0
+offset_right = 668.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -409.0
+offset_right = 97.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Shop"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.5
+offset_top = -188.0
+offset_right = 534.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopPanel" parent="HBoxContainer" instance=ExtResource("3_ivfqa")]
+layout_mode = 2
+
+[node name="ShopPanel2" parent="HBoxContainer" instance=ExtResource("3_ivfqa")]
+layout_mode = 2
+
+[node name="ShopPanel3" parent="HBoxContainer" instance=ExtResource("3_ivfqa")]
+layout_mode = 2
+
+[node name="ShopPanel4" parent="HBoxContainer" instance=ExtResource("3_ivfqa")]
+layout_mode = 2
+
+[node name="ShopPanel5" parent="HBoxContainer" instance=ExtResource("3_ivfqa")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+process_mode = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.5
+offset_top = -378.0
+offset_right = 92.5
+offset_bottom = -315.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Exit Shop"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

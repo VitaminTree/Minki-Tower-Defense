@@ -1,6 +1,6 @@
 extends Panel
 
-@export var price: int = 250
+#@export var price: int = 250
 @export var unit: PackedScene
 @export var texture: CompressedTexture2D
 
@@ -15,16 +15,17 @@ var overWater: bool = false
 var overPath: bool = false
 
 func _ready() -> void:
-	$VBoxContainer/PriceLabel.text = str(price)
+	#$VBoxContainer/PriceLabel.text = str(price)
 	$VBoxContainer/TextureRect.texture = texture
-	SignalMessenger.connect("BALANCE_UPDATED", can_afford)
+	SignalMessenger.connect("SPIRIT_UPDATED", can_afford)
+	#SignalMessenger.connect("BALANCE_UPDATED", can_afford)
 	SignalMessenger.connect("MOUSE_OVER_WATER", toggle_water)
 	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
-	SignalMessenger.MONEY_PAYMENT.emit(0) # hack to check balance at game start
+	SignalMessenger.SPIRIT_PAYMENT.emit(0) # hack to check balance at game start
 
 
 func can_afford(balance: int)-> void:
-	canPurchase = balance >= price
+	canPurchase = balance > 0
 
 
 func toggle_water(state: bool) -> void:
@@ -79,7 +80,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			tempTower.get_node("Area").hide()
 			tempTower.get_node("BulletRangeVisual").hide()
 			
-			SignalMessenger.MONEY_PAYMENT.emit(-1*price)
+			SignalMessenger.SPIRIT_PAYMENT.emit(-1)
 			
 			validClick = false
 	

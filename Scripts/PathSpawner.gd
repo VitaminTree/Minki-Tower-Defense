@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var shop = preload("res://UI/ItemShop.tscn")
 
 @onready var wispBasic = preload("res://Enemies/Wisp.tscn")
 @onready var dragoonBasic = preload("res://Enemies/Dragoon.tscn")
@@ -9,21 +10,28 @@ extends Node2D
 
 var currentWave: int = 0
 var pathIndex: int = 0
-
+var shop_ready: bool = false
 @export var totalEnemies: int = 0
 
 @onready
 var waves = [
-	# When the wave starts, it waits 1 second then spawns a wisp.
-	# It will repeat the wait-and-spawn 10 times
 	Wave.new([
-		Spawn.new(10, 1, [wispBasic]) 
+		Spawn.new(1, 0, [wispBasic])
+	]),
+	# When the wave starts, it waits 1 second then spawns a wisp.
+	# It will repeat the wait-and-spawn 20 times
+	Wave.new([
+		Spawn.new(20, 1, [wispBasic]) 
+	]),
+	Wave.new([
+		Spawn.new(30, 0.5, [wispBasic])
 	]),
 	# A wave can have multiple Spawns.
 	# It will fully resolve the first Spawn before processing the next one.
 	Wave.new([
-		Spawn.new(5, 0.4, [wispBasic]),
-		Spawn.new(5, 0.4, [dragoonBasic])
+		Spawn.new(15, 0.5, [wispBasic]),
+		Spawn.new(8, 0.2, [dragoonBasic]),
+		Spawn.new(10, 0.5, [wispBasic])
 	]),
 	# This wave spawns a group of 5 wisps, then waits 3 seconds for the next group of 5.
 	#
@@ -60,20 +68,36 @@ var waves = [
 	]
 
 func _ready() -> void:
+	SignalMessenger.connect("SHOP_READY", ready_shop)
 	SignalMessenger.connect("ENEMY_LEFT", on_enemy_removal)
 	if GameData.NEW_GAME:
 		GameData.WavesCleared = currentWave
 	else:
 		currentWave = GameData.WavesCleared
 
+
+func wave_completion() -> void:
+	GameData.isWaveActive = false
+	GameData.WavesCleared = currentWave
+	button.disabled = false
+	SignalMessenger.SPIRIT_PAYMENT.emit(5)
+	print(shop_ready)
+	if shop_ready == true:
+		shop_ready = false
+		get_tree().paused = true
+		var shop_menu = shop.instantiate()
+		get_tree().get_root().get_node("Main").add_child(shop_menu)
+
+
 func on_enemy_removal() -> void:
 	totalEnemies -= 1
 	print("Enemies left: %d" % [totalEnemies])
 	if totalEnemies < 1:
-		GameData.isWaveActive = false
-		GameData.WavesCleared = currentWave
-		button.disabled = false
+		wave_completion()
 
+func ready_shop() -> void:
+	print("READY")
+	shop_ready = true
 
 func count_enemies_in_wave(wave: Wave) -> int:
 	var count: int = 0

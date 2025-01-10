@@ -22,6 +22,7 @@ texture = ExtResource("2_k6280")
 expand_mode = 5
 
 [node name="PriceLabel" type="Label" parent="VBoxContainer"]
+visible = false
 clip_contents = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
