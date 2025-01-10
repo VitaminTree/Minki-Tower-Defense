@@ -8,7 +8,7 @@ const ITEM_REF = GameData.ALL_ITEMS
 @export var inventory: BackpackData
 
 @onready var h_box_container = $HBoxContainer
-@onready var panel = preload("res://UI/shop_panel.tscn")
+@onready var panel = preload("res://UI/ShopSlot.tscn")
 
 var stock: Array[SlotData] = []
 
@@ -42,6 +42,7 @@ func give_item(index: int) -> void:
 		SignalMessenger.MONEY_PAYMENT.emit(-1 * stock[index].item_data.price)
 		stock[index] = null
 		draw_items()
+		SignalMessenger.INVENTORY_UPDATED.emit(inventory)
 	else:
 		print("Transfer error: Couldn't add that to the backpack")
 

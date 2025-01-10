@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BackpackData" load_steps=11 format=3 uid="uid://c5hfq7lw87er8"]
 
-[ext_resource type="Script" path="res://UI/Inventory/BackpackData.gd" id="1_cwkmf"]
+[ext_resource type="Script" path="res://UI/Inventory/InventoryData.gd" id="1_8ce1b"]
 [ext_resource type="Resource" uid="uid://brhrsx7wkrp1h" path="res://Items/apple.tres" id="2_22iwh"]
 [ext_resource type="Script" path="res://UI/Inventory/SlotData.gd" id="3_sjqvb"]
 [ext_resource type="Resource" uid="uid://dwxqlv1mqhnk5" path="res://Items/donut.tres" id="4_bvwsp"]
@@ -24,5 +24,5 @@ script = ExtResource("3_sjqvb")
 item_data = ExtResource("6_1tidm")
 
 [resource]
-script = ExtResource("1_cwkmf")
+script = ExtResource("1_8ce1b")
 slot_datas = Array[ExtResource("3_sjqvb")]([SubResource("Resource_58qpc"), SubResource("Resource_eiamr"), SubResource("Resource_v322o"), SubResource("Resource_qwlnp")])

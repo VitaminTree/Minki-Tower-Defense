@@ -6,6 +6,8 @@ func slot_clicked(index: int) -> void:
 	SignalMessenger.INVENTORY_PROCESSED.emit(self, index)
 
 func add_item(slot_data: SlotData) -> int:
+	if not slot_data:
+		return -1
 	var i: int = 0
 	for slot in slot_datas:
 		if not slot:
@@ -16,7 +18,7 @@ func add_item(slot_data: SlotData) -> int:
 	return i
 	# If a max item limit is decided
 	# return -1
-	
+
 
 func purchase_slot_data(index: int, balance: int) -> SlotData:
 	var slot_data = slot_datas[index]

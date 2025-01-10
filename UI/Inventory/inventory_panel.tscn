@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnll5myl1ee0f"]
 
-[ext_resource type="Script" path="res://UI/Inventory/BackpackPanel.gd" id="1_x7qhe"]
+[ext_resource type="Script" path="res://UI/Inventory/Backpack.gd" id="1_evngn"]
 [ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="2_yfai1"]
 
 [node name="InventoryPanel" type="PanelContainer"]
@@ -8,7 +8,7 @@ offset_left = 22.0
 offset_top = 875.0
 offset_right = 714.0
 offset_bottom = 1060.0
-script = ExtResource("1_x7qhe")
+script = ExtResource("1_evngn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

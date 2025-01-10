@@ -34,7 +34,7 @@ func fill_item_grid(backpack_data: BackpackData) -> void:
 		item_grid.add_child(slot)
 		
 		# Interestingly, I can connect a signal to a parameter's function
-		slot.connect("ITEM_CLICKED", backpack_data.slot_clicked)
+		slot.connect("INVENTORY_ITEM_CLICKED", backpack_data.slot_clicked)
 		
 		if slot_data:
 			slot.set_slot_data(slot_data)
