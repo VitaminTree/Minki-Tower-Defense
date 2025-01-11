@@ -1,4 +1,4 @@
-class_name Fileload extends Node
+class_name Fileloader extends Node
 
 @export var file_path: String = ""
 

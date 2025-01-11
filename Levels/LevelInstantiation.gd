@@ -29,5 +29,7 @@ func load_towers() -> void:
 			SignalMessenger.TOWER_UPGRADED.emit()
 			i += 1
 		
+		current_tower.set_data()
+		
 		current_tower.get_node("Area").hide()
 		current_tower.get_node("BulletRangeVisual").hide()

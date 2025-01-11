@@ -14,9 +14,11 @@ func _ready() -> void:
 	if GameData.NEW_GAME:
 		GameData.health = Health
 		GameData.money = Money
+		GameData.spirit = Spirits
 	else:
 		Health = GameData.health
 		Money = GameData.money
+		Spirits = GameData.spirit
 	hpUI.text = str(Health)
 	moneyUI.text = str(Money)
 	SignalMessenger.connect("MONEY_PAYMENT", update_money)
@@ -43,6 +45,7 @@ func update_spirt(amount: int) -> void:
 		Spirits = 5
 	if Spirits < 0:
 		Spirits = 0
+	GameData.spirit = Spirits
 	SignalMessenger.SPIRIT_UPDATED.emit(Spirits)
 	redraw_spirits()
 

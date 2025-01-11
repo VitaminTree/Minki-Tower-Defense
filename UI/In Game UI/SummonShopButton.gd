@@ -9,10 +9,12 @@ func _ready() -> void:
 	SignalMessenger.connect("SHOP_SUMMONED", reset_button)
 	if not GameData.NEW_GAME:
 		empowerment = GameData.shop_progress
+		available = GameData.spirit
 		update()
 
 func set_available(balance: int) -> void:
 	available = balance
+	print("Available set to %d" % [available])
 
 func reset_button() -> void:
 	text = "Empower Shop (0/2)"
