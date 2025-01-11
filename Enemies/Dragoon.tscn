@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://wdufakg0ncw0"]
 
-[ext_resource type="Script" path="res://Scripts/BasicEnemy.gd" id="1_wqbbq"]
+[ext_resource type="Script" path="res://Misc Scripts/BasicEnemy.gd" id="1_wqbbq"]
 [ext_resource type="Texture2D" uid="uid://dop2vfudxl32p" path="res://Assets/Draggon.png" id="2_lgauh"]
 [ext_resource type="Texture2D" uid="uid://m7lidhgd7rey" path="res://Assets/bar.png" id="3_2x1xh"]
 [ext_resource type="Texture2D" uid="uid://cbtrbcplow8qf" path="res://Assets/red_texture.png" id="4_a62ah"]

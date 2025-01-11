@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://coqnc4e8k7cxg"]
 
 [ext_resource type="Texture2D" uid="uid://bbncoopr6si70" path="res://Assets/dart.png" id="1_3oux3"]
-[ext_resource type="Script" path="res://Scripts/BasicDart.gd" id="1_vpc5t"]
+[ext_resource type="Script" path="res://Misc Scripts/BasicDart.gd" id="1_vpc5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6kqi"]
 size = Vector2(128, 15)

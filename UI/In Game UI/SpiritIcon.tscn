@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5ddaq3ros3ja"]
 
-[ext_resource type="Texture2D" uid="uid://8675bskqy8x3" path="res://Assets/Spirit.png" id="1_stvpp"]
+[ext_resource type="Texture2D" uid="uid://8675bskqy8x3" path="res://Assets/Spirit.png" id="1_ehsr8"]
 
 [node name="Spirit" type="TextureRect"]
 offset_left = 4.0
 offset_right = 59.0
 offset_bottom = 55.0
-texture = ExtResource("1_stvpp")
+texture = ExtResource("1_ehsr8")
 expand_mode = 3

@@ -7,8 +7,8 @@ extends Panel
 @onready var hpUI = $HBoxContainer/HealthLabel
 @onready var moneyUI = $HBoxContainer/MoneyLabel
 @onready var spiritUI = $HBoxContainer/SpiritsContainer
-@onready var spiritSprite = preload("res://UI/SpiritIcon.tscn")
-@onready var loseMenu = preload("res://UI/GameOverScreen.tscn")
+@onready var spiritSprite = preload("res://UI/In Game UI/SpiritIcon.tscn")
+@onready var loseMenu = preload("res://UI/GameOverRestart.gd")
 
 func _ready() -> void:
 	if GameData.NEW_GAME:

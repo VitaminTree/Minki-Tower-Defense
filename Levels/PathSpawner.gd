@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var shop = preload("res://UI/ItemShop.tscn")
+@onready var shop = preload("res://UI/Shops/ItemShop.tscn")
 
 @onready var wispBasic = preload("res://Enemies/Wisp.tscn")
 @onready var dragoonBasic = preload("res://Enemies/Dragoon.tscn")

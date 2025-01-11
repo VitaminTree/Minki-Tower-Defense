@@ -4,8 +4,8 @@ extends Button
 @onready var levels = $"../../LevelSelect"
 
 const maps = {
-	"One" : "res://Level_01.tscn",
-	"Two" : "res://Level_02.tscn"
+	"One" : "res://Levels/Level_01.tscn",
+	"Two" : "res://Levels/Level_02.tscn"
 }
 
 func _ready() -> void:
@@ -28,7 +28,7 @@ func _on_new_game_button_pressed():
 
 
 func _on_options_button_pressed():
-	get_tree().change_scene_to_file("res://UI/OptionsMenu.tscn")
+	get_tree().change_scene_to_file("res://UI/Main Menu/OptionsMenu.tscn")
 
 
 func _on_quit_button_pressed():

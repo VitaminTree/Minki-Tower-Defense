@@ -6,7 +6,7 @@ const DEEP_DISCOUNT_CHANCE: float = 0.02
 const ITEM_REF = GameData.ALL_ITEMS
 
 @onready var h_box_container = $HBoxContainer
-@onready var panel = preload("res://UI/ShopSlot.tscn")
+@onready var panel = preload("res://UI/Shops/ShopSlot.tscn")
 
 var stock: Array[SlotData] = []
 

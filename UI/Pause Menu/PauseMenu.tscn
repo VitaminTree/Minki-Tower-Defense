@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkaq5i1gngwvn"]
 
-[ext_resource type="Script" path="res://Scripts/ContinueButton.gd" id="1_dtxau"]
-[ext_resource type="Script" path="res://Scripts/SaveGame.gd" id="2_3bgma"]
-[ext_resource type="Script" path="res://Scripts/ExitToMainMenu.gd" id="2_b48em"]
+[ext_resource type="Script" path="res://UI/Pause Menu/ContinueButton.gd" id="1_wxc6u"]
+[ext_resource type="Script" path="res://UI/Pause Menu/SaveGame.gd" id="2_rpbhq"]
+[ext_resource type="Script" path="res://UI/Pause Menu/ExitToMainMenu.gd" id="3_ce4jt"]
 
 [node name="PauseUI" type="CanvasLayer"]
 
@@ -48,14 +48,14 @@ process_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Continue"
-script = ExtResource("1_dtxau")
+script = ExtResource("1_wxc6u")
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 process_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Save Game"
-script = ExtResource("2_3bgma")
+script = ExtResource("2_rpbhq")
 
 [node name="WaveActiveNotifier" type="Label" parent="VBoxContainer/SaveButton"]
 visible = false
@@ -78,7 +78,7 @@ process_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit to Main Menu"
-script = ExtResource("2_b48em")
+script = ExtResource("3_ce4jt")
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="VBoxContainer/ContinueButton" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/SaveButton" to="VBoxContainer/SaveButton" method="_on_ingame_save_pressed"]

@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	draw_dots()
 	if $FakeLoading.is_stopped() and done:
-		get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
+		get_tree().change_scene_to_file("res://UI/Main Menu/MainMenu.tscn")
 
 
 func check_save_data() -> void:

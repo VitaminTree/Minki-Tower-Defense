@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://m5xxgibw6n6i"]
 
-[ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_e4cqi"]
-[ext_resource type="PackedScene" uid="uid://btre0xf6ager1" path="res://UI/ProgressPreview.tscn" id="2_isvq5"]
-[ext_resource type="Script" path="res://UI/MainMenuButtons.gd" id="2_mr26y"]
-[ext_resource type="Script" path="res://UI/LevelSelect.gd" id="3_jnj1n"]
-[ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="4_1ytmm"]
+[ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_ipntm"]
+[ext_resource type="PackedScene" uid="uid://btre0xf6ager1" path="res://UI/Pause Menu/ProgressPreview.tscn" id="2_56de2"]
+[ext_resource type="Script" path="res://UI/Main Menu/LevelSelect.gd" id="3_mr8pk"]
+[ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="4_n33f5"]
+[ext_resource type="Script" path="res://UI/Main Menu/MainMenuButtons.gd" id="5_wtkrq"]
 
 [node name="MainMenu" type="CanvasLayer"]
 
 [node name="Track" type="Sprite2D" parent="."]
-texture = ExtResource("1_e4cqi")
+texture = ExtResource("1_ipntm")
 centered = false
 metadata/_edit_lock_ = true
 
@@ -29,12 +29,12 @@ text = "This is the Main Menu!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Preview" parent="." instance=ExtResource("2_isvq5")]
+[node name="Preview" parent="." instance=ExtResource("2_56de2")]
 visible = false
 
 [node name="LevelSelect" type="CanvasLayer" parent="."]
 visible = false
-script = ExtResource("3_jnj1n")
+script = ExtResource("3_mr8pk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect"]
 offset_left = 756.0
@@ -46,14 +46,14 @@ theme_override_constants/separation = 100
 [node name="Icon01" type="TextureButton" parent="LevelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 2
-texture_normal = ExtResource("1_e4cqi")
+texture_normal = ExtResource("1_ipntm")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Icon02" type="TextureButton" parent="LevelSelect/HBoxContainer"]
 custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
-texture_normal = ExtResource("4_1ytmm")
+texture_normal = ExtResource("4_n33f5")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -113,7 +113,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 disabled = true
 text = "Continue"
-script = ExtResource("2_mr26y")
+script = ExtResource("5_wtkrq")
 
 [node name="OptionsButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2

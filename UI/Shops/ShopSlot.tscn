@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6gsmty5ljyvi"]
 
-[ext_resource type="Script" path="res://UI/ShopSlot.gd" id="1_76ry5"]
-[ext_resource type="Texture2D" uid="uid://b6rv0lre2ekv6" path="res://Assets/SoldOut.png" id="2_d4de0"]
+[ext_resource type="Script" path="res://UI/Shops/ShopSlot.gd" id="1_23y1y"]
+[ext_resource type="Texture2D" uid="uid://b6rv0lre2ekv6" path="res://Assets/SoldOut.png" id="2_q2cpt"]
 
 [node name="ShopPanel" type="PanelContainer" node_paths=PackedStringArray("image", "price_label")]
 process_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 size_flags_horizontal = 3
-script = ExtResource("1_76ry5")
+script = ExtResource("1_23y1y")
 image = NodePath("MarginContainer/TextureRect")
 price_label = NodePath("PriceLabel")
 
@@ -21,7 +21,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_d4de0")
+texture = ExtResource("2_q2cpt")
 expand_mode = 1
 stretch_mode = 5
 
