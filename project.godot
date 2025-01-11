@@ -22,6 +22,7 @@ config/windows_native_icon="res://Assets/Wisp.ico"
 
 SignalMessenger="*res://Scripts/Autoloads/SignalMessenger.gd"
 GameData="*res://Scripts/Autoloads/GameData.gd"
+PlayerInventory="*res://Scripts/Autoloads/PlayerInventory.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BackpackData" load_steps=14 format=3 uid="uid://c3cn3wx7r1a77"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=14 format=3 uid="uid://c3cn3wx7r1a77"]
 
 [ext_resource type="Script" path="res://UI/Inventory/InventoryData.gd" id="1_hulug"]
 [ext_resource type="Resource" uid="uid://brhrsx7wkrp1h" path="res://Items/apple.tres" id="2_k3tg7"]

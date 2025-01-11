@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BackpackData" load_steps=2 format=3 uid="uid://brbmiji6bkgh1"]
+
+[ext_resource type="Script" path="res://UI/Inventory/InventoryData.gd" id="1_o6vm8"]
+
+[resource]
+script = ExtResource("1_o6vm8")
+slot_datas = Array[Resource("res://UI/Inventory/SlotData.gd")]([])

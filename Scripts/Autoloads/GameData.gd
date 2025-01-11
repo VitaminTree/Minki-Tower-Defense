@@ -72,7 +72,8 @@ func save_gamestate() -> Dictionary:
 		"health" : health,
 		"money" : money,
 		"waves" : WavesCleared,
-		"towers" : tower_dict
+		"towers" : tower_dict,
+		"backpack" : PlayerInventory.save_inventory()
 	}
 	return resources
 
@@ -109,6 +110,9 @@ func load_gamestate(data: Dictionary) -> void:
 		tower_data_array.append(tower_data)
 	
 	towers = tower_data_array
+	
+	if data.has("backpack"):
+		PlayerInventory.load_inventory(data["backpack"])
 	
 	NEW_GAME = false
 

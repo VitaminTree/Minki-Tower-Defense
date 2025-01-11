@@ -5,8 +5,6 @@ const HALF_DISCOUNT_CHANCE: float = 0.08
 const DEEP_DISCOUNT_CHANCE: float = 0.02
 const ITEM_REF = GameData.ALL_ITEMS
 
-@export var inventory: BackpackData
-
 @onready var h_box_container = $HBoxContainer
 @onready var panel = preload("res://UI/ShopSlot.tscn")
 
@@ -37,12 +35,12 @@ func draw_items() -> void:
 
 
 func give_item(index: int) -> void:
-	var return_value = inventory.add_item(stock[index])
+	var return_value = PlayerInventory.Backpack.add_item(stock[index])
 	if return_value >= 0:
 		SignalMessenger.MONEY_PAYMENT.emit(-1 * stock[index].item_data.price)
 		stock[index] = null
 		draw_items()
-		SignalMessenger.INVENTORY_UPDATED.emit(inventory)
+		SignalMessenger.INVENTORY_UPDATED.emit(PlayerInventory.Backpack)
 	else:
 		print("Transfer error: Couldn't add that to the backpack")
 

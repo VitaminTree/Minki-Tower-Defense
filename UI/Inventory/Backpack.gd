@@ -1,7 +1,7 @@
 extends PanelContainer
 
 const Slot = preload("res://UI/Inventory/slot.tscn")
-var inv_data = preload("res://UI/Inventory/TestInventory.tres")
+
 
 @onready var item_grid = $MarginContainer/ItemGrid
 
@@ -17,14 +17,14 @@ func _ready() -> void:
 	SignalMessenger.connect("INVENTORY_PROCESSED", on_inventory_interact) # likely to need to move to anotehr location, but that's the beauty of using signals
 	SignalMessenger.connect("INVENTORY_UPDATED", fill_item_grid)
 	SignalMessenger.connect("SPIRIT_UPDATED", update_spirit_count)
-	fill_item_grid(inv_data)
+	fill_item_grid(PlayerInventory.Backpack)
 
 
 func update_spirit_count(count: int) -> void:
 	spirit_count = count
 
 
-func fill_item_grid(backpack_data: BackpackData) -> void:
+func fill_item_grid(backpack_data: Inventory) -> void:
 	# Clear the inventory before loading data
 	for child in item_grid.get_children():
 		child.queue_free()
@@ -41,7 +41,7 @@ func fill_item_grid(backpack_data: BackpackData) -> void:
 
 
 # Debug function for testing upgrades while a method for aquiring items is unimplemented
-func fill_inventory(backpack_data: BackpackData) -> void:
+func fill_inventory(backpack_data: Inventory) -> void:
 	var temp = GameData.ALL_ITEMS
 	for i in 20:
 		var random_index: int = randi() % temp.slot_datas.size()
@@ -52,7 +52,7 @@ func fill_inventory(backpack_data: BackpackData) -> void:
 
 
 # Debug function for testing upgrades while a method for aquiring items is unimplemented
-func empty_inventory(backpack_data: BackpackData) -> void:
+func empty_inventory(backpack_data: Inventory) -> void:
 	backpack_data.slot_datas = []
 
 
@@ -61,7 +61,7 @@ func show_backpack(tower: Tower, make_visible: bool) -> void:
 	self.visible = make_visible
 
 
-func on_inventory_interact(backpack_data: BackpackData, index: int) -> void:
+func on_inventory_interact(backpack_data: Inventory, index: int) -> void:
 	#var balance = int(money.text)
 	var tower_upgrades_able = target_tower.check_capacity()
 	if tower_upgrades_able:
@@ -75,10 +75,10 @@ func on_inventory_interact(backpack_data: BackpackData, index: int) -> void:
 
 
 func _on_add_items_pressed():
-	fill_inventory(inv_data)
-	fill_item_grid(inv_data)
+	fill_inventory(PlayerInventory.Backpack)
+	fill_item_grid(PlayerInventory.Backpack)
 
 
 func _on_remove_items_pressed():
-	empty_inventory(inv_data)
-	fill_item_grid(inv_data)
+	empty_inventory(PlayerInventory.Backpack)
+	fill_item_grid(PlayerInventory.Backpack)

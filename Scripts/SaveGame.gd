@@ -18,7 +18,7 @@ func save() -> Dictionary:
 
 func save_game() -> void:
 	var save_data = FileAccess.open("user://SaveGame.save", FileAccess.WRITE)
-	var json_string = JSON.stringify(GameData.save_gamestate())
+	var json_string = JSON.stringify(GameData.save_gamestate(), "\t")
 	save_data.store_line(json_string)
 	save_data.close()
 	GameData.NEW_GAME = false
@@ -34,7 +34,8 @@ func load_game() -> void:
 	var save_data = FileAccess.open("user://SaveGame.save", FileAccess.READ)
 	
 	#while save_data.get_position() < save_data.get_length():
-	var json_string = save_data.get_line()
+	var json_string = save_data.get_as_text()
+	print(json_string)
 	var json = JSON.new()
 	var parse_result = json.parse(json_string)
 	if parse_result == OK:
@@ -42,6 +43,7 @@ func load_game() -> void:
 		#$"../HSlider".value = node_data["Value"]
 		print(node_data)
 	else:
+		print(parse_result)
 		print("ERROR I guess")
 
 

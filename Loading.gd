@@ -22,7 +22,7 @@ func check_save_data() -> void:
 	var save_data = FileAccess.open("user://SaveGame.save", FileAccess.READ)
 	
 	#while save_data.get_position() < save_data.get_length():
-	var json_string = save_data.get_line()
+	var json_string = save_data.get_as_text()
 	var json = JSON.new()
 	var parse_result = json.parse(json_string)
 	if parse_result == OK:

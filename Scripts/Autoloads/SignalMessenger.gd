@@ -25,8 +25,8 @@ signal STATUS_APPLIED
 
 signal INVENTORY_TOGGLED(tower: Tower, make_visible: bool)
 # signal ITEM_CLICKED(index: int) [RELOCATED TO SlotPanel]
-signal INVENTORY_PROCESSED(backpack_data: BackpackData, index: int)
-signal INVENTORY_UPDATED(backpack_data: BackpackData)
+signal INVENTORY_PROCESSED(inventory_data: Inventory, index: int)
+signal INVENTORY_UPDATED(inventory_data: Inventory)
 
 signal TOWER_UPGRADED
 

@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://rsnuj4tloy4n"]
+[gd_scene load_steps=3 format=3 uid="uid://rsnuj4tloy4n"]
 
 [ext_resource type="Script" path="res://ItemShop.gd" id="1_qo4lb"]
-[ext_resource type="Resource" uid="uid://c3cn3wx7r1a77" path="res://UI/Inventory/TestInventory.tres" id="2_34b84"]
 [ext_resource type="PackedScene" uid="uid://b6gsmty5ljyvi" path="res://UI/ShopSlot.tscn" id="3_ivfqa"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_qo4lb")
-inventory = ExtResource("2_34b84")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8

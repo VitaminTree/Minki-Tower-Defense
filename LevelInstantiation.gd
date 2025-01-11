@@ -9,6 +9,8 @@ func _ready() -> void:
 	if not GameData.NEW_GAME:
 		load_towers()
 	else:
+		PlayerInventory.clear_inventory()
+		SignalMessenger.INVENTORY_UPDATED.emit(PlayerInventory.Backpack)
 		GameData.towers = []
 
 
