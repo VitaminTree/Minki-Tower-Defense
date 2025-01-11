@@ -19,6 +19,7 @@ func _ready() -> void:
 
 func _on_continue_button_pressed():
 	get_tree().paused = false
+	$Fileload.load_savedata()
 	get_tree().change_scene_to_file(maps[GameData.LevelName])
 
 

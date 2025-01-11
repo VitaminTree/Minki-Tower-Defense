@@ -7,7 +7,8 @@ var done: bool = false
 
 
 func _ready() -> void:
-	check_save_data()
+	$FileLoader.load_savedata()
+	#check_save_data()
 	done = true
 
 func _process(_delta) -> void:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c406kls43bbdo"]
+[gd_scene load_steps=4 format=3 uid="uid://c406kls43bbdo"]
 
 [ext_resource type="Script" path="res://UI/Loading.gd" id="1_8ssna"]
+[ext_resource type="Script" path="res://Components/FileLoader.gd" id="2_5hcan"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7simi"]
 bg_color = Color(0, 0, 0, 1)
@@ -49,3 +50,7 @@ autostart = true
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="FileLoader" type="Node" parent="."]
+script = ExtResource("2_5hcan")
+file_path = "user://SaveGame.save"

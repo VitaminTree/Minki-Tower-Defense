@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://m5xxgibw6n6i"]
+[gd_scene load_steps=7 format=3 uid="uid://m5xxgibw6n6i"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_ipntm"]
 [ext_resource type="PackedScene" uid="uid://btre0xf6ager1" path="res://UI/Pause Menu/ProgressPreview.tscn" id="2_56de2"]
 [ext_resource type="Script" path="res://UI/Main Menu/LevelSelect.gd" id="3_mr8pk"]
 [ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="4_n33f5"]
 [ext_resource type="Script" path="res://UI/Main Menu/MainMenuButtons.gd" id="5_wtkrq"]
+[ext_resource type="Script" path="res://Components/FileLoader.gd" id="6_i6jcw"]
 
 [node name="MainMenu" type="CanvasLayer"]
 
@@ -114,6 +115,10 @@ theme_override_font_sizes/font_size = 50
 disabled = true
 text = "Continue"
 script = ExtResource("5_wtkrq")
+
+[node name="Fileload" type="Node" parent="HBoxContainer/ContinueButton"]
+script = ExtResource("6_i6jcw")
+file_path = "user://SaveGame.save"
 
 [node name="OptionsButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
