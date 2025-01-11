@@ -50,13 +50,4 @@ func transfer_item(_other_inventory: Inventory, _index: int) -> void:
 	pass
 
 
-#func purchase_slot_data(index: int, balance: int) -> SlotData:
-#	var slot_data = slot_datas[index]
-#	if not slot_data:
-#		return null
-#	if balance < 1:
-#		return null
-#	SignalMessenger.SPIRIT_PAYMENT.emit(-1)
-#	slot_datas[index] = null
-#	SignalMessenger.INVENTORY_UPDATED.emit(self)
-#	return slot_data
+

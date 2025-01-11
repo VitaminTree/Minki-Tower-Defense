@@ -65,13 +65,26 @@ func on_inventory_interact(backpack_data: Inventory, index: int) -> void:
 	#var balance = int(money.text)
 	var tower_upgrades_able = target_tower.check_capacity()
 	if tower_upgrades_able:
-		var grabbed_slot_data = backpack_data.purchase_slot_data(index, spirit_count)
+		var grabbed_slot_data = stage_slot_for_upgrade(backpack_data, index)
 		print(grabbed_slot_data)
 		if grabbed_slot_data:
 			target_tower.equip_item(grabbed_slot_data.item_data)
 			SignalMessenger.TOWER_UPGRADED.emit()
 	else:
 		print("UPGRADE LIMIT REACHED FOR THIS TOWER")
+
+
+func stage_slot_for_upgrade(backpack_data: Inventory, index: int) -> SlotData:
+	var slot_data = backpack_data.slot_datas[index]
+	if not slot_data:
+		return null
+	if spirit_count < 1:
+		return null
+	SignalMessenger.SPIRIT_PAYMENT.emit(-1)
+	backpack_data.slot_datas[index] = null
+	SignalMessenger.INVENTORY_UPDATED.emit(backpack_data)
+	return slot_data
+
 
 
 func _on_add_items_pressed():

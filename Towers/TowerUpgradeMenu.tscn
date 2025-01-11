@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://qdhh7sji4y2j" path="res://Assets/plus.png" id="2_01idr"]
 
 [node name="EquipMenu" type="Panel"]
+z_index = 1
 offset_left = -150.0
 offset_top = 75.0
 offset_right = 150.0
