@@ -15,6 +15,7 @@ var NEW_GAME: bool = true
 # Player Resources
 @export var health: int = 1
 @export var money: int = 150
+@export var shop_progress: int = 0
 
 # Level advancement
 @export var LevelName: String = ""
@@ -68,6 +69,7 @@ func save_gamestate() -> Dictionary:
 		i += 1
 	
 	var resources = {
+		"shop" : shop_progress,
 		"level" : LevelName,
 		"health" : health,
 		"money" : money,
@@ -81,7 +83,8 @@ func load_gamestate(data: Dictionary) -> void:
 	# Check if files have the data first to preserve compatability with older saves
 	if data.has("level"):
 		LevelName = data["level"]
-	
+	if data.has("shop"):
+		shop_progress = data["shop"]
 	health = data["health"]
 	money = data["money"]
 	WavesCleared = data["waves"]

@@ -84,9 +84,11 @@ func wave_completion() -> void:
 	print(shop_ready)
 	if shop_ready == true:
 		shop_ready = false
+		SignalMessenger.SHOP_SUMMONED.emit()
 		get_tree().paused = true
 		var shop_menu = shop.instantiate()
 		get_tree().get_root().get_node("Main").add_child(shop_menu)
+		
 
 
 func on_enemy_removal() -> void:

@@ -33,3 +33,4 @@ signal TOWER_UPGRADED
 signal ENEMY_LEFT
 
 signal SHOP_READY
+signal SHOP_SUMMONED #Only used by the shop summon button atm, may become redundant if Spirit is moved to an autoload
