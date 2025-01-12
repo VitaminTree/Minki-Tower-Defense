@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfjfakf71xh17"]
+[gd_scene load_steps=2 format=3 uid="uid://bfjfakf71xh17"]
 
 [ext_resource type="Script" path="res://UI/Inventory/InventorySlot.gd" id="1_a55n4"]
-[ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="1_wnpgp"]
 
 [node name="Slot" type="PanelContainer" node_paths=PackedStringArray("image", "price_label")]
 custom_minimum_size = Vector2(64, 64)
@@ -20,7 +19,6 @@ theme_override_constants/margin_bottom = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("1_wnpgp")
 expand_mode = 1
 stretch_mode = 5
 

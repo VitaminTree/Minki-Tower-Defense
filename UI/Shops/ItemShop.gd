@@ -3,44 +3,36 @@ extends CanvasLayer
 const LIGHT_DISCOUNT_CHANCE: float = 0.2
 const HALF_DISCOUNT_CHANCE: float = 0.08
 const DEEP_DISCOUNT_CHANCE: float = 0.02
+
 const ITEM_REF = GameData.ALL_ITEMS
 
-@onready var h_box_container = $HBoxContainer
-@onready var panel = preload("res://UI/Shops/ShopSlot.tscn")
+var stock: Inventory
+@onready var inventory_panel = $InventoryPanel
 
-var stock: Array[SlotData] = []
 
 func _ready() -> void:
+	stock = Inventory.new()
+	SignalMessenger.connect("SHOP_ITEM_CLICKED", give_item)
 	stock_shop()
-	draw_items()
+
 
 func stock_shop() -> void:
-	stock = []
+	stock.slot_datas = []
 	for i in 5:
 		var random_number = randi() % ITEM_REF.slot_datas.size()
 		var chosen_slot_data = ITEM_REF.slot_datas[random_number]
-		stock.append(chosen_slot_data)
-
-
-func draw_items() -> void:
-	for item in h_box_container.get_children():
-		item.queue_free()
-		
-	for item in stock:
-		var this_panel = panel.instantiate()
-		h_box_container.add_child(this_panel) 
-		this_panel.connect("SHOP_ITEM_CLICKED", give_item)
-		if item:
-			this_panel.set_slot_data(item)
+		stock.slot_datas.append(chosen_slot_data)
+	
+	inventory_panel.update_inventory(stock, inventory_panel.StorageType)
 
 
 func give_item(index: int) -> void:
-	var return_value = PlayerInventory.Backpack.add_item(stock[index])
+	var return_value = PlayerInventory.Backpack.fill_slot(stock.slot_datas[index])
 	if return_value >= 0:
-		SignalMessenger.MONEY_PAYMENT.emit(-1 * stock[index].item_data.price)
-		stock[index] = null
-		draw_items()
-		SignalMessenger.INVENTORY_UPDATED.emit(PlayerInventory.Backpack)
+		SignalMessenger.MONEY_PAYMENT.emit(-1 * stock.slot_datas[index].item_data.price)
+		stock.slot_datas[index] = null
+		inventory_panel.update_inventory(stock, inventory_panel.StorageType)
+		SignalMessenger.INVENTORY_UPDATED.emit(PlayerInventory.Backpack, 0)
 	else:
 		print("Transfer error: Couldn't add that to the backpack")
 

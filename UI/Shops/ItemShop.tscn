@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://rsnuj4tloy4n"]
+[gd_scene load_steps=5 format=3 uid="uid://rsnuj4tloy4n"]
 
 [ext_resource type="Script" path="res://UI/Shops/ItemShop.gd" id="1_vj2mu"]
 [ext_resource type="PackedScene" uid="uid://b6gsmty5ljyvi" path="res://UI/Shops/ShopSlot.tscn" id="2_romog"]
+[ext_resource type="PackedScene" uid="uid://f85iydfeo1ad" path="res://UI/Shops/SellSlot.tscn" id="3_2vxwu"]
+[ext_resource type="Script" path="res://UI/Inventory/Backpack.gd" id="4_aale0"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_vj2mu")
 
 [node name="Panel" type="Panel" parent="."]
@@ -34,34 +36,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "Shop"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -534.5
-offset_top = -188.0
-offset_right = 534.5
-offset_bottom = 58.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ShopPanel" parent="HBoxContainer" instance=ExtResource("2_romog")]
-layout_mode = 2
-
-[node name="ShopPanel2" parent="HBoxContainer" instance=ExtResource("2_romog")]
-layout_mode = 2
-
-[node name="ShopPanel3" parent="HBoxContainer" instance=ExtResource("2_romog")]
-layout_mode = 2
-
-[node name="ShopPanel4" parent="HBoxContainer" instance=ExtResource("2_romog")]
-layout_mode = 2
-
-[node name="ShopPanel5" parent="HBoxContainer" instance=ExtResource("2_romog")]
-layout_mode = 2
-
 [node name="Button" type="Button" parent="."]
 process_mode = 2
 anchors_preset = 7
@@ -77,5 +51,80 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Exit Shop"
+
+[node name="SellSlot" parent="." node_paths=PackedStringArray("price_label") instance=ExtResource("3_2vxwu")]
+offset_left = 428.0
+offset_top = 370.0
+offset_right = 583.0
+offset_bottom = 532.0
+price_label = NodePath("../SellLabel")
+
+[node name="SellLabel" type="Label" parent="."]
+offset_left = 423.0
+offset_top = 541.0
+offset_right = 590.0
+offset_bottom = 567.0
+text = "Drag item here to sell"
+
+[node name="Button2" type="Button" parent="."]
+process_mode = 2
+offset_left = 440.0
+offset_top = 572.0
+offset_right = 574.0
+offset_bottom = 603.0
+text = "Sell"
+
+[node name="InventoryPanel" type="PanelContainer" parent="."]
+process_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -163.0
+offset_right = 442.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("4_aale0")
+StorageType = 1
+columns = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ItemGrid" type="GridContainer" parent="InventoryPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 5
+
+[node name="ShopPanel" parent="InventoryPanel/MarginContainer/ItemGrid" instance=ExtResource("2_romog")]
+layout_mode = 2
+
+[node name="ShopPanel2" parent="InventoryPanel/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+layout_mode = 2
+image = NodePath("../ShopPanel/MarginContainer/TextureRect")
+price_label = NodePath("../ShopPanel/PriceLabel")
+
+[node name="ShopPanel3" parent="InventoryPanel/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+layout_mode = 2
+image = NodePath("../ShopPanel/MarginContainer/TextureRect")
+price_label = NodePath("../ShopPanel/PriceLabel")
+
+[node name="ShopPanel4" parent="InventoryPanel/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+layout_mode = 2
+image = NodePath("../ShopPanel/MarginContainer/TextureRect")
+price_label = NodePath("../ShopPanel/PriceLabel")
+
+[node name="ShopPanel5" parent="InventoryPanel/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+layout_mode = 2
+image = NodePath("../ShopPanel/MarginContainer/TextureRect")
+price_label = NodePath("../ShopPanel/PriceLabel")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -22,7 +22,7 @@ theme_override_constants/margin_bottom = 20
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_q2cpt")
-expand_mode = 1
+expand_mode = 4
 stretch_mode = 5
 
 [node name="PriceLabel" type="Label" parent="."]

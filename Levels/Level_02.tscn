@@ -58,6 +58,7 @@ one_shot = true
 [node name="Towers" type="Node2D" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("5_6oh2x")]
+layer = 2
 
 [node name="PauseButton" type="Button" parent="."]
 offset_left = 1146.0
@@ -81,7 +82,7 @@ text = "Next Wave"
 [node name="CurrentWaveLabel" type="Label" parent="."]
 offset_left = 870.0
 offset_top = 908.0
-offset_right = 1148.0
+offset_right = 1195.0
 offset_bottom = 980.0
 theme_override_font_sizes/font_size = 25
 text = "Click to begin"
