@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://do4yo845lj8nv"]
+[gd_scene load_steps=4 format=3 uid="uid://do4yo845lj8nv"]
 
 [ext_resource type="Script" path="res://Towers/TowerOptions.gd" id="1_bvhdr"]
 [ext_resource type="Texture2D" uid="uid://bdoc6lha2tpi5" path="res://Assets/backpack.png" id="2_o4vgs"]
 [ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="3_f1xa2"]
-[ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="4_dc78l"]
 
 [node name="TowerMenu" type="Panel"]
 offset_left = -100.0
@@ -20,6 +19,7 @@ focus_mode = 2
 alignment = 2
 
 [node name="BackpackButton" type="TextureButton" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("2_o4vgs")
@@ -36,7 +36,7 @@ stretch_mode = 5
 [node name="ThirdButton" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("4_dc78l")
+texture_normal = ExtResource("2_o4vgs")
 ignore_texture_size = true
 stretch_mode = 5
 
