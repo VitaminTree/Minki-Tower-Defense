@@ -7,14 +7,19 @@ const DEEP_DISCOUNT_CHANCE: float = 0.02
 const ITEM_REF = GameData.ALL_ITEMS
 
 var stock: Inventory
-@onready var inventory_panel = $InventoryPanel
-
+var sell: Inventory
+@onready var inventory_panel = $BuyContainer
+@onready var sell_junk = $SellContainer
 
 func _ready() -> void:
 	stock = Inventory.new()
 	SignalMessenger.connect("SHOP_ITEM_CLICKED", give_item)
 	stock_shop()
-
+	
+	sell = Inventory.new()
+	sell.slot_datas = [null]
+	#sell_junk.inventory_data = sell
+	sell_junk.update_inventory(sell, sell_junk.StorageType)
 
 func stock_shop() -> void:
 	stock.slot_datas = []
@@ -23,6 +28,7 @@ func stock_shop() -> void:
 		var chosen_slot_data = ITEM_REF.slot_datas[random_number]
 		stock.slot_datas.append(chosen_slot_data)
 	
+	#inventory_panel.inventory_data = stock
 	inventory_panel.update_inventory(stock, inventory_panel.StorageType)
 
 
@@ -37,7 +43,27 @@ func give_item(index: int) -> void:
 		print("Transfer error: Couldn't add that to the backpack")
 
 
+func take_item_for_money() -> void:
+	if not sell:
+		print("no sell Inventory found")
+		return
+	var slot = sell.get_slot(0)
+	if not slot:
+		print("the first slot is null")
+		return
+	var item = slot.item_data
+	if not item:
+		print("the first slot is holding null")
+		return
+	SignalMessenger.MONEY_PAYMENT.emit(item.price)
+	SignalMessenger.INVENTORY_UPDATED.emit(sell, 2)
+
+
 func _on_button_pressed():
 	get_tree().paused = false
 	#get_tree().get_root().get_node("Main/UI").visible = true
 	queue_free()
+
+
+func _on_sell_button_pressed():
+	take_item_for_money()

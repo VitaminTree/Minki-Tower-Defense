@@ -9,6 +9,9 @@ func slot_clicked(index: int, button: int) -> void:
 func shop_slot_clicked(index: int) -> void:
 	SignalMessenger.Shop_ITEM_INTERACTED.emit(index)
 
+func shop_discard_clicked() -> void:
+	SignalMessenger.SHOP_DISCARD_INTERACTED.emit(self)
+
 # Appends a new slot into the inventory.
 # Returns the index of the new slot if it was added, -1 otherwise
 func add_slot(slot_data: SlotData) -> int:
@@ -45,7 +48,7 @@ func get_slot(index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	if slot_data:
 		slot_datas[index] = null
-		SignalMessenger.INVENTORY_UPDATED.emit(self)
+		#SignalMessenger.INVENTORY_UPDATED.emit(self)
 		return slot_data
 	else:
 		return null
@@ -69,7 +72,7 @@ func remove_slot(slot_data: SlotData) -> int:
 func set_slot(slot_data: SlotData, index: int) -> SlotData:
 	var stored_data = slot_datas[index]
 	slot_datas[index] = slot_data
-	SignalMessenger.INVENTORY_UPDATED.emit(self)
+	#SignalMessenger.INVENTORY_UPDATED.emit(self)
 	if stored_data:
 		return stored_data
 	else:

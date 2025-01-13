@@ -1,7 +1,8 @@
-extends PanelContainer
+class_name Backpack extends PanelContainer
 
 @onready var Player_Slot = preload("res://UI/Inventory/slot.tscn")
 @onready var Shop_Slot = preload("res://UI/Shops/ShopSlot.tscn")
+@onready var Shop_Sell_Slot = preload("res://UI/Shops/SellSlot.tscn")
 
 const PLAYER = 0
 const SHOP_AQUIRE = 1
@@ -29,6 +30,7 @@ func _ready() -> void:
 	SignalMessenger.connect("INVENTORY_PROCESSED", on_inventory_interact)
 	SignalMessenger.connect("INVENTORY_UPDATED", update_inventory)
 	SignalMessenger.connect("PAUSE_CLICKED", drop_grabbed_slot_data)
+	SignalMessenger.connect("SHOP_DISCARD_INTERACTED", swap_grabbed_and_sell)
 	update_inventory(PlayerInventory.Backpack, StorageType)
 
 
@@ -47,11 +49,6 @@ func update_inventory(backpack_data: Inventory, slot_type: int = 0) -> void:
 	
 	var count: int = 0
 	for slot_data in backpack_data.slot_datas:
-		#var slot = Player_Slot.instantiate()
-#		item_grid.add_child(slot)
-#
-#		# Interestingly, I can connect a signal to a parameter's function
-#		slot.connect("INVENTORY_ITEM_CLICKED", backpack_data.slot_clicked)
 		var slot = instantiate_slot(backpack_data, StorageType)
 		
 		if slot_data and slot:
@@ -65,10 +62,6 @@ func update_inventory(backpack_data: Inventory, slot_type: int = 0) -> void:
 			number = 0
 		# Repeat the above block a few more times to ensure there's always a full row of slots
 		for i in number:
-	#		var slot = Player_Slot.instantiate()
-	#		item_grid.add_child(slot)
-	#
-	#		slot.connect("INVENTORY_ITEM_CLICKED", backpack_data.slot_clicked)
 			var slot = instantiate_slot(backpack_data, StorageType)
 			var slot_data = SlotData.new()
 			if slot:
@@ -86,6 +79,10 @@ func instantiate_slot(backpack_data: Inventory, _type: int) -> Slot:
 		SHOP_AQUIRE:
 			slot = Shop_Slot.instantiate()
 			item_grid.add_child(slot)
+		SHOP_DESTROY:
+			slot = Shop_Sell_Slot.instantiate()
+			item_grid.add_child(slot)
+			slot.connect("SHOP_DISCARD_CLICKED", backpack_data.shop_discard_clicked)
 		_:
 			print("ERROR: Enum chosen that doesn't exist yet")
 			return null
@@ -155,6 +152,14 @@ func drop_grabbed_slot_data() -> void:
 		grabbed_slot_data = PlayerInventory.Backpack.set_slot(grabbed_slot_data, original_index)
 		update_grabbed()
 
+
+func swap_grabbed_and_sell(sell_inventory: Inventory) -> void:
+	if StorageType != PLAYER:
+		return
+	grabbed_slot_data = sell_inventory.set_slot(grabbed_slot_data, 0)
+	update_grabbed()
+	SignalMessenger.INVENTORY_UPDATED.emit(sell_inventory, SHOP_DESTROY)
+	
 
 func stage_slot_for_upgrade(backpack_data: Inventory, index: int) -> SlotData:
 	var slot_data = backpack_data.slot_datas[index]

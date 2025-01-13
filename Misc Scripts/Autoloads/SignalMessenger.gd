@@ -26,7 +26,7 @@ signal STATUS_APPLIED
 signal INVENTORY_TOGGLED(tower: Tower, make_visible: bool)
 # signal ITEM_CLICKED(index: int) [RELOCATED TO SlotPanel]
 signal INVENTORY_PROCESSED(inventory_data: Inventory, index: int, button: int)
-signal INVENTORY_UPDATED(inventory_data: Inventory)
+signal INVENTORY_UPDATED(inventory_data: Inventory, inventory_type: int)
 
 signal TOWER_UPGRADED
 
@@ -35,5 +35,6 @@ signal ENEMY_LEFT
 signal SHOP_READY
 signal SHOP_SUMMONED #Only used by the shop summon button atm, may become redundant if Spirit is moved to an autoload
 signal SHOP_ITEM_CLICKED(index: int)
+signal SHOP_DISCARD_INTERACTED(inventory_data: Inventory)
 
 signal PAUSE_CLICKED

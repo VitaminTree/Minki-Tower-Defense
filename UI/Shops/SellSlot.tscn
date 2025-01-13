@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://f85iydfeo1ad"]
+
+[ext_resource type="Script" path="res://UI/Shops/SellSlot.gd" id="1_th72h"]
+[ext_resource type="Texture2D" uid="uid://bdoc6lha2tpi5" path="res://Assets/backpack.png" id="2_tuog8"]
+
+[node name="SellSlot" type="PanelContainer" node_paths=PackedStringArray("image", "price_label")]
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_th72h")
+StorageType = 2
+image = NodePath("MarginContainer/TextureRect")
+price_label = NodePath("PriceLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_tuog8")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PriceLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 1
+text = "1000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
