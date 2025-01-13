@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+const SHOP_BUY = 1
+const SHOP_SELL = 2
+
 const LIGHT_DISCOUNT_CHANCE: float = 0.2
 const HALF_DISCOUNT_CHANCE: float = 0.08
 const DEEP_DISCOUNT_CHANCE: float = 0.02
@@ -10,10 +13,12 @@ var stock: Inventory
 var sell: Inventory
 @onready var inventory_panel = $BuyContainer
 @onready var sell_junk = $SellContainer
+@onready var sell_label = $SellLabel
 
 func _ready() -> void:
 	stock = Inventory.new()
 	SignalMessenger.connect("SHOP_ITEM_CLICKED", give_item)
+	SignalMessenger.connect("INVENTORY_UPDATED", update_sell_label)
 	stock_shop()
 	
 	sell = Inventory.new()
@@ -43,6 +48,15 @@ func give_item(index: int) -> void:
 		print("Transfer error: Couldn't add that to the backpack")
 
 
+func update_sell_label(inventory_data: Inventory, inventory_type: int) -> void:
+	if inventory_type != SHOP_SELL:
+		return
+	if inventory_data.validate_index(0):
+		sell_label.text = "Sells for $%d" % inventory_data.slot_datas[0].item_data.price
+	else:
+		sell_label.text = "Place item here to sell"
+
+
 func take_item_for_money() -> void:
 	if not sell:
 		print("no sell Inventory found")
@@ -56,12 +70,11 @@ func take_item_for_money() -> void:
 		print("the first slot is holding null")
 		return
 	SignalMessenger.MONEY_PAYMENT.emit(item.price)
-	SignalMessenger.INVENTORY_UPDATED.emit(sell, 2)
+	SignalMessenger.INVENTORY_UPDATED.emit(sell, SHOP_SELL)
 
 
 func _on_button_pressed():
 	get_tree().paused = false
-	#get_tree().get_root().get_node("Main/UI").visible = true
 	queue_free()
 
 

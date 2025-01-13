@@ -12,6 +12,17 @@ func shop_slot_clicked(index: int) -> void:
 func shop_discard_clicked() -> void:
 	SignalMessenger.SHOP_DISCARD_INTERACTED.emit(self)
 
+# Returns true if there is a slot at the given index that contains a non-null item
+# Returns false otherwise
+func validate_index(index: int) -> bool:
+	if index < 0 or index >= slot_datas.size():
+		return false
+	if not slot_datas[index]:
+		return false
+	if not slot_datas[index].item_data:
+		return false
+	return true
+
 # Appends a new slot into the inventory.
 # Returns the index of the new slot if it was added, -1 otherwise
 func add_slot(slot_data: SlotData) -> int:
