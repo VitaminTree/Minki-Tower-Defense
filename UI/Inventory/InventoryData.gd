@@ -13,7 +13,6 @@ func shop_discard_clicked() -> void:
 	SignalMessenger.SHOP_DISCARD_INTERACTED.emit(self)
 
 func tower_clicked(index: int) -> void:
-	print("")
 	SignalMessenger.TOWER_UPGRADE_INTERACTED.emit(self, index)
 
 # Returns true if there is a slot at the given index that contains a non-null item

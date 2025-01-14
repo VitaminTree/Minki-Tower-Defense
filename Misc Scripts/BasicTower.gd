@@ -26,7 +26,6 @@ var backpack: Inventory
 var data: TowerData
 
 func _ready() -> void:
-	print(Name)
 	SignalMessenger.connect("TOWER_UPGRADED", equip_item)
 	SignalMessenger.connect("TOWER_DOWNGRADED", remove_item)
 	set_process_input(false)

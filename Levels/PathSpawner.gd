@@ -81,7 +81,6 @@ func wave_completion() -> void:
 	GameData.WavesCleared = currentWave
 	button.disabled = false
 	SignalMessenger.SPIRIT_PAYMENT.emit(5)
-	print(shop_ready)
 	if shop_ready == true:
 		shop_ready = false
 		SignalMessenger.SHOP_SUMMONED.emit()
@@ -98,7 +97,6 @@ func on_enemy_removal() -> void:
 		wave_completion()
 
 func ready_shop() -> void:
-	print("READY")
 	shop_ready = true
 
 func count_enemies_in_wave(wave: Wave) -> int:

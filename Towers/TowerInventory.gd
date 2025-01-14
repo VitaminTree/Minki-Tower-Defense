@@ -3,7 +3,6 @@ class_name TowerBackpack extends Backpack
 @export var tower: Tower
 
 func update_inventory(backpack_data: Inventory, slot_type: int = 0) -> void:
-	print("Henlo")
 	if slot_type != StorageType:
 		return
 	if tower:

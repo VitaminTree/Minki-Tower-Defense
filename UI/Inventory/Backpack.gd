@@ -17,8 +17,6 @@ enum Inventory_Type { PLAYER , SHOP_AQUIRE , SHOP_DESTROY , TOWER }
 @export var grabbed_slot: Slot
 @onready var item_grid = $MarginContainer/ItemGrid
 
-#@export var inventory_data: Inventory = PlayerInventory.Backpack
-
 var target_tower: Tower
 
 var grabbed_slot_data: SlotData
@@ -117,16 +115,6 @@ func show_backpack(tower: Tower, make_visible: bool) -> void:
 
 
 func on_inventory_interact(backpack_data: Inventory, index: int, button: int) -> void:
-	#var balance = int(money.text)
-#	var tower_upgrades_able = target_tower.check_capacity()
-#	if tower_upgrades_able:
-#		var grabbed_slot_data = stage_slot_for_upgrade(backpack_data, index)
-#		print(grabbed_slot_data)
-#		if grabbed_slot_data:
-#			target_tower.equip_item(grabbed_slot_data.item_data)
-#			SignalMessenger.TOWER_UPGRADED.emit()
-#	else:
-#		print("UPGRADE LIMIT REACHED FOR THIS TOWER")
 	if StorageType != PLAYER:
 		return
 	match [grabbed_slot_data, button]:
@@ -171,20 +159,16 @@ func swap_grabbed_and_sell(sell_inventory: Inventory) -> void:
 func give_grabbed_to_tower(tower_inventory: Inventory, index: int) -> void:
 	if StorageType != PLAYER:
 		return
-	print("check pre")
 	var pre_item = tower_inventory.get_item_at_slot(index)
 	if pre_item:
 		SignalMessenger.TOWER_DOWNGRADED.emit(index)
-	print("check post")
 	grabbed_slot_data = tower_inventory.set_slot(grabbed_slot_data, index)
 	update_grabbed()
 	var post_item = tower_inventory.get_item_at_slot(index)
 	if post_item:
 		SignalMessenger.TOWER_UPGRADED.emit(post_item, index)
-	print("update")
 	SignalMessenger.INVENTORY_UPDATED.emit(tower_inventory, TOWER)
-	
-	
+
 
 func stage_slot_for_upgrade(backpack_data: Inventory, index: int) -> SlotData:
 	var slot_data = backpack_data.slot_datas[index]
