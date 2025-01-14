@@ -24,11 +24,16 @@ func load_towers() -> void:
 		current_tower.position.x = tower.location[0]
 		current_tower.position.y = tower.location[1]
 		var i: int = 0
+		current_tower.selected = true
 		for item in tower.upgrades:
+			var slot_data = SlotData.new()
+			slot_data.item_data = item
+			current_tower.backpack.set_slot(slot_data, i)
 			current_tower.equip_item(item, i)
-			SignalMessenger.TOWER_UPGRADED.emit()
+			SignalMessenger.INVENTORY_UPDATED.emit(current_tower.backpack, 3)
 			i += 1
 		
+		current_tower.selected = false
 		current_tower.set_data()
 		
 		current_tower.get_node("Area").hide()
