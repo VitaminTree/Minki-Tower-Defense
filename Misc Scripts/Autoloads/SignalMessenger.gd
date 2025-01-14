@@ -28,7 +28,9 @@ signal INVENTORY_TOGGLED(tower: Tower, make_visible: bool)
 signal INVENTORY_PROCESSED(inventory_data: Inventory, index: int, button: int)
 signal INVENTORY_UPDATED(inventory_data: Inventory, inventory_type: int)
 
-signal TOWER_UPGRADED
+signal TOWER_UPGRADED(item: ItemData, index: int)
+signal TOWER_UPGRADE_INTERACTED(inventory_data: Inventory, index: int)
+signal TOWER_DOWNGRADED(index: int)
 
 signal ENEMY_LEFT
 

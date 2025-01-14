@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="6_tf6vr"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="7_4er6j"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="8_w1pmt"]
-[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://Towers/TowerUpgradeMenu.tscn" id="9_3oi0l"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="9_g1x86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
 size = Vector2(109, 110)
@@ -100,10 +100,13 @@ offset_top = -120.0
 offset_bottom = -75.0
 tower = NodePath("..")
 
-[node name="EquipMenu" parent="." instance=ExtResource("9_3oi0l")]
+[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("9_g1x86")]
 visible = false
-offset_top = 90.0
-offset_bottom = 165.0
+offset_left = -146.0
+offset_top = 72.0
+offset_right = 147.0
+offset_bottom = 139.0
+tower = NodePath("..")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

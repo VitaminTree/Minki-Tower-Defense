@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://db2dyj0u6qlg5"]
+[gd_scene load_steps=4 format=3 uid="uid://db2dyj0u6qlg5"]
 
 [ext_resource type="Script" path="res://Towers/TowerUpgradeMenu.gd" id="1_3rxsi"]
 [ext_resource type="Texture2D" uid="uid://qdhh7sji4y2j" path="res://Assets/plus.png" id="2_01idr"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="3_1prdl"]
 
 [node name="EquipMenu" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 offset_left = -150.0
 offset_top = 75.0
@@ -12,6 +14,7 @@ offset_bottom = 150.0
 script = ExtResource("1_3rxsi")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,3 +52,10 @@ texture = ExtResource("2_01idr")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true
+
+[node name="Backpack" parent="." instance=ExtResource("3_1prdl")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 293.0
+offset_bottom = 67.0

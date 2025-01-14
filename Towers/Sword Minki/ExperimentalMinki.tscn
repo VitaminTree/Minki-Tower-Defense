@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_af4iy"]
 [ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="4_x0qtk"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="7_gom1h"]
-[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://Towers/TowerUpgradeMenu.tscn" id="9_wps7p"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="9_3sdc1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v47a8"]
 size = Vector2(64, 64)
@@ -104,10 +104,12 @@ offset_bottom = -42.0
 tower = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
-[node name="EquipMenu" parent="." instance=ExtResource("9_wps7p")]
-visible = false
-offset_top = 49.0
-offset_bottom = 124.0
+[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("9_3sdc1")]
+offset_left = -146.0
+offset_top = 44.0
+offset_right = 147.0
+offset_bottom = 111.0
+tower = NodePath("..")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -61,7 +61,7 @@ func take_item_for_money() -> void:
 	if not sell:
 		print("no sell Inventory found")
 		return
-	var slot = sell.get_slot(0)
+	var slot = sell.grab_slot(0)
 	if not slot:
 		print("the first slot is null")
 		return

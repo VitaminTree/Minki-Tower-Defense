@@ -3,6 +3,7 @@ class_name Backpack extends PanelContainer
 @onready var Player_Slot = preload("res://UI/Inventory/slot.tscn")
 @onready var Shop_Slot = preload("res://UI/Shops/ShopSlot.tscn")
 @onready var Shop_Sell_Slot = preload("res://UI/Shops/SellSlot.tscn")
+@onready var Tower_Slot = preload("res://Towers/tower_slot.tscn")
 
 const PLAYER = 0
 const SHOP_AQUIRE = 1
@@ -31,7 +32,8 @@ func _ready() -> void:
 	SignalMessenger.connect("INVENTORY_UPDATED", update_inventory)
 	SignalMessenger.connect("PAUSE_CLICKED", drop_grabbed_slot_data)
 	SignalMessenger.connect("SHOP_DISCARD_INTERACTED", swap_grabbed_and_sell)
-	update_inventory(PlayerInventory.Backpack, StorageType)
+	SignalMessenger.connect("TOWER_UPGRADE_INTERACTED", give_grabbed_to_tower)
+	update_inventory(PlayerInventory.Backpack, PLAYER)
 
 
 func _physics_process(_delta) -> void:
@@ -43,6 +45,7 @@ func _physics_process(_delta) -> void:
 func update_inventory(backpack_data: Inventory, slot_type: int = 0) -> void:
 	if slot_type != StorageType:
 		return
+	
 	# Clear the inventory before loading data
 	for child in item_grid.get_children():
 		child.queue_free()
@@ -83,6 +86,10 @@ func instantiate_slot(backpack_data: Inventory, _type: int) -> Slot:
 			slot = Shop_Sell_Slot.instantiate()
 			item_grid.add_child(slot)
 			slot.connect("SHOP_DISCARD_CLICKED", backpack_data.shop_discard_clicked)
+		TOWER:
+			slot = Tower_Slot.instantiate()
+			item_grid.add_child(slot)
+			slot.connect("TOWER_UPGRADE_SLOT_CLICKED", backpack_data.tower_clicked)
 		_:
 			print("ERROR: Enum chosen that doesn't exist yet")
 			return null
@@ -125,7 +132,7 @@ func on_inventory_interact(backpack_data: Inventory, index: int, button: int) ->
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
 			original_index = index
-			grabbed_slot_data = backpack_data.get_slot(index)
+			grabbed_slot_data = backpack_data.grab_slot(index)
 		[_, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = backpack_data.set_slot(grabbed_slot_data, index)
 	
@@ -159,6 +166,24 @@ func swap_grabbed_and_sell(sell_inventory: Inventory) -> void:
 	grabbed_slot_data = sell_inventory.set_slot(grabbed_slot_data, 0)
 	update_grabbed()
 	SignalMessenger.INVENTORY_UPDATED.emit(sell_inventory, SHOP_DESTROY)
+
+
+func give_grabbed_to_tower(tower_inventory: Inventory, index: int) -> void:
+	if StorageType != PLAYER:
+		return
+	print("check pre")
+	var pre_item = tower_inventory.get_item_at_slot(index)
+	if pre_item:
+		SignalMessenger.TOWER_DOWNGRADED.emit(index)
+	print("check post")
+	grabbed_slot_data = tower_inventory.set_slot(grabbed_slot_data, index)
+	update_grabbed()
+	var post_item = tower_inventory.get_item_at_slot(index)
+	if post_item:
+		SignalMessenger.TOWER_UPGRADED.emit(post_item, index)
+	print("update")
+	SignalMessenger.INVENTORY_UPDATED.emit(tower_inventory, TOWER)
+	
 	
 
 func stage_slot_for_upgrade(backpack_data: Inventory, index: int) -> SlotData:

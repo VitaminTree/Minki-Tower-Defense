@@ -10,26 +10,32 @@ class_name Tower extends StaticBody2D
 @onready var timer: Timer = $BulletCooldown
 @onready var contextMenu: Panel = $TowerMenu
 @onready var spriteOutline: Sprite2D = $OutlineShader
-@onready var equipMenu: Panel = $EquipMenu
+@onready var equipMenu = $EquipMenu
 
 var objectsInRange = []
 var target
 var selected: bool = false
 var hovering: bool = false
+var inventory_created: bool = false 
 # Every tower will recieve the tower upgraded signal. Therefore, each tower must
 # keep a memory of which upgrades have already been applied.
 var upgradesApplied: Array[bool] = [false,false,false]
 # Do not prefill this; Exported for debugging purposes
 @export var upgrades: Array[ItemData] = [null, null, null]
-
+var backpack: Inventory
 var data: TowerData
 
 func _ready() -> void:
 	print(Name)
-	SignalMessenger.connect("TOWER_UPGRADED", draw_items)
+	SignalMessenger.connect("TOWER_UPGRADED", equip_item)
+	SignalMessenger.connect("TOWER_DOWNGRADED", remove_item)
 	set_process_input(false)
 	contextMenu.visible = false
 	spriteOutline.visible = false
+	
+	backpack = Inventory.new()
+	backpack.slot_datas = [null,null,null]
+	equipMenu.update_inventory(backpack, 3)
 
 
 # The generic Tower _process function seeks enemies as targets and throws a projectile at it.
@@ -96,16 +102,18 @@ func target_last(enemies: Array) -> Node2D:
 	return target
 
 
-func draw_items() -> void:
-	if upgrades[0]:
-		equipMenu.index_one.texture = upgrades[0].texture
-	if upgrades[1]:
-		equipMenu.index_two.texture = upgrades[1].texture
-	if upgrades[2]:
-		equipMenu.index_three.texture = upgrades[2].texture
+#func draw_items() -> void:
+#	if upgrades[0]:
+#		equipMenu.index_one.texture = upgrades[0].texture
+#	if upgrades[1]:
+#		equipMenu.index_two.texture = upgrades[1].texture
+#	if upgrades[2]:
+#		equipMenu.index_three.texture = upgrades[2].texture
 
 # If index is set, the function will attempt to equip the item ONLY in the given index.
 func equip_item(item: ItemData, index: int = -1) -> void:
+	if not selected:
+		return
 	if not item:
 		return
 	for i in upgrades.size():
@@ -118,6 +126,18 @@ func equip_item(item: ItemData, index: int = -1) -> void:
 				GameData.update_tower_data(data)
 				return
 	print("Upgrade limit reached: Item not equiped")
+
+
+func remove_item(index: int) -> void:
+	if not selected:
+		return
+	if not upgrades[index]:
+		return
+	upgrades[index].remove_upgrade(self)
+	upgrades[index] = null
+	upgradesApplied[index] = false
+	set_data()
+	GameData.update_tower_data(data)
 
 
 func check_capacity() -> bool:

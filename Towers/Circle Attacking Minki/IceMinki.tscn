@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_ku0nn"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="5_n7kc0"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="6_v4eli"]
-[ext_resource type="PackedScene" uid="uid://db2dyj0u6qlg5" path="res://Towers/TowerUpgradeMenu.tscn" id="8_xm4dd"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="8_144hn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
 size = Vector2(109, 110)
@@ -79,8 +79,13 @@ offset_top = -111.0
 offset_bottom = -66.0
 tower = NodePath("..")
 
-[node name="EquipMenu" parent="." instance=ExtResource("8_xm4dd")]
+[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("8_144hn")]
 visible = false
+offset_left = -146.0
+offset_top = 64.0
+offset_right = 147.0
+offset_bottom = 131.0
+tower = NodePath("..")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

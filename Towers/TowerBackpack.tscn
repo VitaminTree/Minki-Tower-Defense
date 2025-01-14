@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceh3il5apv881"]
+
+[ext_resource type="Script" path="res://Towers/TowerInventory.gd" id="1_1bxwm"]
+[ext_resource type="PackedScene" uid="uid://bhqcaf8c5a65y" path="res://Towers/tower_slot.tscn" id="2_3y7tv"]
+
+[node name="Backpack" type="PanelContainer"]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 297.0
+offset_bottom = 70.0
+script = ExtResource("1_1bxwm")
+StorageType = 3
+columns = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="TowerSlot" parent="MarginContainer/ItemGrid" instance=ExtResource("2_3y7tv")]
+layout_mode = 2
+
+[node name="TowerSlot2" parent="MarginContainer/ItemGrid" instance=ExtResource("2_3y7tv")]
+layout_mode = 2
+
+[node name="TowerSlot3" parent="MarginContainer/ItemGrid" instance=ExtResource("2_3y7tv")]
+layout_mode = 2
