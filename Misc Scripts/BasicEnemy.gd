@@ -1,6 +1,7 @@
 class_name enemy extends CharacterBody2D
 
 @onready var progress_bar: TextureProgressBar = $ProgressBar
+@onready var animation_player = $AnimationPlayer
 
 # I want the health of an enemy type to be editable via the Inspector, so an @export is needed
 # I also want the health bar to be modified via the setter, so that it doesnt check for an update every cycle
@@ -33,9 +34,17 @@ var statusEffects: Array = []
 @export var damage = 1
 @export var payment = 5
 
+var original_speed: float
+var original_payment: float
+var original_health: float
+
 
 
 func _ready() -> void:
+	original_speed = speed
+	original_payment = payment
+	original_health = health
+	
 	health = healthpoints
 	progress_bar.max_value = health
 	progress_bar.visible = false

@@ -1,0 +1,141 @@
+[gd_scene load_steps=14 format=3 uid="uid://b31o3bbsyybw6"]
+
+[ext_resource type="Script" path="res://Towers/Banana Peel/BananaPeel.gd" id="1_pqc2r"]
+[ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_darrd"]
+[ext_resource type="PackedScene" uid="uid://eqxc8pwumupp" path="res://Towers/Banana Peel/SlipAndFall.tscn" id="2_m3843"]
+[ext_resource type="Texture2D" uid="uid://db1ni8bguqky4" path="res://Assets/bananapeel2.png" id="3_wpqp8"]
+[ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_lm4hv"]
+[ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="5_amoql"]
+[ext_resource type="Script" path="res://Towers/TowerOptions.gd" id="6_4c480"]
+[ext_resource type="Texture2D" uid="uid://bdoc6lha2tpi5" path="res://Assets/backpack.png" id="7_1oq6p"]
+[ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="8_dmtd4"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="9_2uhul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0cwd"]
+size = Vector2(125, 72)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwwfs"]
+radius = 32.0156
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_420ys"]
+shader = ExtResource("4_lm4hv")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 4.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[node name="BananaPeel" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_pqc2r")
+Name = "Banana Peel"
+projectile = ExtResource("2_m3843")
+Ground = false
+Path = true
+
+[node name="TowerShape" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_e0cwd")
+
+[node name="BulletOrigin" type="Marker2D" parent="."]
+
+[node name="BulletRange" type="Area2D" parent="."]
+
+[node name="BulletRangeShape" type="CollisionShape2D" parent="BulletRange"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_cwwfs")
+
+[node name="BulletRangeVisual" type="Sprite2D" parent="."]
+modulate = Color(0.0588235, 1, 1, 0.368627)
+position = Vector2(0.499998, 0.999999)
+scale = Vector2(0.18, 0.182857)
+texture = ExtResource("2_darrd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_wpqp8")
+
+[node name="OutlineShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_420ys")
+texture = ExtResource("3_wpqp8")
+
+[node name="BulletCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.694118)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -49.0
+offset_right = 63.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("5_amoql")
+
+[node name="TowerMenu" type="Panel" parent="." node_paths=PackedStringArray("tower")]
+offset_left = -36.0
+offset_top = -99.0
+offset_right = 36.0
+offset_bottom = -54.0
+script = ExtResource("6_4c480")
+tower = NodePath("..")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TowerMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -22.0
+offset_right = 41.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+alignment = 2
+
+[node name="BackpackButton" type="TextureButton" parent="TowerMenu/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("7_1oq6p")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SellButton" type="TextureButton" parent="TowerMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("8_dmtd4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ThirdButton" type="TextureButton" parent="TowerMenu/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("7_1oq6p")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("9_2uhul")]
+visible = false
+offset_left = -146.0
+offset_top = 64.0
+offset_right = 147.0
+offset_bottom = 131.0
+tower = NodePath("..")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="TowerMenu/HBoxContainer/BackpackButton" to="TowerMenu" method="_on_backpack_button_pressed" flags=18]
+[connection signal="pressed" from="TowerMenu/HBoxContainer/SellButton" to="TowerMenu" method="_on_sell_button_pressed" flags=18]
+[connection signal="pressed" from="TowerMenu/HBoxContainer/ThirdButton" to="TowerMenu" method="_on_third_button_pressed" flags=18]

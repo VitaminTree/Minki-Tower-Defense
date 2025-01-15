@@ -1,12 +1,55 @@
-[gd_scene load_steps=6 format=3 uid="uid://nakpgq5gx5jj"]
+[gd_scene load_steps=11 format=3 uid="uid://nakpgq5gx5jj"]
 
 [ext_resource type="Script" path="res://Misc Scripts/BasicEnemy.gd" id="1_rnsfu"]
 [ext_resource type="Texture2D" uid="uid://c8ufkqu1o7weu" path="res://Assets/Wisp.png" id="2_t8c3b"]
 [ext_resource type="Texture2D" uid="uid://m7lidhgd7rey" path="res://Assets/bar.png" id="3_jwq3f"]
 [ext_resource type="Texture2D" uid="uid://cbtrbcplow8qf" path="res://Assets/red_texture.png" id="4_tb64i"]
+[ext_resource type="PackedScene" uid="uid://bnghs4d856mgw" path="res://Components/EnemyAnimations.tscn" id="5_w3moj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cil23"]
 radius = 26.0
+
+[sub_resource type="Animation" id="Animation_hshb2"]
+resource_name = "rotate"
+
+[sub_resource type="Animation" id="Animation_fva8b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wisp2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ma8qy"]
+resource_name = "Flip"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wisp2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [6.28319, 4.71239, 3.14159, 1.5708, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6g34d"]
+_data = {
+"Flip": SubResource("Animation_ma8qy"),
+"RESET": SubResource("Animation_fva8b"),
+"rotate": SubResource("Animation_hshb2")
+}
 
 [node name="enemy_Wisp" type="CharacterBody2D" groups=["Enemy"]]
 input_pickable = true
@@ -32,3 +75,8 @@ step = 0.0
 value = 99.0
 texture_over = ExtResource("3_jwq3f")
 texture_progress = ExtResource("4_tb64i")
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("5_w3moj")]
+libraries = {
+"": SubResource("AnimationLibrary_6g34d")
+}

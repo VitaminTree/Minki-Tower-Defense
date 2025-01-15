@@ -8,7 +8,8 @@ const TOWER_REFERENCES = {
 	"Freeze Minki" : "res://Towers/Freezing Minki/FreezingMinki.tscn",
 	"Sword Minki" : "res://Towers/Sword Minki/ExperimentalMinki.tscn",
 	"Boat" : "res://Towers/Pirate Ship/Boat.tscn",
-	"Bomb" : "res://Towers/Bomb/Bomb.tscn"
+	"Bomb" : "res://Towers/Bomb/Bomb.tscn",
+	"Banana Peel" : "res://Towers/Banana Peel/BananaPeel.tscn"
 }
 
 const SAVE_GAME_PATH = "user://SaveGame.save"
