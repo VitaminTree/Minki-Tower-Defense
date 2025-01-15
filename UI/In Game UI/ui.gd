@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+
 @onready var inventory_panel = $InventoryPanel
 
 # Called when the node enters the scene tree for the first time.
@@ -15,3 +16,4 @@ func _process(_delta):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_inventory"):
 		inventory_panel.visible = !inventory_panel.visible
+		SignalMessenger.INVENTORY_TOGGLED.emit()

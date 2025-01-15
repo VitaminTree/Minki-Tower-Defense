@@ -25,7 +25,7 @@ var original_index: int
 
 func _ready() -> void:
 	item_grid.columns = columns
-	SignalMessenger.connect("INVENTORY_TOGGLED", show_backpack)
+	SignalMessenger.connect("INVENTORY_TOGGLED", drop_by_signal)
 	SignalMessenger.connect("INVENTORY_PROCESSED", on_inventory_interact)
 	SignalMessenger.connect("INVENTORY_UPDATED", update_inventory)
 	SignalMessenger.connect("PAUSE_CLICKED", drop_grabbed_slot_data)
@@ -109,9 +109,11 @@ func empty_inventory(backpack_data: Inventory) -> void:
 	backpack_data.slot_datas = []
 
 
-func show_backpack(tower: Tower, make_visible: bool) -> void:
-	target_tower = tower
-	self.visible = make_visible
+func drop_by_signal() -> void:
+	if StorageType != PLAYER:
+		return
+	if not self.visible:
+		drop_grabbed_slot_data()
 
 
 func on_inventory_interact(backpack_data: Inventory, index: int, button: int) -> void:
@@ -146,6 +148,7 @@ func drop_grabbed_slot_data() -> void:
 	if grabbed_slot_data:
 		grabbed_slot_data = PlayerInventory.Backpack.set_slot(grabbed_slot_data, original_index)
 		update_grabbed()
+		update_inventory(PlayerInventory.Backpack)
 
 
 func swap_grabbed_and_sell(sell_inventory: Inventory) -> void:

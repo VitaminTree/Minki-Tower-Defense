@@ -23,7 +23,7 @@ signal MOUSE_OVER_WATER(state: bool)
 
 signal STATUS_APPLIED
 
-signal INVENTORY_TOGGLED(tower: Tower, make_visible: bool)
+signal INVENTORY_TOGGLED
 # signal ITEM_CLICKED(index: int) [RELOCATED TO SlotPanel]
 signal INVENTORY_PROCESSED(inventory_data: Inventory, index: int, button: int)
 signal INVENTORY_UPDATED(inventory_data: Inventory, inventory_type: int)

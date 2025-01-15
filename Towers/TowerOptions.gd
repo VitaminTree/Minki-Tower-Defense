@@ -6,11 +6,12 @@ extends Panel
 
 
 func _on_backpack_button_pressed():
-	SignalMessenger.INVENTORY_TOGGLED.emit(tower, true)
+	pass
+	#SignalMessenger.INVENTORY_TOGGLED.emit(tower, true)
 
 
 func _on_sell_button_pressed():
-	SignalMessenger.INVENTORY_TOGGLED.emit(tower, false)
+	#SignalMessenger.INVENTORY_TOGGLED.emit(tower, false)
 	GameData.remove_tower(tower.data)
 	SignalMessenger.MONEY_PAYMENT.emit(50)
 	tower.queue_free()
