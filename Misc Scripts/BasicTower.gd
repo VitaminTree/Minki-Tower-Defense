@@ -3,6 +3,10 @@ class_name Tower extends StaticBody2D
 @export var Name: String
 @export var projectile: PackedScene
 
+@export_category("Placeable Terrain")
+@export var Ground: bool = true
+@export var Water: bool = false
+@export var Path: bool = false
 
 @onready var rangeHitbox: Area2D = $BulletRange
 @onready var rangeVisual: Sprite2D = $BulletRangeVisual

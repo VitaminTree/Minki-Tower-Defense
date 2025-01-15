@@ -10,6 +10,7 @@ extends Panel
 
 var currentTile: Node2D
 var validClick: bool = false # Bugfix: Right mouse button release triggers button_mask == 0. This prevents that action from executing masks that look for that event.
+var validSpot: bool = false
 var canPurchase: bool = false
 var overWater: bool = false
 var overPath: bool = false
@@ -54,10 +55,12 @@ func _on_gui_input(event: InputEvent) -> void:
 				get_child(1).visible = false
 			else:
 				get_child(1).visible = true
-			if not overPath and not overWater:
+			if (tempTower.Ground and not overWater and not overPath) or (tempTower.Water and overWater) or (tempTower.Path and overPath):
+				validSpot = true
 				get_child(1).get_node("Area").add_theme_stylebox_override("panel", green)
 			else:
 				get_child(1).get_node("Area").add_theme_stylebox_override("panel", red)
+				validSpot = false
 	
 	# When the window is scaled, event.global_position in this block returns the absolute coordinates of the 
 	# event location, without any scaling.
@@ -66,7 +69,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			get_child(1).queue_free()
 			
 		var x_ratio: float = get_window().get_size().x / float(1920)
-		if event.global_position.x < 1640 * x_ratio and validClick and not overWater and not overPath:
+		if event.global_position.x < 1640 * x_ratio and validClick and validSpot:
 			
 			tempTower.visible = true
 			var path = get_tree().get_root().get_node("Main/Towers")
