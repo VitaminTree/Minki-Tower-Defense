@@ -6,7 +6,9 @@ const TOWER_REFERENCES = {
 	"Default Minki" : "res://Towers/Default Minki/PurpleMinki.tscn",
 	"Ice Minki" : "res://Towers/Circle Attacking Minki/IceMinki.tscn",
 	"Freeze Minki" : "res://Towers/Freezing Minki/FreezingMinki.tscn",
-	"Sword Minki" : "res://Towers/Sword Minki/ExperimentalMinki.tscn"
+	"Sword Minki" : "res://Towers/Sword Minki/ExperimentalMinki.tscn",
+	"Boat" : "res://Towers/Pirate Ship/Boat.tscn",
+	"Bomb" : "res://Towers/Bomb/Bomb.tscn"
 }
 
 const SAVE_GAME_PATH = "user://SaveGame.save"

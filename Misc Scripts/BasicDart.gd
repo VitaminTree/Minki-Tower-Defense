@@ -4,8 +4,8 @@ class_name Dart extends Area2D
 
 @export var speed: float = 1250
 @export var penetration: int = 1
+@export var dartDamage: float = 1
 
-var dartDamage: float = 1
 var direction: Vector2
  
 
