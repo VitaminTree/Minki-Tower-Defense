@@ -79,12 +79,13 @@ mouse_filter = 1
 theme_override_styles/panel = ExtResource("5_1177e")
 metadata/_edit_use_anchors_ = true
 
-[node name="TowerMenu" type="Panel" parent="."]
+[node name="TowerMenu" type="Panel" parent="." node_paths=PackedStringArray("tower")]
 offset_left = -36.0
 offset_top = -122.0
 offset_right = 36.0
 offset_bottom = -77.0
 script = ExtResource("7_q4bpv")
+tower = NodePath("..")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TowerMenu"]
 layout_mode = 1
