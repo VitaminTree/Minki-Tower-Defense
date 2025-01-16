@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=30 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/In Game UI/MinkiShopPanel.tscn" id="1_1ld0t"]
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://db1ni8bguqky4" path="res://Assets/bananapeel2.png" id="20_blbsk"]
 [ext_resource type="PackedScene" uid="uid://cicbmwxu2hgvv" path="res://Towers/Coconut Tree/CoconutTree.tscn" id="21_mcfdj"]
 [ext_resource type="Texture2D" uid="uid://dhg6vqsgolcxv" path="res://Assets/coconut tree.png" id="22_cwkue"]
+[ext_resource type="PackedScene" uid="uid://cqd1tnkmqb2pj" path="res://Towers/Grapeshot Minki/GrapeshotMinki.tscn" id="23_jf67w"]
+[ext_resource type="Texture2D" uid="uid://bnh6vk0yln7es" path="res://Assets/grapeshot.png" id="24_afwu8"]
+[ext_resource type="PackedScene" uid="uid://c5s8d74fila2s" path="res://Towers/Cafe/Cafe.tscn" id="25_ywaxe"]
+[ext_resource type="Texture2D" uid="uid://cqnyqd8cx4ndx" path="res://Assets/little cafe.png" id="26_2h3yh"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -154,6 +158,16 @@ texture = ExtResource("20_blbsk")
 layout_mode = 2
 unit = ExtResource("21_mcfdj")
 texture = ExtResource("22_cwkue")
+
+[node name="GrapeshotPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
+layout_mode = 2
+unit = ExtResource("23_jf67w")
+texture = ExtResource("24_afwu8")
+
+[node name="CafePanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
+layout_mode = 2
+unit = ExtResource("25_ywaxe")
+texture = ExtResource("26_2h3yh")
 
 [node name="InventoryPanel" parent="." node_paths=PackedStringArray("grabbed_slot") instance=ExtResource("13_smvxm")]
 visible = false

@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqd1tnkmqb2pj"]
+
+[ext_resource type="Script" path="res://Towers/Grapeshot Minki/GrapeshotMinki.gd" id="1_ncrbe"]
+[ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_1bf7t"]
+[ext_resource type="PackedScene" uid="uid://kmw64unypco8" path="res://Towers/Grapeshot Minki/Grapes.tscn" id="2_jbbxr"]
+[ext_resource type="Texture2D" uid="uid://bnh6vk0yln7es" path="res://Assets/grapeshot.png" id="3_glrqx"]
+[ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_ie2tu"]
+[ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="5_xaaln"]
+[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="6_mw4mx"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="7_orlmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2ox6"]
+size = Vector2(109, 110)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbr6i"]
+radius = 325.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ok0b"]
+shader = ExtResource("4_ie2tu")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 2.03
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[node name="GrapeshotMinki" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_ncrbe")
+Name = "Grapeshot"
+projectile = ExtResource("2_jbbxr")
+
+[node name="TowerShape" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_b2ox6")
+
+[node name="BulletOrigin" type="Marker2D" parent="."]
+
+[node name="BulletRange" type="Area2D" parent="."]
+
+[node name="BulletRangeShape" type="CollisionShape2D" parent="BulletRange"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_gbr6i")
+
+[node name="BulletRangeVisual" type="Sprite2D" parent="."]
+modulate = Color(0.0588235, 1, 1, 0.368627)
+scale = Vector2(1.85, 1.85)
+texture = ExtResource("2_1bf7t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_glrqx")
+
+[node name="OutlineShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8ok0b")
+texture = ExtResource("3_glrqx")
+
+[node name="BulletCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Area" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.694118)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -58.0
+offset_right = 57.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("5_xaaln")
+metadata/_edit_use_anchors_ = true
+
+[node name="TowerMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("6_mw4mx")]
+offset_top = -111.0
+offset_bottom = -66.0
+tower = NodePath("..")
+
+[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("7_orlmk")]
+visible = false
+offset_left = -146.0
+offset_top = 64.0
+offset_right = 147.0
+offset_bottom = 131.0
+tower = NodePath("..")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

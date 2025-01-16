@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce7exy6j4kfm2"]
+[gd_scene load_steps=7 format=3 uid="uid://ce7exy6j4kfm2"]
 
 [ext_resource type="Script" path="res://Misc Scripts/BasicEnemy.gd" id="1_jclqs"]
 [ext_resource type="Texture2D" uid="uid://d2u38dh7bt2uj" path="res://Assets/TopHatWisp.png" id="2_7v7my"]
 [ext_resource type="Texture2D" uid="uid://m7lidhgd7rey" path="res://Assets/bar.png" id="3_ao72y"]
 [ext_resource type="Texture2D" uid="uid://cbtrbcplow8qf" path="res://Assets/red_texture.png" id="4_kujrv"]
+[ext_resource type="PackedScene" uid="uid://bnghs4d856mgw" path="res://Components/EnemyAnimations.tscn" id="5_t0k1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_24sxu"]
 radius = 40.1995
@@ -33,3 +34,5 @@ step = 0.0
 value = 99.0
 texture_over = ExtResource("3_ao72y")
 texture_progress = ExtResource("4_kujrv")
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("5_t0k1d")]

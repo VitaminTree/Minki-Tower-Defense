@@ -114,11 +114,11 @@ func target_last(enemies: Array) -> Node2D:
 #		equipMenu.index_three.texture = upgrades[2].texture
 
 # If index is set, the function will attempt to equip the item ONLY in the given index.
-func equip_item(item: ItemData, index: int = -1) -> void:
+func equip_item(item: ItemData, index: int = -1) -> int:
 	if not selected:
-		return
+		return 0
 	if not item:
-		return
+		return 0 
 	for i in upgrades.size():
 		if index < 0 or i == index:
 			if not upgrades[i]:
@@ -127,8 +127,9 @@ func equip_item(item: ItemData, index: int = -1) -> void:
 				upgradesApplied[i] = true
 				set_data()
 				GameData.update_tower_data(data)
-				return
+				return 1
 	print("Upgrade limit reached: Item not equiped")
+	return 0
 
 
 func remove_item(index: int) -> void:
