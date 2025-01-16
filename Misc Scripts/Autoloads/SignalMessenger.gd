@@ -33,6 +33,7 @@ signal TOWER_UPGRADE_INTERACTED(inventory_data: Inventory, index: int)
 signal TOWER_DOWNGRADED(index: int)
 
 signal ENEMY_LEFT
+signal WAVE_OVER
 
 signal SHOP_READY
 signal SHOP_SUMMONED #Only used by the shop summon button atm, may become redundant if Spirit is moved to an autoload

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=26 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/In Game UI/MinkiShopPanel.tscn" id="1_1ld0t"]
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://bkw8tbismackx" path="res://Assets/evilcannonball.png" id="18_im5oi"]
 [ext_resource type="PackedScene" uid="uid://b31o3bbsyybw6" path="res://Towers/Banana Peel/BananaPeel.tscn" id="19_2d2dq"]
 [ext_resource type="Texture2D" uid="uid://db1ni8bguqky4" path="res://Assets/bananapeel2.png" id="20_blbsk"]
+[ext_resource type="PackedScene" uid="uid://cicbmwxu2hgvv" path="res://Towers/Coconut Tree/CoconutTree.tscn" id="21_mcfdj"]
+[ext_resource type="Texture2D" uid="uid://dhg6vqsgolcxv" path="res://Assets/coconut tree.png" id="22_cwkue"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -147,6 +149,11 @@ texture = ExtResource("18_im5oi")
 layout_mode = 2
 unit = ExtResource("19_2d2dq")
 texture = ExtResource("20_blbsk")
+
+[node name="CoconutPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
+layout_mode = 2
+unit = ExtResource("21_mcfdj")
+texture = ExtResource("22_cwkue")
 
 [node name="InventoryPanel" parent="." node_paths=PackedStringArray("grabbed_slot") instance=ExtResource("13_smvxm")]
 visible = false

@@ -94,6 +94,7 @@ func on_enemy_removal() -> void:
 	totalEnemies -= 1
 	print("Enemies left: %d" % [totalEnemies])
 	if totalEnemies < 1:
+		SignalMessenger.WAVE_OVER.emit()
 		wave_completion()
 
 func ready_shop() -> void:

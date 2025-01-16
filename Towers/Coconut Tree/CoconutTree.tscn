@@ -1,0 +1,190 @@
+[gd_scene load_steps=13 format=3 uid="uid://cicbmwxu2hgvv"]
+
+[ext_resource type="Script" path="res://Towers/Coconut Tree/CoconutTree.gd" id="1_7mp4n"]
+[ext_resource type="Shader" path="res://DefaultDude.gdshader" id="3_r3urc"]
+[ext_resource type="Texture2D" uid="uid://dhg6vqsgolcxv" path="res://Assets/coconut tree.png" id="4_c4kgh"]
+[ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="6_vhexs"]
+[ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="7_0dxhd"]
+[ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="8_bv6k2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wafd"]
+size = Vector2(109, 110)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wotq"]
+shader = ExtResource("3_r3urc")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 5.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="SystemFont" id="SystemFont_njqi4"]
+font_names = PackedStringArray("Cursive")
+
+[sub_resource type="Animation" id="Animation_kubds"]
+resource_name = "MoneyGain"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-59, -100), Vector2(-59, -151)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_fc6ub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-59, -135)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jnk4"]
+_data = {
+"MoneyGain": SubResource("Animation_kubds"),
+"RESET": SubResource("Animation_fc6ub")
+}
+
+[node name="CoconutTree" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_7mp4n")
+Name = "Coconut Tree"
+
+[node name="TowerShape" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_8wafd")
+
+[node name="BulletOrigin" type="Marker2D" parent="."]
+
+[node name="BulletRange" type="Area2D" parent="."]
+
+[node name="BulletRangeShape" type="CollisionShape2D" parent="BulletRange"]
+position = Vector2(0, 1)
+
+[node name="BulletRangeVisual" type="Sprite2D" parent="."]
+modulate = Color(0.0588235, 1, 1, 0.368627)
+position = Vector2(0.500002, -0.49999)
+scale = Vector2(0.751429, 0.757143)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_c4kgh")
+
+[node name="OutlineShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0wotq")
+texture = ExtResource("4_c4kgh")
+
+[node name="BulletCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.694118)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -58.0
+offset_right = 57.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("6_vhexs")
+metadata/_edit_use_anchors_ = true
+
+[node name="TowerMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("7_0dxhd")]
+offset_top = -111.0
+offset_bottom = -66.0
+tower = NodePath("..")
+
+[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("8_bv6k2")]
+visible = false
+offset_left = -146.0
+offset_top = 64.0
+offset_right = 147.0
+offset_bottom = 131.0
+tower = NodePath("..")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -59.0
+offset_top = -135.0
+offset_right = 85.0
+offset_bottom = -61.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = SubResource("SystemFont_njqi4")
+theme_override_font_sizes/font_size = 50
+text = "+$100"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1jnk4")
+}
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
