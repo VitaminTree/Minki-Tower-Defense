@@ -1,0 +1,51 @@
+[gd_scene load_steps=12 format=3 uid="uid://c774vmdln46xe"]
+
+[ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/In Game UI/MinkiShopPanel.tscn" id="1_ytjpr"]
+[ext_resource type="PackedScene" uid="uid://41ht1veq4f77" path="res://Towers/Circle Attacking Minki/IceMinki.tscn" id="2_3g8rr"]
+[ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="3_h7347"]
+[ext_resource type="PackedScene" uid="uid://biw7a1ylgrqcu" path="res://Towers/Default Minki/PurpleMinki.tscn" id="6_3hbvg"]
+[ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="7_jrci7"]
+[ext_resource type="PackedScene" uid="uid://xr1agxks51pu" path="res://Towers/Freezing Minki/FreezingMinki.tscn" id="8_5ixsh"]
+[ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="9_ksmv8"]
+[ext_resource type="PackedScene" uid="uid://b31o3bbsyybw6" path="res://Towers/Banana Peel/BananaPeel.tscn" id="14_lf8en"]
+[ext_resource type="Texture2D" uid="uid://db1ni8bguqky4" path="res://Assets/bananapeel2.png" id="15_q2j0c"]
+[ext_resource type="PackedScene" uid="uid://c5s8d74fila2s" path="res://Towers/Cafe/Cafe.tscn" id="20_ibr50"]
+[ext_resource type="Texture2D" uid="uid://cqnyqd8cx4ndx" path="res://Assets/little cafe.png" id="21_i7u7u"]
+
+[node name="FlowContainer" type="FlowContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.5
+offset_top = -520.0
+offset_right = 122.5
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IceMinkiPanel" parent="." instance=ExtResource("1_ytjpr")]
+layout_mode = 2
+unit = ExtResource("2_3g8rr")
+texture = ExtResource("3_h7347")
+
+[node name="BasicMinkiPanel" parent="." instance=ExtResource("1_ytjpr")]
+layout_mode = 2
+unit = ExtResource("6_3hbvg")
+texture = ExtResource("7_jrci7")
+
+[node name="FreezeMinkiPanel" parent="." instance=ExtResource("1_ytjpr")]
+layout_mode = 2
+unit = ExtResource("8_5ixsh")
+texture = ExtResource("9_ksmv8")
+
+[node name="BananaPanel" parent="." instance=ExtResource("1_ytjpr")]
+layout_mode = 2
+unit = ExtResource("14_lf8en")
+texture = ExtResource("15_q2j0c")
+
+[node name="CafePanel" parent="." instance=ExtResource("1_ytjpr")]
+layout_mode = 2
+unit = ExtResource("20_ibr50")
+texture = ExtResource("21_i7u7u")

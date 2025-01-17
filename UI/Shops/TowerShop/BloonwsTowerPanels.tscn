@@ -1,0 +1,51 @@
+[gd_scene load_steps=12 format=3 uid="uid://baryouj73kt7w"]
+
+[ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/In Game UI/MinkiShopPanel.tscn" id="1_22qk7"]
+[ext_resource type="PackedScene" uid="uid://crfdqi0d4a3rg" path="res://Towers/Sword Minki/ExperimentalMinki.tscn" id="2_0xec2"]
+[ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="3_7weeh"]
+[ext_resource type="PackedScene" uid="uid://r6cxh7a18mhx" path="res://Towers/Pirate Ship/Boat.tscn" id="4_vlh3k"]
+[ext_resource type="Texture2D" uid="uid://bxpo5snk1lqlh" path="res://Assets/boat.png" id="5_knlcm"]
+[ext_resource type="PackedScene" uid="uid://dt7g7frv2yrgc" path="res://Towers/Bomb/Bomb.tscn" id="6_1dwwa"]
+[ext_resource type="Texture2D" uid="uid://bkw8tbismackx" path="res://Assets/evilcannonball.png" id="7_gtq1n"]
+[ext_resource type="PackedScene" uid="uid://cicbmwxu2hgvv" path="res://Towers/Coconut Tree/CoconutTree.tscn" id="8_e1glb"]
+[ext_resource type="Texture2D" uid="uid://dhg6vqsgolcxv" path="res://Assets/coconut tree.png" id="9_k0fww"]
+[ext_resource type="PackedScene" uid="uid://cqd1tnkmqb2pj" path="res://Towers/Grapeshot Minki/GrapeshotMinki.tscn" id="10_8hqm0"]
+[ext_resource type="Texture2D" uid="uid://bnh6vk0yln7es" path="res://Assets/grapeshot.png" id="11_e77ck"]
+
+[node name="FlowContainer" type="FlowContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.5
+offset_top = -520.0
+offset_right = 122.5
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SwordMinkiPanel" parent="." instance=ExtResource("1_22qk7")]
+layout_mode = 2
+unit = ExtResource("2_0xec2")
+texture = ExtResource("3_7weeh")
+
+[node name="PirateShipPanel" parent="." instance=ExtResource("1_22qk7")]
+layout_mode = 2
+unit = ExtResource("4_vlh3k")
+texture = ExtResource("5_knlcm")
+
+[node name="BombPanel" parent="." instance=ExtResource("1_22qk7")]
+layout_mode = 2
+unit = ExtResource("6_1dwwa")
+texture = ExtResource("7_gtq1n")
+
+[node name="CoconutPanel" parent="." instance=ExtResource("1_22qk7")]
+layout_mode = 2
+unit = ExtResource("8_e1glb")
+texture = ExtResource("9_k0fww")
+
+[node name="GrapeshotPanel" parent="." instance=ExtResource("1_22qk7")]
+layout_mode = 2
+unit = ExtResource("10_8hqm0")
+texture = ExtResource("11_e77ck")

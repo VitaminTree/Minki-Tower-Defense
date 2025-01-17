@@ -25,11 +25,12 @@ var NEW_GAME: bool = true
 @export var spirit: int = 5
 
 # Level advancement
-@export var LevelName: String = ""
+@export var LevelName: String = "One"
 @export var WavesCleared: int = 0
 var isWaveActive: bool = false
 
 # Tower information
+@export var tower_group: String = "Bloons"
 @export var towers: Array[TowerData] = []
 
 func find_item(title: String) -> ItemData:
@@ -82,6 +83,7 @@ func save_gamestate() -> Dictionary:
 		"health" : health,
 		"money" : money,
 		"waves" : WavesCleared,
+		"group" : tower_group,
 		"towers" : tower_dict,
 		"backpack" : PlayerInventory.save_inventory()
 	}
@@ -89,6 +91,8 @@ func save_gamestate() -> Dictionary:
 
 func load_gamestate(data: Dictionary) -> void: 
 	# Check if files have the data first to preserve compatability with older saves
+	if data.has("group"):
+		tower_group = data["group"]
 	if data.has("spirt"):
 		spirit = data["spirit"]
 	if data.has("level"):

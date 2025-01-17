@@ -2,11 +2,20 @@ extends CanvasLayer
 
 
 @onready var inventory_panel = $InventoryPanel
+@onready var shop_panel = $ShopPanel
+
+@onready var tower_groups = {
+	"Bloons" : "res://UI/Shops/TowerShop/BloonsTowerPanels.tscn",
+	"Pirates" : "res://UI/Shops/TowerShop/BloonwsTowerPanels.tscn"
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	if tower_groups.has(GameData.tower_group):
+		var node = load(tower_groups[GameData.tower_group])
+		shop_panel.add_child(node.instantiate())
+	else:
+		print("Misspelled: %s" % GameData.tower_group)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

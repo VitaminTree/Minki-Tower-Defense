@@ -1,34 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=9 format=3 uid="uid://ca1qui65w5ckj"]
 
-[ext_resource type="PackedScene" uid="uid://bg4juqoye2wvi" path="res://UI/In Game UI/MinkiShopPanel.tscn" id="1_1ld0t"]
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
 [ext_resource type="Script" path="res://UI/In Game UI/Resource Panel.gd" id="2_smqts"]
 [ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="3_rrbvd"]
 [ext_resource type="PackedScene" uid="uid://b5ddaq3ros3ja" path="res://UI/In Game UI/SpiritIcon.tscn" id="4_xdhk0"]
-[ext_resource type="PackedScene" uid="uid://41ht1veq4f77" path="res://Towers/Circle Attacking Minki/IceMinki.tscn" id="5_kdb6q"]
-[ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="6_yx21i"]
-[ext_resource type="PackedScene" uid="uid://biw7a1ylgrqcu" path="res://Towers/Default Minki/PurpleMinki.tscn" id="7_03ng4"]
-[ext_resource type="PackedScene" uid="uid://crfdqi0d4a3rg" path="res://Towers/Sword Minki/ExperimentalMinki.tscn" id="7_iwc5e"]
-[ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="8_2joi5"]
-[ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="8_lc4wy"]
-[ext_resource type="PackedScene" uid="uid://xr1agxks51pu" path="res://Towers/Freezing Minki/FreezingMinki.tscn" id="11_0f5dw"]
-[ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="12_hu68y"]
 [ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/Inventory/inventory_panel.tscn" id="13_smvxm"]
 [ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="15_6m54n"]
 [ext_resource type="Script" path="res://UI/In Game UI/SummonShopButton.gd" id="15_plkbj"]
-[ext_resource type="PackedScene" uid="uid://r6cxh7a18mhx" path="res://Towers/Pirate Ship/Boat.tscn" id="15_qcygd"]
-[ext_resource type="Texture2D" uid="uid://bxpo5snk1lqlh" path="res://Assets/boat.png" id="16_tn1gh"]
-[ext_resource type="PackedScene" uid="uid://dt7g7frv2yrgc" path="res://Towers/Bomb/Bomb.tscn" id="17_yam5r"]
-[ext_resource type="Texture2D" uid="uid://bkw8tbismackx" path="res://Assets/evilcannonball.png" id="18_im5oi"]
-[ext_resource type="PackedScene" uid="uid://b31o3bbsyybw6" path="res://Towers/Banana Peel/BananaPeel.tscn" id="19_2d2dq"]
-[ext_resource type="Texture2D" uid="uid://db1ni8bguqky4" path="res://Assets/bananapeel2.png" id="20_blbsk"]
-[ext_resource type="PackedScene" uid="uid://cicbmwxu2hgvv" path="res://Towers/Coconut Tree/CoconutTree.tscn" id="21_mcfdj"]
-[ext_resource type="Texture2D" uid="uid://dhg6vqsgolcxv" path="res://Assets/coconut tree.png" id="22_cwkue"]
-[ext_resource type="PackedScene" uid="uid://cqd1tnkmqb2pj" path="res://Towers/Grapeshot Minki/GrapeshotMinki.tscn" id="23_jf67w"]
-[ext_resource type="Texture2D" uid="uid://bnh6vk0yln7es" path="res://Assets/grapeshot.png" id="24_afwu8"]
-[ext_resource type="PackedScene" uid="uid://c5s8d74fila2s" path="res://Towers/Cafe/Cafe.tscn" id="25_ywaxe"]
-[ext_resource type="Texture2D" uid="uid://cqnyqd8cx4ndx" path="res://Assets/little cafe.png" id="26_2h3yh"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -104,70 +83,6 @@ offset_top = -540.0
 offset_bottom = 540.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="FlowContainer" type="FlowContainer" parent="ShopPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -122.5
-offset_top = -520.0
-offset_right = 122.5
-offset_bottom = 520.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="IceMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("5_kdb6q")
-texture = ExtResource("6_yx21i")
-
-[node name="SwordMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("7_iwc5e")
-texture = ExtResource("8_2joi5")
-
-[node name="BasicMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("7_03ng4")
-texture = ExtResource("8_lc4wy")
-
-[node name="FreezeMinkiPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("11_0f5dw")
-texture = ExtResource("12_hu68y")
-
-[node name="PirateShipPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("15_qcygd")
-texture = ExtResource("16_tn1gh")
-
-[node name="BombPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("17_yam5r")
-texture = ExtResource("18_im5oi")
-
-[node name="BananaPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("19_2d2dq")
-texture = ExtResource("20_blbsk")
-
-[node name="CoconutPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("21_mcfdj")
-texture = ExtResource("22_cwkue")
-
-[node name="GrapeshotPanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("23_jf67w")
-texture = ExtResource("24_afwu8")
-
-[node name="CafePanel" parent="ShopPanel/FlowContainer" instance=ExtResource("1_1ld0t")]
-layout_mode = 2
-unit = ExtResource("25_ywaxe")
-texture = ExtResource("26_2h3yh")
 
 [node name="InventoryPanel" parent="." node_paths=PackedStringArray("grabbed_slot") instance=ExtResource("13_smvxm")]
 visible = false

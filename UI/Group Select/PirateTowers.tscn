@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://dofx7v8t86vdk"]
+
+[ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="1_jto5q"]
+[ext_resource type="Script" path="res://UI/Group Select/TowerGroups.gd" id="1_nahe1"]
+[ext_resource type="Texture2D" uid="uid://dhg6vqsgolcxv" path="res://Assets/coconut tree.png" id="2_eij5v"]
+[ext_resource type="Script" path="res://UI/Group Select/TowerDescription.gd" id="2_f7tlx"]
+[ext_resource type="Texture2D" uid="uid://bkw8tbismackx" path="res://Assets/evilcannonball.png" id="3_7i8q8"]
+[ext_resource type="Texture2D" uid="uid://bnh6vk0yln7es" path="res://Assets/grapeshot.png" id="4_33hce"]
+[ext_resource type="Texture2D" uid="uid://bxpo5snk1lqlh" path="res://Assets/boat.png" id="5_d5l7r"]
+[ext_resource type="PackedScene" uid="uid://3lsgcc3kayvt" path="res://Components/TowerGroupAnimations.tscn" id="8_uudjf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jl28"]
+bg_color = Color(0.384314, 0.478431, 0.203922, 1)
+
+[node name="TowerGroup2" type="CanvasLayer" groups=["Towers"]]
+layer = 2
+script = ExtResource("1_nahe1")
+group_name = "Pirates"
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -510.0
+offset_right = 698.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jl28")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -555.0
+offset_top = -463.0
+offset_right = 519.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Main" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+texture = ExtResource("1_jto5q")
+script = ExtResource("2_f7tlx")
+tower_name = "Swashbuckler Minki"
+description = "Attacks with a sword"
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="Tower1" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_eij5v")
+script = ExtResource("2_f7tlx")
+tower_name = "Coconut Tree"
+description = "Produces some money at the end of each wave"
+
+[node name="Tower2" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_7i8q8")
+script = ExtResource("2_f7tlx")
+tower_name = "Bomb"
+description = "An explosive solution for unwanted guests"
+
+[node name="Tower3" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_33hce")
+script = ExtResource("2_f7tlx")
+tower_name = "Grapeshot Shooter"
+description = "Fires a volley of bullets. Increases to penetration instead increase the number of shots per volley."
+
+[node name="Tower4" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_d5l7r")
+script = ExtResource("2_f7tlx")
+tower_name = "Frigate"
+description = "A powerful attacker that must be placed on water"
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("8_uudjf")]
+
+[connection signal="mouse_entered" from="HBoxContainer/Main" to="." method="_on_main_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Main" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower1" to="." method="_on_tower_1_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower1" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower2" to="." method="_on_tower_2_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower2" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower3" to="." method="_on_tower_3_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower3" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower4" to="." method="_on_tower_4_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower4" to="." method="on_mouse_exited"]

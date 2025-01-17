@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsghfref041fa"]
+
+[ext_resource type="Script" path="res://UI/Group Select/TowerGroups.gd" id="1_v7jox"]
+[ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="2_28xll"]
+[ext_resource type="Script" path="res://UI/Group Select/TowerDescription.gd" id="3_iybg7"]
+[ext_resource type="Texture2D" uid="uid://cqnyqd8cx4ndx" path="res://Assets/little cafe.png" id="4_k6j7m"]
+[ext_resource type="Texture2D" uid="uid://db1ni8bguqky4" path="res://Assets/bananapeel2.png" id="5_fakus"]
+[ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="6_c44wx"]
+[ext_resource type="Texture2D" uid="uid://cvcyxobda58s6" path="res://Assets/snowflake.png" id="7_05ouv"]
+[ext_resource type="PackedScene" uid="uid://3lsgcc3kayvt" path="res://Components/TowerGroupAnimations.tscn" id="8_ly7xo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jl28"]
+bg_color = Color(0.254902, 0.466667, 0.584314, 1)
+
+[node name="TowerGroup2" type="CanvasLayer" groups=["Towers"]]
+layer = 2
+script = ExtResource("1_v7jox")
+group_name = "Bloons"
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -700.0
+offset_top = 30.0
+offset_right = 698.0
+offset_bottom = 704.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jl28")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -555.0
+offset_top = 77.0
+offset_right = 555.0
+offset_bottom = 632.0
+grow_horizontal = 2
+theme_override_constants/separation = 25
+
+[node name="Main" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+texture = ExtResource("2_28xll")
+script = ExtResource("3_iybg7")
+tower_name = "Ice Minki"
+description = "Shoots darts in a complete circle"
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="Tower1" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_k6j7m")
+script = ExtResource("3_iybg7")
+tower_name = "Portable Cafe"
+description = "Has a chance to make items with unused spirit enrgy"
+
+[node name="Tower2" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_fakus")
+script = ExtResource("3_iybg7")
+tower_name = "Banana Peel"
+description = "Despite having no legs, wisps can't resist a good bit"
+
+[node name="Tower3" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("6_c44wx")
+script = ExtResource("3_iybg7")
+tower_name = "Dart Thrower"
+description = "Honesty? He's just a guy."
+
+[node name="Tower4" type="TextureRect" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("7_05ouv")
+script = ExtResource("3_iybg7")
+tower_name = "Freeze thrower"
+description = "Yet another guy, but this one slows enemies down for a little bit"
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("8_ly7xo")]
+reset_on_save = false
+
+[connection signal="mouse_entered" from="HBoxContainer/Main" to="." method="_on_main_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Main" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower1" to="." method="_on_tower_1_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower1" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower2" to="." method="_on_tower_2_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower2" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower3" to="." method="_on_tower_3_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower3" to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/GridContainer/Tower4" to="." method="_on_tower_4_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/GridContainer/Tower4" to="." method="on_mouse_exited"]
