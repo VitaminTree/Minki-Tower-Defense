@@ -101,12 +101,12 @@ grabbed_slot = NodePath("../InventoryGrabbedSlot")
 
 [node name="InventoryGrabbedSlot" parent="." instance=ExtResource("15_6m54n")]
 visible = false
-modulate = Color(1, 1, 1, 0.509804)
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 605.0
 offset_top = 894.0
 offset_right = 669.0
 offset_bottom = 958.0
+mouse_filter = 2
 
 [node name="AddButton" type="Button" parent="."]
 process_mode = 1

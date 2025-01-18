@@ -32,6 +32,8 @@ func _ready() -> void:
 	SignalMessenger.connect("SHOP_DISCARD_INTERACTED", swap_grabbed_and_sell)
 	SignalMessenger.connect("TOWER_UPGRADE_INTERACTED", give_grabbed_to_tower)
 	if StorageType == PLAYER:
+		if grabbed_slot:
+			grabbed_slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		SignalMessenger.connect("TOWER_UPGRADE_QUERY", attempt_upgrade)
 	update_inventory(PlayerInventory.Backpack, PLAYER)
 
@@ -39,7 +41,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	if grabbed_slot:
 		if grabbed_slot.visible:
-			grabbed_slot.global_position = get_global_mouse_position() + Vector2(10,10)
+			grabbed_slot.global_position = get_global_mouse_position() - Vector2(32,32)
 
 
 func update_inventory(backpack_data: Inventory, slot_type: int = 0) -> void:
@@ -138,7 +140,7 @@ func update_grabbed() -> void:
 	if grabbed_slot_data:
 		if grabbed_slot_data.item_data:
 			# Doing this once before showing the panel eliminates the jump
-			grabbed_slot.global_position = get_global_mouse_position() + Vector2(10,10)
+			grabbed_slot.global_position = get_global_mouse_position() - Vector2(32,32)
 			grabbed_slot.show()
 			grabbed_slot.set_slot_data(grabbed_slot_data)
 			return
