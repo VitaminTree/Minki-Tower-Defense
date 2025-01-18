@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func set_available(balance: int) -> void:
 	available = balance
-	print("Available set to %d" % [available])
 
 func reset_button() -> void:
 	text = "Empower Shop (0/2)"
