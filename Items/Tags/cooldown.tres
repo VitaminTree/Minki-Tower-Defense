@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dkcfan5xh1gdc"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_2bk6t"]
+
+[resource]
+script = ExtResource("1_2bk6t")
+name = "cooldown"

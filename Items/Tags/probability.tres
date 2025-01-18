@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvo2n27t80tmd"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_mcj2l"]
+
+[resource]
+script = ExtResource("1_mcj2l")
+name = "probability"

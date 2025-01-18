@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="shades" load_steps=3 format=3 uid="uid://12rue67sdqr"]
+[gd_resource type="Resource" script_class="shades" load_steps=6 format=3 uid="uid://12rue67sdqr"]
 
 [ext_resource type="Script" path="res://Items/shades.gd" id="1_73yi1"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_0f2m1"]
 [ext_resource type="Texture2D" uid="uid://daqpuvgbr81d5" path="res://Assets/shades.png" id="2_i7lh8"]
+[ext_resource type="Resource" uid="uid://1mngr5cg31yf" path="res://Items/Tags/range.tres" id="3_htwr2"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="4_x7h1b"]
 
 [resource]
 script = ExtResource("1_73yi1")
@@ -9,3 +12,4 @@ name = "Sunglasses"
 description = "Never let them know your next move. Damage up, range down."
 texture = ExtResource("2_i7lh8")
 price = 250
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_0f2m1"), ExtResource("3_htwr2"), ExtResource("4_x7h1b")])

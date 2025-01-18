@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="fish" load_steps=3 format=3 uid="uid://djcbhkiqt2b1c"]
+[gd_resource type="Resource" script_class="fish" load_steps=5 format=3 uid="uid://djcbhkiqt2b1c"]
 
 [ext_resource type="Script" path="res://Items/fish.gd" id="1_f28x1"]
 [ext_resource type="Texture2D" uid="uid://c6j88y2ek4etw" path="res://Assets/fish.png" id="2_obilp"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_t1t52"]
+[ext_resource type="Resource" uid="uid://bty76xnv72o7s" path="res://Items/Tags/penetration.tres" id="3_h7u8u"]
 
 [resource]
 script = ExtResource("1_f28x1")
@@ -9,3 +11,4 @@ name = "Blue Fish"
 description = "Quite Stinky. Attacks can hit 1 more enemy."
 texture = ExtResource("2_obilp")
 price = 50
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_t1t52"), ExtResource("3_h7u8u")])

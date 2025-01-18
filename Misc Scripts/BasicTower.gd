@@ -2,6 +2,7 @@ class_name Tower extends StaticBody2D
 
 @export var Name: String
 @export var projectile: PackedScene
+@export var tags: Array[Tag] = []
 
 @export_category("Placeable Terrain")
 @export var Ground: bool = true

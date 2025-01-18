@@ -1,13 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://r6cxh7a18mhx"]
+[gd_scene load_steps=18 format=3 uid="uid://r6cxh7a18mhx"]
 
 [ext_resource type="Script" path="res://Misc Scripts/BasicTower.gd" id="1_g3lw4"]
 [ext_resource type="PackedScene" uid="uid://b3uon5gs1vmix" path="res://Towers/Pirate Ship/Cannonball.tscn" id="2_rkeba"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_uo6xr"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="3_4ap73"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="3_5gku1"]
 [ext_resource type="Texture2D" uid="uid://bxpo5snk1lqlh" path="res://Assets/boat.png" id="4_4shfm"]
+[ext_resource type="Resource" uid="uid://dkcfan5xh1gdc" path="res://Items/Tags/cooldown.tres" id="4_kp1i4"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="5_ao6a6"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="6_g04h7"]
+[ext_resource type="Resource" uid="uid://bty76xnv72o7s" path="res://Items/Tags/penetration.tres" id="6_laabs"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="7_fissm"]
+[ext_resource type="Resource" uid="uid://1mngr5cg31yf" path="res://Items/Tags/range.tres" id="7_k4on4"]
 [ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="8_j1jn1"]
+[ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="8_swkd6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efixl"]
 size = Vector2(109, 110)
@@ -29,6 +35,7 @@ input_pickable = true
 script = ExtResource("1_g3lw4")
 Name = "Boat"
 projectile = ExtResource("2_rkeba")
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_5gku1"), ExtResource("4_kp1i4"), ExtResource("5_ao6a6"), ExtResource("6_laabs"), ExtResource("7_k4on4"), ExtResource("8_swkd6")])
 Ground = false
 Water = true
 

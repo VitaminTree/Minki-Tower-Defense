@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bty76xnv72o7s"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_jlegd"]
+
+[resource]
+script = ExtResource("1_jlegd")
+name = "penetration"

@@ -1,12 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://41ht1veq4f77"]
+[gd_scene load_steps=18 format=3 uid="uid://41ht1veq4f77"]
 
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="1_l4cng"]
 [ext_resource type="Script" path="res://Towers/Circle Attacking Minki/IceMinki.gd" id="1_wycnd"]
 [ext_resource type="PackedScene" uid="uid://bcmnoqb8yygww" path="res://Towers/Circle Attacking Minki/aoeDarts.tscn" id="2_hnokn"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_itq45"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="3_0g8uu"]
+[ext_resource type="Resource" uid="uid://dkcfan5xh1gdc" path="res://Items/Tags/cooldown.tres" id="4_cqtbo"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_ku0nn"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="5_muo0h"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="5_n7kc0"]
+[ext_resource type="Resource" uid="uid://bty76xnv72o7s" path="res://Items/Tags/penetration.tres" id="6_bur0k"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="6_v4eli"]
+[ext_resource type="Resource" uid="uid://1mngr5cg31yf" path="res://Items/Tags/range.tres" id="7_vqwqo"]
+[ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="8_51bq8"]
 [ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="8_144hn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr8sk"]
@@ -28,6 +34,7 @@ input_pickable = true
 script = ExtResource("1_wycnd")
 Name = "Ice Minki"
 projectile = ExtResource("2_hnokn")
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_0g8uu"), ExtResource("4_cqtbo"), ExtResource("5_muo0h"), ExtResource("6_bur0k"), ExtResource("7_vqwqo"), ExtResource("8_51bq8")])
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)

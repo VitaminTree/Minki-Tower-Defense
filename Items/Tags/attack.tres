@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://djebtim7pihjm"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_jjlfo"]
+
+[resource]
+script = ExtResource("1_jjlfo")
+name = "attack"

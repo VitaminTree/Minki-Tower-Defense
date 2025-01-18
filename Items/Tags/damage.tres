@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Tag" load_steps=2 format=3 uid="uid://b7ugdxbh6x8hc"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_8cku8"]
+
+[resource]
+script = ExtResource("1_8cku8")
+name = "damage"

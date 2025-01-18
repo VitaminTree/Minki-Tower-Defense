@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Tag" load_steps=2 format=3 uid="uid://1mngr5cg31yf"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_b118o"]
+
+[resource]
+script = ExtResource("1_b118o")
+name = "range"

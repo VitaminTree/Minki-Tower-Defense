@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://crfdqi0d4a3rg"]
+[gd_scene load_steps=18 format=3 uid="uid://crfdqi0d4a3rg"]
 
 [ext_resource type="Script" path="res://Misc Scripts/BasicTower.gd" id="1_25dh4"]
 [ext_resource type="PackedScene" uid="uid://b7gb1iqm44gk5" path="res://Towers/Sword Minki/melee_strike.tscn" id="2_lm4r5"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="2_t4d8p"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="3_6tdtk"]
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="4_3uu44"]
+[ext_resource type="Resource" uid="uid://dkcfan5xh1gdc" path="res://Items/Tags/cooldown.tres" id="4_4kgao"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_74t88"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="4_af4iy"]
 [ext_resource type="Texture2D" uid="uid://b8ovdiaq6k32m" path="res://Assets/icon.svg" id="4_x0qtk"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="5_5kdng"]
+[ext_resource type="Resource" uid="uid://1mngr5cg31yf" path="res://Items/Tags/range.tres" id="6_f3uap"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="7_gom1h"]
 [ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="9_3sdc1"]
 
@@ -36,6 +40,7 @@ input_pickable = true
 script = ExtResource("1_25dh4")
 Name = "Sword Minki"
 projectile = ExtResource("2_lm4r5")
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_6tdtk"), ExtResource("4_4kgao"), ExtResource("5_5kdng"), ExtResource("6_f3uap")])
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v47a8")

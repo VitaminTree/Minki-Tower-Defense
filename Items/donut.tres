@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="donut" load_steps=3 format=3 uid="uid://dwxqlv1mqhnk5"]
+[gd_resource type="Resource" script_class="donut" load_steps=5 format=3 uid="uid://dwxqlv1mqhnk5"]
 
 [ext_resource type="Script" path="res://Items/donut.gd" id="1_dbsn7"]
 [ext_resource type="Texture2D" uid="uid://dshgc8wiethbt" path="res://Assets/donut.png" id="2_2k125"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_c7sjl"]
+[ext_resource type="Resource" uid="uid://dkcfan5xh1gdc" path="res://Items/Tags/cooldown.tres" id="3_yr3p4"]
 
 [resource]
 script = ExtResource("1_dbsn7")
@@ -9,3 +11,4 @@ name = "Pink Frosted Donut"
 description = "Very bad for your diet. Attacks come out faster, for some reason."
 texture = ExtResource("2_2k125")
 price = 125
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_c7sjl"), ExtResource("3_yr3p4")])

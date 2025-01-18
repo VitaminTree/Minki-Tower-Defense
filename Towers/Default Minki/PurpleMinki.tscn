@@ -1,12 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://biw7a1ylgrqcu"]
+[gd_scene load_steps=20 format=3 uid="uid://biw7a1ylgrqcu"]
 
 [ext_resource type="Script" path="res://Misc Scripts/BasicTower.gd" id="1_dnbjb"]
 [ext_resource type="PackedScene" uid="uid://coqnc4e8k7cxg" path="res://Towers/Default Minki/BasicDart.tscn" id="2_6uhc4"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="3_qv70y"]
 [ext_resource type="Texture2D" uid="uid://cr374bja6kq8s" path="res://Assets/circle.png" id="3_tpvv5"]
+[ext_resource type="Resource" uid="uid://dkcfan5xh1gdc" path="res://Items/Tags/cooldown.tres" id="4_h31qx"]
 [ext_resource type="Shader" path="res://DefaultDude.gdshader" id="4_jj1j6"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="5_adejo"]
 [ext_resource type="Texture2D" uid="uid://b5xso582ggq0r" path="res://Assets/person.png" id="5_xdy8v"]
+[ext_resource type="Resource" uid="uid://bty76xnv72o7s" path="res://Items/Tags/penetration.tres" id="6_3nk3m"]
 [ext_resource type="Texture2D" uid="uid://ccrgq6sennjcm" path="res://Assets/checkerboard.png" id="6_tf6vr"]
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="7_4er6j"]
+[ext_resource type="Resource" uid="uid://1mngr5cg31yf" path="res://Items/Tags/range.tres" id="7_gtx6w"]
+[ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="8_66sdo"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="8_w1pmt"]
 [ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="9_g1x86"]
 
@@ -35,6 +41,7 @@ input_pickable = true
 script = ExtResource("1_dnbjb")
 Name = "Default Minki"
 projectile = ExtResource("2_6uhc4")
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_qv70y"), ExtResource("4_h31qx"), ExtResource("5_adejo"), ExtResource("6_3nk3m"), ExtResource("7_gtx6w"), ExtResource("8_66sdo")])
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)

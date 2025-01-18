@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="apple" load_steps=3 format=3 uid="uid://brhrsx7wkrp1h"]
+[gd_resource type="Resource" script_class="apple" load_steps=5 format=3 uid="uid://brhrsx7wkrp1h"]
 
 [ext_resource type="Script" path="res://Items/apple.gd" id="1_duiu8"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_8d72h"]
 [ext_resource type="Texture2D" uid="uid://cdevvlae5rgyj" path="res://Assets/apple.png" id="2_pluxq"]
+[ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="3_ie6bh"]
 
 [resource]
 script = ExtResource("1_duiu8")
@@ -9,3 +11,4 @@ name = "Apple"
 description = "One a day keeps them away. Attacks travel a bit faster"
 texture = ExtResource("2_pluxq")
 price = 25
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_8d72h"), ExtResource("3_ie6bh")])
