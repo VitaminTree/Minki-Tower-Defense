@@ -20,6 +20,14 @@ func size() -> int:
 		return 0
 	return slot_datas.size()
 
+func size_without_nulls() -> int:
+	var count: int = 0
+	for slot in slot_datas:
+		if slot:
+			if slot.item_data:
+				count += 1
+	return count
+
 # Returns true if there is a slot at the given index that contains a non-null item
 # Returns false otherwise
 func validate_index(index: int) -> bool:

@@ -31,6 +31,8 @@ func _ready() -> void:
 	SignalMessenger.connect("PAUSE_CLICKED", drop_grabbed_slot_data)
 	SignalMessenger.connect("SHOP_DISCARD_INTERACTED", swap_grabbed_and_sell)
 	SignalMessenger.connect("TOWER_UPGRADE_INTERACTED", give_grabbed_to_tower)
+	if StorageType == PLAYER:
+		SignalMessenger.connect("TOWER_UPGRADE_QUERY", attempt_upgrade)
 	update_inventory(PlayerInventory.Backpack, PLAYER)
 
 
@@ -172,6 +174,37 @@ func give_grabbed_to_tower(tower_inventory: Inventory, index: int) -> void:
 		SignalMessenger.TOWER_UPGRADED.emit(post_item, index)
 	SignalMessenger.INVENTORY_UPDATED.emit(tower_inventory, TOWER)
 
+
+func attempt_upgrade(inventory_data: Inventory, tags: Array[Tag]) -> void:
+	if not grabbed_slot_data:
+		print("Not holding an item")
+		return
+	if not check_held_item(tags):
+		print("Tower doesn't have the correct tags to hold this item")
+		return
+	if inventory_data.size_without_nulls() >= 3:
+		print("Tower doesn't have space to hold this item")
+		return
+	if GameData.spirit <= 0:
+		print("Not enough energy to eqip items")
+		return
+	var index = inventory_data.fill_slot(grabbed_slot_data)
+	SignalMessenger.SPIRIT_PAYMENT.emit(-1)
+	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data, index)
+	SignalMessenger.INVENTORY_UPDATED.emit(inventory_data, TOWER)
+	grabbed_slot_data = null
+	update_grabbed()
+
+func check_held_item(tower_tags: Array[Tag]) -> bool:
+	if not grabbed_slot_data:
+		return false
+	if not grabbed_slot_data.item_data:
+		return false
+	for tag in grabbed_slot_data.item_data.tags:
+		if not (tag in tower_tags):
+			return false
+	return true
+		
 
 func stage_slot_for_upgrade(backpack_data: Inventory, index: int) -> SlotData:
 	var slot_data = backpack_data.slot_datas[index]

@@ -1,14 +1,23 @@
 class_name Tower extends StaticBody2D
 
+# Tower data stuff
 @export var Name: String
 @export var projectile: PackedScene
 @export var tags: Array[Tag] = []
+# Do not prefill this; Exported for debugging purposes
+@export var upgrades: Array[ItemData] = [null, null, null]
+var upgradesApplied: Array[bool] = [false,false,false]
+var backpack: Inventory
+var inventory_created: bool = false 
+var data: TowerData
 
+# Where can the tower be placed?
 @export_category("Placeable Terrain")
 @export var Ground: bool = true
 @export var Water: bool = false
 @export var Path: bool = false
 
+# References to child nodes
 @onready var rangeHitbox: Area2D = $BulletRange
 @onready var rangeVisual: Sprite2D = $BulletRangeVisual
 @onready var projectileOrigin: Marker2D = $BulletOrigin
@@ -17,18 +26,13 @@ class_name Tower extends StaticBody2D
 @onready var spriteOutline: Sprite2D = $OutlineShader
 @onready var equipMenu = $EquipMenu
 
+# For enemy targeting logic
 var objectsInRange = []
 var target
+
+# For selecting a tower
 var selected: bool = false
 var hovering: bool = false
-var inventory_created: bool = false 
-# Every tower will recieve the tower upgraded signal. Therefore, each tower must
-# keep a memory of which upgrades have already been applied.
-var upgradesApplied: Array[bool] = [false,false,false]
-# Do not prefill this; Exported for debugging purposes
-@export var upgrades: Array[ItemData] = [null, null, null]
-var backpack: Inventory
-var data: TowerData
 
 func _ready() -> void:
 	SignalMessenger.connect("TOWER_UPGRADED", equip_item)
@@ -106,14 +110,6 @@ func target_last(enemies: Array) -> Node2D:
 	return target
 
 
-#func draw_items() -> void:
-#	if upgrades[0]:
-#		equipMenu.index_one.texture = upgrades[0].texture
-#	if upgrades[1]:
-#		equipMenu.index_two.texture = upgrades[1].texture
-#	if upgrades[2]:
-#		equipMenu.index_three.texture = upgrades[2].texture
-
 # If index is set, the function will attempt to equip the item ONLY in the given index.
 func equip_item(item: ItemData, index: int = -1) -> int:
 	if not selected:
@@ -155,9 +151,13 @@ func check_capacity() -> bool:
 # This function appears to trigger second 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		selected = true
+		print("1")
+		SignalMessenger.TOWER_UPGRADE_QUERY.emit(backpack, tags)
+		print("2")
 		rangeVisual.visible = true
 		contextMenu.visible = true
-		selected = true
+		
 
 
 # This function appears to trigger first
