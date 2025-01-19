@@ -80,3 +80,7 @@ func _on_button_pressed():
 
 func _on_sell_button_pressed():
 	take_item_for_money()
+
+
+func _on_restock_button_pressed():
+	stock_shop()

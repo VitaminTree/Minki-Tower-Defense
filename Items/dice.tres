@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=4 format=3 uid="uid://gg4k62ovpu58"]
+
+[ext_resource type="Script" path="res://Items/Dice.gd" id="1_5n34h"]
+[ext_resource type="Resource" uid="uid://dvo2n27t80tmd" path="res://Items/Tags/probability.tres" id="2_xhoik"]
+[ext_resource type="Texture2D" uid="uid://ou2exxk0a4uh" path="res://Assets/dice.png" id="3_56jtn"]
+
+[resource]
+script = ExtResource("1_5n34h")
+name = "Rigged Dice"
+description = "Doubles the probability of events occouring.
+Product xkcd-221 guarantees a completely random result every time."
+texture = ExtResource("3_56jtn")
+price = 100
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_xhoik")])
