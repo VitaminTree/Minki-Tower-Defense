@@ -167,6 +167,25 @@ func check_capacity() -> bool:
 	return false
 
 
+func update_upgrades() -> void:
+	reset_tower_specs()
+	upgrades = []
+	upgradesApplied = [false, false, false]
+	var i: int = 0
+	for slot in backpack.slot_datas:
+		if slot:
+			if slot.item_data:
+				slot.item_data.apply_upgrade(self)
+				upgrades.append(slot.item_data)
+				upgradesApplied[i] = true
+				i += 1
+				continue
+		upgrades.append(null)
+		i += 1
+	set_data()
+	GameData.update_tower_data(data)
+
+
 # This function appears to trigger second 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
