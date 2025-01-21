@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Deer" load_steps=5 format=3 uid="uid://fswj7hx1qyr0"]
+
+[ext_resource type="Script" path="res://Items/DebugDeer.gd" id="1_ueovl"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_vk4ej"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="3_44nid"]
+[ext_resource type="Texture2D" uid="uid://pc7cewa7elxn" path="res://Assets/what.png" id="4_ptiw6"]
+
+[resource]
+script = ExtResource("1_ueovl")
+name = "Deer"
+ID = 5500
+description = "Very Freaky. This item boost damage by 2. Testing if upgrade sorting is a thing."
+texture = ExtResource("4_ptiw6")
+price = 100
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_vk4ej"), ExtResource("3_44nid")])
