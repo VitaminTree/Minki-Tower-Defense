@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TenTonWeight" load_steps=8 format=3 uid="uid://dpchh3v6yfgix"]
+
+[ext_resource type="Script" path="res://Items/TenTonWeight.gd" id="1_wmgri"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_w4bul"]
+[ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="3_bggyd"]
+[ext_resource type="Resource" uid="uid://c5ucu0wri1h7s" path="res://Items/Tags/impact.tres" id="4_usffj"]
+[ext_resource type="Resource" uid="uid://bty76xnv72o7s" path="res://Items/Tags/penetration.tres" id="5_vx7pj"]
+[ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="6_sk4l0"]
+[ext_resource type="Texture2D" uid="uid://bkcjvuri3oj8c" path="res://Assets/heavy.png" id="7_npdxp"]
+
+[resource]
+script = ExtResource("1_wmgri")
+name = "Heavy Weight"
+ID = 7000
+description = "Projectiles travel a bit slower, but gain damage over time"
+texture = ExtResource("7_npdxp")
+price = 400
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_w4bul"), ExtResource("3_bggyd"), ExtResource("4_usffj"), ExtResource("5_vx7pj"), ExtResource("6_sk4l0")])

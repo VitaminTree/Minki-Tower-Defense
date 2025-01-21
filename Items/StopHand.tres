@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="stop_hand" load_steps=5 format=3 uid="uid://ca0t48yuacy12"]
+
+[ext_resource type="Script" path="res://Items/stopHand.gd" id="1_aravl"]
+[ext_resource type="Resource" uid="uid://djebtim7pihjm" path="res://Items/Tags/attack.tres" id="2_drygk"]
+[ext_resource type="Resource" uid="uid://dvo2n27t80tmd" path="res://Items/Tags/probability.tres" id="3_usmts"]
+[ext_resource type="Texture2D" uid="uid://djb2687nn0k4s" path="res://Assets/hand.png" id="4_1sla2"]
+
+[resource]
+script = ExtResource("1_aravl")
+name = "Stop Hand"
+ID = 6000
+description = "Enemies with 100% or more health that are hit by an attack have a 1/2 chance to be stopped for \"questioning\""
+texture = ExtResource("4_1sla2")
+price = 100
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_drygk"), ExtResource("3_usmts")])

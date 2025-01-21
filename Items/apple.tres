@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("1_duiu8")
 name = "Apple"
+ID = 2000
 description = "One a day keeps them away. Attacks travel a bit faster"
 texture = ExtResource("2_pluxq")
 price = 25

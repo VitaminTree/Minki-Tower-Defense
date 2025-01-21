@@ -173,7 +173,7 @@ func give_grabbed_to_tower(tower_inventory: Inventory, index: int) -> void:
 	update_grabbed()
 	var post_item = tower_inventory.get_item_at_slot(index)
 	if post_item:
-		SignalMessenger.TOWER_UPGRADED.emit(post_item, index)
+		SignalMessenger.TOWER_UPGRADED.emit(post_item)
 	SignalMessenger.INVENTORY_UPDATED.emit(tower_inventory, TOWER)
 
 
@@ -190,9 +190,10 @@ func attempt_upgrade(inventory_data: Inventory, tags: Array[Tag]) -> void:
 	if GameData.spirit <= 0:
 		print("Not enough energy to eqip items")
 		return
-	var index = inventory_data.fill_slot(grabbed_slot_data)
+	var _index = inventory_data.fill_slot(grabbed_slot_data)
+	inventory_data.sort()
 	SignalMessenger.SPIRIT_PAYMENT.emit(-1)
-	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data, index)
+	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data)
 	SignalMessenger.INVENTORY_UPDATED.emit(inventory_data, TOWER)
 	grabbed_slot_data = null
 	update_grabbed()

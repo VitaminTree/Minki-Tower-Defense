@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_73yi1")
 name = "Sunglasses"
+ID = 5000
 description = "Never let them know your next move. Damage up, range down."
 texture = ExtResource("2_i7lh8")
 price = 250

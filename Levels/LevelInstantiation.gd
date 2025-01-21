@@ -29,7 +29,7 @@ func load_towers() -> void:
 			var slot_data = SlotData.new()
 			slot_data.item_data = item
 			current_tower.backpack.set_slot(slot_data, i)
-			current_tower.equip_item(item, i)
+			current_tower.equip_item(item)
 			SignalMessenger.INVENTORY_UPDATED.emit(current_tower.backpack, 3)
 			i += 1
 		

@@ -1,6 +1,6 @@
 class_name Cafe extends Tower
 
-var probability: float = 0.2
+var probability: float = BASE_PROB * 20 * PROB_MULT
 var ITEM_REF = GameData.ALL_ITEMS
 
 @onready var animation_player = $AnimationPlayer

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=13 format=3 uid="uid://c5hfq7lw87er8"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=15 format=3 uid="uid://c5hfq7lw87er8"]
 
 [ext_resource type="Script" path="res://UI/Inventory/InventoryData.gd" id="1_8ce1b"]
 [ext_resource type="Resource" uid="uid://brhrsx7wkrp1h" path="res://Items/apple.tres" id="2_22iwh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://djcbhkiqt2b1c" path="res://Items/fish.tres" id="5_qnn01"]
 [ext_resource type="Resource" uid="uid://12rue67sdqr" path="res://Items/Shades.tres" id="6_1tidm"]
 [ext_resource type="Resource" uid="uid://gg4k62ovpu58" path="res://Items/dice.tres" id="7_4fiuw"]
+[ext_resource type="Resource" uid="uid://dpchh3v6yfgix" path="res://Items/tenTonWeight.tres" id="8_b1ehs"]
 
 [sub_resource type="Resource" id="Resource_58qpc"]
 script = ExtResource("3_sjqvb")
@@ -28,6 +29,10 @@ item_data = ExtResource("6_1tidm")
 script = ExtResource("3_sjqvb")
 item_data = ExtResource("7_4fiuw")
 
+[sub_resource type="Resource" id="Resource_tr3rx"]
+script = ExtResource("3_sjqvb")
+item_data = ExtResource("8_b1ehs")
+
 [resource]
 script = ExtResource("1_8ce1b")
-slot_datas = Array[ExtResource("3_sjqvb")]([SubResource("Resource_58qpc"), SubResource("Resource_eiamr"), SubResource("Resource_v322o"), SubResource("Resource_qwlnp"), SubResource("Resource_6am4c")])
+slot_datas = Array[ExtResource("3_sjqvb")]([SubResource("Resource_58qpc"), SubResource("Resource_eiamr"), SubResource("Resource_v322o"), SubResource("Resource_qwlnp"), SubResource("Resource_6am4c"), SubResource("Resource_tr3rx")])

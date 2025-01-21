@@ -161,13 +161,12 @@ offset_top = -111.0
 offset_bottom = -66.0
 tower = NodePath("..")
 
-[node name="EquipMenu" parent="." node_paths=PackedStringArray("tower") instance=ExtResource("7_mpa4f")]
+[node name="EquipMenu" parent="." instance=ExtResource("7_mpa4f")]
 visible = false
 offset_left = -146.0
 offset_top = 64.0
 offset_right = 147.0
 offset_bottom = 131.0
-tower = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

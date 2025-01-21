@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Tag" load_steps=2 format=3 uid="uid://c5ucu0wri1h7s"]
+
+[ext_resource type="Script" path="res://Items/Tags/Tag.gd" id="1_leqsh"]
+
+[resource]
+script = ExtResource("1_leqsh")
+name = "impact"

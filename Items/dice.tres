@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_5n34h")
 name = "Rigged Dice"
+ID = 1000
 description = "Doubles the probability of events occouring.
 Product xkcd-221 guarantees a completely random result every time."
 texture = ExtResource("3_56jtn")

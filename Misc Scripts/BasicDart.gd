@@ -7,13 +7,18 @@ class_name Dart extends Area2D
 @export var dartDamage: float = 1
 
 var direction: Vector2
- 
+
+#Upgrade stuff
+var upgrades: Array[ItemData] = []
 
 
 func _physics_process(delta: float) -> void:
 	if timer.is_stopped():
 		queue_free()
 	translate(direction*speed*delta)
+	for item in upgrades:
+		if item:
+			item.run_projectile_upgrade(self, delta)
 
 func _on_body_entered(body: Node2D) -> void:
 	if "enemy" in body.name:
@@ -25,5 +30,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 # A basic dart does nothing besides reducing health,
 # but darts inherting the basic dart can override to apply extra effects
-func on_hit_effect(_body: Node2D) -> void:
-	pass
+func on_hit_effect(body: enemy) -> void:
+	for item in upgrades:
+		if item:
+			item.apply_enemy_effect(body)

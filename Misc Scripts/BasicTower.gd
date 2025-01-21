@@ -1,5 +1,8 @@
 class_name Tower extends StaticBody2D
 
+const BASE_PROB: float = 0.01
+var PROB_MULT: float = 1.0
+
 # Tower data stuff
 @export var Name: String
 @export var projectile: PackedScene

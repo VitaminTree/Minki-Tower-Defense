@@ -15,6 +15,20 @@ func shop_discard_clicked() -> void:
 func tower_clicked(index: int) -> void:
 	SignalMessenger.TOWER_UPGRADE_INTERACTED.emit(self, index)
 
+func sortByID(a: SlotData, b: SlotData) -> bool:
+	if not a:
+		return false
+	if not a.item_data:
+		return false
+	if not b:
+		return true
+	if not b.item_data:
+		return true
+	return a.item_data.ID < b.item_data.ID
+
+func sort() -> void:
+	slot_datas.sort_custom(sortByID)
+
 func size() -> int:
 	if not slot_datas:
 		return 0

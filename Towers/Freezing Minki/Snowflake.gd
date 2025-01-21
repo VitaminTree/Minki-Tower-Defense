@@ -6,5 +6,5 @@ func _init():
 	dartDamage = 0.1
 
 
-func on_hit_effect(body: Node2D) -> void:
+func on_hit_effect(body: enemy) -> void:
 	body.apply_status(Slow.new(1.0))
