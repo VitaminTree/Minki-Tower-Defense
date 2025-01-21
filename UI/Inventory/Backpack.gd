@@ -166,14 +166,9 @@ func swap_grabbed_and_sell(sell_inventory: Inventory) -> void:
 func give_grabbed_to_tower(tower_inventory: Inventory, index: int) -> void:
 	if StorageType != PLAYER:
 		return
-	var pre_item = tower_inventory.get_item_at_slot(index)
-	if pre_item:
-		SignalMessenger.TOWER_DOWNGRADED.emit(index)
 	grabbed_slot_data = tower_inventory.set_slot(grabbed_slot_data, index)
 	update_grabbed()
-	var post_item = tower_inventory.get_item_at_slot(index)
-	if post_item:
-		SignalMessenger.TOWER_UPGRADED.emit(post_item)
+	SignalMessenger.TOWER_UPGRADED.emit()
 	SignalMessenger.INVENTORY_UPDATED.emit(tower_inventory, TOWER)
 
 
@@ -193,10 +188,12 @@ func attempt_upgrade(inventory_data: Inventory, tags: Array[Tag]) -> void:
 	var _index = inventory_data.fill_slot(grabbed_slot_data)
 	inventory_data.sort()
 	SignalMessenger.SPIRIT_PAYMENT.emit(-1)
-	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data)	# Applies the upgrades to the tower
+#	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data)	# Applies the upgrades to the tower
+	SignalMessenger.TOWER_UPGRADED.emit()								# Applies the upgrades to the tower
 	SignalMessenger.INVENTORY_UPDATED.emit(inventory_data, TOWER)		# Draws the items in the slots
 	grabbed_slot_data = null
 	update_grabbed()
+
 
 func check_held_item(tower_tags: Array[Tag]) -> bool:
 	if not grabbed_slot_data:
@@ -207,7 +204,7 @@ func check_held_item(tower_tags: Array[Tag]) -> bool:
 		if not (tag in tower_tags):
 			return false
 	return true
-		
+
 
 func stage_slot_for_upgrade(backpack_data: Inventory, index: int) -> SlotData:
 	var slot_data = backpack_data.slot_datas[index]

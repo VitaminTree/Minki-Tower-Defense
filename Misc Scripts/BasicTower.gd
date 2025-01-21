@@ -47,8 +47,8 @@ func _ready() -> void:
 	BASE_HITBOX_SCALE = rangeHitbox.scale
 	BASE_HITBOX_VISUAL_RADIUS = rangeVisual.scale
 	
-	SignalMessenger.connect("TOWER_UPGRADED", equip_item)
-	SignalMessenger.connect("TOWER_DOWNGRADED", remove_item)
+	SignalMessenger.connect("TOWER_UPGRADED", update_upgrades)
+	#SignalMessenger.connect("TOWER_DOWNGRADED", remove_item)
 	set_process_input(false)
 	contextMenu.visible = false
 	spriteOutline.visible = false
@@ -127,37 +127,6 @@ func target_last(enemies: Array) -> Node2D:
 				furthestTarget = i
 	target = furthestTarget
 	return target
-
-
-# If index is set, the function will attempt to equip the item ONLY in the given index.
-func equip_item(item: ItemData, index: int = -1) -> int:
-	if not selected:
-		return 0
-	if not item:
-		return 0 
-	for i in upgrades.size():
-		if index < 0 or i == index:
-			if not upgrades[i]:
-				upgrades[i] = item
-				item.apply_upgrade(self)
-				upgradesApplied[i] = true
-				set_data()
-				GameData.update_tower_data(data)
-				return 1
-	print("Upgrade limit reached: Item not equiped")
-	return 0
-
-
-func remove_item(index: int) -> void:
-	if not selected:
-		return
-	if not upgrades[index]:
-		return
-	upgrades[index].remove_upgrade(self)
-	upgrades[index] = null
-	upgradesApplied[index] = false
-	set_data()
-	GameData.update_tower_data(data)
 
 
 func check_capacity() -> bool:
