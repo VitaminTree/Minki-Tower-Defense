@@ -193,8 +193,8 @@ func attempt_upgrade(inventory_data: Inventory, tags: Array[Tag]) -> void:
 	var _index = inventory_data.fill_slot(grabbed_slot_data)
 	inventory_data.sort()
 	SignalMessenger.SPIRIT_PAYMENT.emit(-1)
-	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data)
-	SignalMessenger.INVENTORY_UPDATED.emit(inventory_data, TOWER)
+	SignalMessenger.TOWER_UPGRADED.emit(grabbed_slot_data.item_data)	# Applies the upgrades to the tower
+	SignalMessenger.INVENTORY_UPDATED.emit(inventory_data, TOWER)		# Draws the items in the slots
 	grabbed_slot_data = null
 	update_grabbed()
 

@@ -1,8 +1,5 @@
 class_name Tower extends StaticBody2D
 
-const BASE_PROB: float = 0.01
-var PROB_MULT: float = 1.0
-
 # Tower data stuff
 @export var Name: String
 @export var projectile: PackedScene
@@ -13,6 +10,14 @@ var upgradesApplied: Array[bool] = [false,false,false]
 var backpack: Inventory
 var inventory_created: bool = false 
 var data: TowerData
+
+# Tower's default, unmodified stats
+const BASE_PROB: float = 0.01
+var BASE_COOLDOWN: float
+var BASE_HITBOX_SCALE: Vector2
+var BASE_HITBOX_VISUAL_RADIUS: Vector2
+
+var PROB_MULT: float = 1.0
 
 # Where can the tower be placed?
 @export_category("Placeable Terrain")
@@ -38,6 +43,10 @@ var selected: bool = false
 var hovering: bool = false
 
 func _ready() -> void:
+	BASE_COOLDOWN = timer.wait_time
+	BASE_HITBOX_SCALE = rangeHitbox.scale
+	BASE_HITBOX_VISUAL_RADIUS = rangeVisual.scale
+	
 	SignalMessenger.connect("TOWER_UPGRADED", equip_item)
 	SignalMessenger.connect("TOWER_DOWNGRADED", remove_item)
 	set_process_input(false)
@@ -62,6 +71,13 @@ func _process(_delta: float) -> void:
 	if timer.is_stopped(): 
 		attack(target, projectile, projectileOrigin)
 		timer.start()
+
+
+func reset_tower_specs() -> void:
+	PROB_MULT = 1.0
+	timer.wait_time = BASE_COOLDOWN
+	rangeHitbox.scale = BASE_HITBOX_SCALE
+	rangeVisual.scale = BASE_HITBOX_VISUAL_RADIUS
 
 
 func set_data() -> void:
@@ -158,7 +174,6 @@ func _on_input_event(_viewport, event, _shape_idx):
 		SignalMessenger.TOWER_UPGRADE_QUERY.emit(backpack, tags)
 		rangeVisual.visible = true
 		contextMenu.visible = true
-		
 
 
 # This function appears to trigger first

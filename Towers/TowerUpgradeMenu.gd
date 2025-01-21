@@ -29,4 +29,3 @@ func update_tower_inventory(_inventory_data: Inventory, inventory_type: int) -> 
 	if inventory_type != TOWER:
 		return
 	print("Something!")
-	
