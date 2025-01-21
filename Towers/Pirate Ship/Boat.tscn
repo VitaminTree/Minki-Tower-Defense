@@ -96,7 +96,7 @@ offset_left = -146.0
 offset_top = 72.0
 offset_right = 147.0
 offset_bottom = 139.0
-tower = NodePath("")
+tower = NodePath("..")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
