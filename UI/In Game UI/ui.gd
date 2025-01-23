@@ -29,6 +29,7 @@ func _process(_delta):
 
 
 func load_slots() -> void:
+	ActiveTowers.list = {}
 	if tower_groups2.has(GameData.tower_group):
 		var list = tower_groups2[GameData.tower_group]
 		for rook in list:

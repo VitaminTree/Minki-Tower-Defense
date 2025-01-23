@@ -29,12 +29,25 @@ func _ready() -> void:
 func stock_shop() -> void:
 	stock.slot_datas = []
 	for i in 5:
-		var random_number = randi() % ITEM_REF.slot_datas.size()
-		var chosen_slot_data = ITEM_REF.slot_datas[random_number]
+#		var random_number = randi() % ITEM_REF.slot_datas.size()
+#		var chosen_slot_data = ITEM_REF.slot_datas[random_number]
+		var chosen_slot_data = get_useable_random_item()
 		stock.slot_datas.append(chosen_slot_data)
 	
 	#inventory_panel.inventory_data = stock
 	inventory_panel.update_inventory(stock, inventory_panel.StorageType)
+
+func get_useable_random_item() -> SlotData:
+	var count: int = 0
+	var copy = ITEM_REF.slot_datas.duplicate()
+	while count < 200:
+		var slot_data = copy.pick_random()
+		if ActiveTowers.tags_match(slot_data.item_data):
+			return slot_data
+		else:
+			copy.erase(slot_data)
+			count += 1
+	return null
 
 
 func give_item(index: int) -> void:

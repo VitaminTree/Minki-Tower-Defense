@@ -26,6 +26,16 @@ func add_tag(tower: Tower, new_tag: Tag) -> void:
 		tag_dict[new_tag] += 1
 
 
+func tags_match(item: ItemData) -> bool:
+	for tower in list:
+		var tag_check = true
+		for tag in item.tags:
+			if not list[tower].has(tag):
+				tag_check = false
+		if tag_check:
+			return true
+	return false
+
 func remove_tag(tower: Tower, tag: Tag) -> void:
 	var tower_tags = list[tower.Name]
 	if not tower_tags:
