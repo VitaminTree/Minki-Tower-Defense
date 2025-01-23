@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func load_towers() -> void:
 	for tower in GameData.towers:
-		var path = load(GameData.TOWER_REFERENCES[tower.Name])
+		var path = load(GameData.TOWER_REFERENCES[tower.Name][0])
 		var current_tower = path.instantiate()
 		
 		tower_node.add_child(current_tower)

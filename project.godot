@@ -23,6 +23,7 @@ config/windows_native_icon="res://Assets/Wisp.ico"
 SignalMessenger="*res://Misc Scripts/Autoloads/SignalMessenger.gd"
 GameData="*res://Misc Scripts/Autoloads/GameData.gd"
 PlayerInventory="*res://Misc Scripts/Autoloads/PlayerInventory.gd"
+ActiveTowers="*res://Misc Scripts/Autoloads/ActiveTowers.gd"
 
 [display]
 

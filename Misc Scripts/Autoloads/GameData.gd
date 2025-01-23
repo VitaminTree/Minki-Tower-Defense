@@ -3,16 +3,46 @@ extends Node
 const ALL_ITEMS = preload("res://UI/Inventory/OneOfEverything.tres")
 
 const TOWER_REFERENCES = {
-	"Default Minki" : "res://Towers/Default Minki/PurpleMinki.tscn",
-	"Ice Minki" : "res://Towers/Circle Attacking Minki/IceMinki.tscn",
-	"Freeze Minki" : "res://Towers/Freezing Minki/FreezingMinki.tscn",
-	"Sword Minki" : "res://Towers/Sword Minki/ExperimentalMinki.tscn",
-	"Boat" : "res://Towers/Pirate Ship/Boat.tscn",
-	"Bomb" : "res://Towers/Bomb/Bomb.tscn",
-	"Banana Peel" : "res://Towers/Banana Peel/BananaPeel.tscn",
-	"Coconut Tree" : "res://Towers/Coconut Tree/CoconutTree.tscn",
-	"Grapeshot" : "res://Towers/Grapeshot Minki/GrapeshotMinki.tscn",
-	"Cafe" : "res://Towers/Cafe/Cafe.tscn"
+	"Default Minki" : [
+		"res://Towers/Default Minki/PurpleMinki.tscn", 
+		"res://Assets/person.png"
+		],
+	"Ice Minki" : [
+		"res://Towers/Circle Attacking Minki/IceMinki.tscn",
+		"res://Assets/Minki.png"
+		],
+	"Freeze Minki" : [
+		"res://Towers/Freezing Minki/FreezingMinki.tscn",
+		"res://Assets/snowflake.png"
+		],
+	"Sword Minki" : [
+		"res://Towers/Sword Minki/ExperimentalMinki.tscn",
+		"res://Assets/icon.svg"
+		],
+	"Boat" : [
+		"res://Towers/Pirate Ship/Boat.tscn",
+		"res://Assets/boat.png"
+		],
+	"Bomb" : [
+		"res://Towers/Bomb/Bomb.tscn",
+		"res://Assets/evilcannonball.png"
+		],
+	"Banana Peel" : [
+		"res://Towers/Banana Peel/BananaPeel.tscn",
+		"res://Assets/bananapeel2.png"
+		],
+	"Coconut Tree" : [
+		"res://Towers/Coconut Tree/CoconutTree.tscn",
+		"res://Assets/coconut tree.png"
+		],
+	"Grapeshot" : [
+		"res://Towers/Grapeshot Minki/GrapeshotMinki.tscn",
+		"res://Assets/grapeshot.png"
+		],
+	"Cafe" : [
+		"res://Towers/Cafe/Cafe.tscn",
+		"res://Assets/little cafe.png"
+		]
 }
 
 const SAVE_GAME_PATH = "user://SaveGame.save"
