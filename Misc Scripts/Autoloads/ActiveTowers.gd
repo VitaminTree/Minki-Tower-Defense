@@ -36,6 +36,19 @@ func tags_match(item: ItemData) -> bool:
 			return true
 	return false
 
+
+func matches(item: ItemData) -> Array:
+	var arr = []
+	for tower in list:
+		var valid = true
+		for tag in item.tags:
+			if not list[tower].has(tag):
+				valid = false
+		if valid:
+			arr.append(tower)
+	return arr
+
+
 func remove_tag(tower: Tower, tag: Tag) -> void:
 	var tower_tags = list[tower.Name]
 	if not tower_tags:

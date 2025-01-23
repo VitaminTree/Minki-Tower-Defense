@@ -11,7 +11,7 @@
 [ext_resource type="StyleBox" uid="uid://ruchrnlx762e" path="res://InvalidPlacement.tres" id="5_11a7t"]
 [ext_resource type="Resource" uid="uid://b7ugdxbh6x8hc" path="res://Items/Tags/damage.tres" id="5_yr2bb"]
 [ext_resource type="Resource" uid="uid://bty76xnv72o7s" path="res://Items/Tags/penetration.tres" id="6_sj3v5"]
-[ext_resource type="Resource" uid="uid://dvo2n27t80tmd" path="res://Items/Tags/probability.tres" id="7_5g28w"]
+[ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="7_vn12y"]
 [ext_resource type="PackedScene" uid="uid://do4yo845lj8nv" path="res://Towers/TowerOptions.tscn" id="8_1q51o"]
 [ext_resource type="Resource" uid="uid://1mngr5cg31yf" path="res://Items/Tags/range.tres" id="8_fn3nh"]
 [ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="9_eyug7"]
@@ -41,7 +41,7 @@ input_pickable = true
 script = ExtResource("1_5q48e")
 Name = "Freeze Minki"
 projectile = ExtResource("2_8gw5k")
-tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_b22tp"), ExtResource("4_2w0au"), ExtResource("5_yr2bb"), ExtResource("6_sj3v5"), ExtResource("7_5g28w"), ExtResource("8_fn3nh")])
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_b22tp"), ExtResource("4_2w0au"), ExtResource("5_yr2bb"), ExtResource("6_sj3v5"), ExtResource("7_vn12y"), ExtResource("8_fn3nh")])
 
 [node name="TowerShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6r78o")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b3eced3187p11"]
+
+[node name="TowerIcon" type="TextureRect"]
+custom_minimum_size = Vector2(32, 32)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+expand_mode = 2
+stretch_mode = 4

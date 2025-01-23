@@ -8,8 +8,8 @@
 script = ExtResource("1_5n34h")
 name = "Rigged Dice"
 ID = 1000
-description = "Doubles the probability of events occouring.
-Product xkcd-221 guarantees a completely random result every time."
+description = "Doubles the probability of random events.
+\"Product xkcd-221 guarantees a completely random result every time.\""
 texture = ExtResource("3_56jtn")
 price = 100
 tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_xhoik")])

@@ -40,7 +40,7 @@ func stock_shop() -> void:
 func get_useable_random_item() -> SlotData:
 	var count: int = 0
 	var copy = ITEM_REF.slot_datas.duplicate()
-	while count < 200:
+	while count < 200 and copy.size() > 0:
 		var slot_data = copy.pick_random()
 		if ActiveTowers.tags_match(slot_data.item_data):
 			return slot_data

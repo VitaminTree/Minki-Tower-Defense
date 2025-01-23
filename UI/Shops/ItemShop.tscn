@@ -14,9 +14,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -667.0
+offset_left = -666.0
 offset_top = -462.0
-offset_right = 668.0
+offset_right = 669.0
 offset_bottom = 308.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -116,31 +116,22 @@ theme_override_constants/margin_bottom = 8
 
 [node name="ItemGrid" type="GridContainer" parent="BuyContainer/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 4
 columns = 5
 
 [node name="ShopPanel" parent="BuyContainer/MarginContainer/ItemGrid" instance=ExtResource("2_romog")]
 layout_mode = 2
 
-[node name="ShopPanel2" parent="BuyContainer/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+[node name="ShopPanel2" parent="BuyContainer/MarginContainer/ItemGrid" instance=ExtResource("2_romog")]
 layout_mode = 2
-image = NodePath("../ShopPanel/MarginContainer/TextureRect")
-price_label = NodePath("../ShopPanel/PriceLabel")
 
-[node name="ShopPanel3" parent="BuyContainer/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+[node name="ShopPanel3" parent="BuyContainer/MarginContainer/ItemGrid" instance=ExtResource("2_romog")]
 layout_mode = 2
-image = NodePath("../ShopPanel/MarginContainer/TextureRect")
-price_label = NodePath("../ShopPanel/PriceLabel")
 
-[node name="ShopPanel4" parent="BuyContainer/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+[node name="ShopPanel4" parent="BuyContainer/MarginContainer/ItemGrid" instance=ExtResource("2_romog")]
 layout_mode = 2
-image = NodePath("../ShopPanel/MarginContainer/TextureRect")
-price_label = NodePath("../ShopPanel/PriceLabel")
 
-[node name="ShopPanel5" parent="BuyContainer/MarginContainer/ItemGrid" node_paths=PackedStringArray("image", "price_label") instance=ExtResource("2_romog")]
+[node name="ShopPanel5" parent="BuyContainer/MarginContainer/ItemGrid" instance=ExtResource("2_romog")]
 layout_mode = 2
-image = NodePath("../ShopPanel/MarginContainer/TextureRect")
-price_label = NodePath("../ShopPanel/PriceLabel")
 
 [node name="RestockButton" type="Button" parent="."]
 process_mode = 3
