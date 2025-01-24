@@ -14,5 +14,5 @@ name = "Heavy Weight"
 ID = 7000
 description = "Projectiles travel a bit slower, but gain damage over time"
 texture = ExtResource("7_npdxp")
-price = 400
+price = 500
 tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("2_w4bul"), ExtResource("3_bggyd"), ExtResource("4_usffj"), ExtResource("5_vx7pj"), ExtResource("6_sk4l0")])

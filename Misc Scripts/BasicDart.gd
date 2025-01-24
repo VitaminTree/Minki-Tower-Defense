@@ -11,6 +11,11 @@ var direction: Vector2
 #Upgrade stuff
 var upgrades: Array[ItemData] = []
 
+# If timer is started when it enters the tree, then it doesn't reflect changes from items
+# Thus it must be manually started after upgrades are applied
+func start() -> void:
+	timer.start()
+
 
 func _physics_process(delta: float) -> void:
 	if timer.is_stopped():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://r6cxh7a18mhx"]
+[gd_scene load_steps=20 format=3 uid="uid://r6cxh7a18mhx"]
 
 [ext_resource type="Script" path="res://Misc Scripts/BasicTower.gd" id="1_g3lw4"]
 [ext_resource type="PackedScene" uid="uid://b3uon5gs1vmix" path="res://Towers/Pirate Ship/Cannonball.tscn" id="2_rkeba"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ceh3il5apv881" path="res://Towers/TowerBackpack.tscn" id="8_j1jn1"]
 [ext_resource type="Resource" uid="uid://brk6xl5xqy1r2" path="res://Items/Tags/velocity.tres" id="8_swkd6"]
 [ext_resource type="Resource" uid="uid://c5ucu0wri1h7s" path="res://Items/Tags/impact.tres" id="9_mrnrt"]
+[ext_resource type="Resource" uid="uid://cginftjkltg0c" path="res://Items/Tags/Tower Specific Tags/boat.tres" id="10_6188v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efixl"]
 size = Vector2(109, 110)
@@ -36,7 +37,7 @@ input_pickable = true
 script = ExtResource("1_g3lw4")
 Name = "Boat"
 projectile = ExtResource("2_rkeba")
-tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_5gku1"), ExtResource("4_kp1i4"), ExtResource("5_ao6a6"), ExtResource("6_laabs"), ExtResource("7_k4on4"), ExtResource("8_swkd6"), ExtResource("9_mrnrt")])
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_5gku1"), ExtResource("4_kp1i4"), ExtResource("5_ao6a6"), ExtResource("6_laabs"), ExtResource("7_k4on4"), ExtResource("8_swkd6"), ExtResource("9_mrnrt"), ExtResource("10_6188v")])
 Ground = false
 Water = true
 

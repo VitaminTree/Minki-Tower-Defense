@@ -16,4 +16,7 @@ func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 	
 	for item in upgrades:
 		if item:
+			dart.upgrades.append(item)
 			item.buff_projectile(dart)
+	
+	dart.start()

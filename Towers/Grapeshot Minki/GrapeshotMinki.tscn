@@ -33,6 +33,7 @@ shader_parameter/add_margins = true
 [node name="GrapeshotMinki" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_ncrbe")
+Name = "Grapeshot"
 projectile = ExtResource("2_p3fnx")
 tags = Array[Resource("res://Items/Tags/Tag.gd")]([ExtResource("3_dkd6h"), ExtResource("4_ljxte"), ExtResource("5_ru8b0"), ExtResource("6_qn1hp"), ExtResource("7_17akt"), ExtResource("8_ui3nl"), ExtResource("9_q4ncm")])
 

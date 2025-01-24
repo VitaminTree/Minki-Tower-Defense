@@ -2,7 +2,7 @@ class_name CoconutTree extends Tower
 
 @onready var animation_player = $AnimationPlayer
 
-var payout: int = 100
+var payout: int = 50
 
 func _ready() -> void:
 	super._ready()
