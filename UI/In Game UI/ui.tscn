@@ -19,6 +19,7 @@ offset_left = 900.0
 offset_right = 1587.0
 offset_bottom = 58.0
 script = ExtResource("2_smqts")
+Money = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Resource Panel"]
 layout_mode = 0
@@ -100,7 +101,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InventoryPanel" parent="." node_paths=PackedStringArray("grabbed_slot") instance=ExtResource("13_smvxm")]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -153,6 +153,30 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "Summon Shop (0/2)"
 script = ExtResource("15_plkbj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 736.0
+offset_right = 835.0
+offset_bottom = 916.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "Press 'e' to open & close inventory
+Click an item to hold it
+While holding an item, click a tower to equip it
+The item card shows which tower(s) it can be equiped to"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1132.0
+offset_top = 61.0
+offset_right = 1638.0
+offset_bottom = 135.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "Placing a tower or an item uses energy
+You regain energy when the wave is cleared"
 
 [connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
 [connection signal="pressed" from="removeButton" to="Resource Panel" method="_on_remove_button_pressed"]

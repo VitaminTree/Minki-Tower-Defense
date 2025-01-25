@@ -1,13 +1,15 @@
 class_name CoconutTree extends Tower
 
 @onready var animation_player = $AnimationPlayer
+@onready var label = $Label
 
-var payout: int = 50
+@export var payout: int = 50
 
 func _ready() -> void:
 	super._ready()
 	SignalMessenger.connect("WAVE_OVER", make_money)
-	$Label.visible = false
+	label.visible = false
+	update_payout(payout)
 
 # Empty function intentonally disables the Basic Tower routine
 func _process(_delta: float) -> void:
@@ -19,4 +21,4 @@ func make_money() -> void:
  
 func update_payout(new_value: int) -> void:
 	payout = new_value
-	$label.text = "+$%d" % payout
+	label.text = "+$%d" % payout

@@ -62,6 +62,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_l4cng")
 
 [node name="BulletCooldown" type="Timer" parent="."]
+wait_time = 1.25
 one_shot = true
 
 [node name="Area" type="Panel" parent="."]

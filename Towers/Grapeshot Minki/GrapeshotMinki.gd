@@ -1,7 +1,11 @@
 class_name Grapeshot extends Tower
 
-@export var shots = 5
+@export var BASE_SHOTS: int = 5
+var shots: int
 
+func _ready() -> void:
+	super._ready()
+	shots = BASE_SHOTS
 
 func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 	var initialAngle = origin.global_position.direction_to(tgt.global_position) # (x,y) with values between -1 and 1
@@ -30,4 +34,7 @@ func attack(tgt: Node2D, atk: PackedScene, origin: Marker2D) -> void:
 			if i == 0:
 				shots += (dart.penetration -1)
 			dart.penetration = 1
-		i += 1 
+		i += 1
+	
+	# Reset after each attack, or the tower will gain shots each volley
+	shots = BASE_SHOTS
