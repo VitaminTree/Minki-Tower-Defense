@@ -16,12 +16,12 @@ func set_available(balance: int) -> void:
 	available = balance
 
 func reset_button() -> void:
-	text = "Empower Shop (0/2)"
+	text = "Summon Shop (0/2)"
 	empowerment = 0
 
 # Seperated bc it's posssible to update w/o paying via loading
 func update() -> void:
-	text = "Empower Shop (%d/2)" % [empowerment]
+	text = "Summon Shop (%d/2)" % [empowerment]
 	if empowerment >= energy_requirement:
 			SignalMessenger.SHOP_READY.emit()
 

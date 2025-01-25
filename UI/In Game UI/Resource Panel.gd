@@ -2,7 +2,9 @@ extends Panel
 
 @export var Health: int = 150
 @export var Money: int = 1000
-@export var Spirits: int = 5
+@export var Spirits: int = 3
+
+var SPIRIT_CAP: int = 3
 
 @onready var hpUI = $HBoxContainer/HealthLabel
 @onready var moneyUI = $HBoxContainer/MoneyLabel
@@ -41,8 +43,8 @@ func update_health(amount: int) -> void:
 
 func update_spirt(amount: int) -> void:
 	Spirits += amount
-	if Spirits > 5:
-		Spirits = 5
+	if Spirits > SPIRIT_CAP:
+		Spirits = SPIRIT_CAP
 	if Spirits < 0:
 		Spirits = 0
 	GameData.spirit = Spirits
@@ -57,7 +59,7 @@ func redraw_spirits() -> void:
 		var active_spirit = spiritSprite.instantiate()
 		spiritUI.add_child(active_spirit)
 	
-	for j in (5 - Spirits):
+	for j in (SPIRIT_CAP - Spirits):
 		var spent_spirit = spiritSprite.instantiate()
 		spent_spirit.material = ShaderMaterial.new()
 		var shader = load("res://grayscale.gdshader")

@@ -16,7 +16,7 @@ speed = 150
 damage = 10
 payment = 15
 
-[node name="DraggonSprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_lgauh")
 

@@ -125,6 +125,7 @@ mouse_filter = 2
 
 [node name="AddButton" type="Button" parent="."]
 process_mode = 1
+visible = false
 offset_left = 577.0
 offset_top = 12.0
 offset_right = 707.0
@@ -133,6 +134,7 @@ text = "Add Spirit"
 
 [node name="removeButton" type="Button" parent="."]
 process_mode = 1
+visible = false
 offset_left = 730.0
 offset_top = 14.0
 offset_right = 880.0
@@ -141,12 +143,15 @@ text = "Remove Spirit"
 
 [node name="ShopButton" type="Button" parent="."]
 process_mode = 1
-offset_left = 314.0
-offset_top = 21.0
-offset_right = 555.0
-offset_bottom = 63.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -308.0
+offset_right = -67.0
+offset_bottom = 42.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
-text = "Empower Shop (0/2)"
+text = "Summon Shop (0/2)"
 script = ExtResource("15_plkbj")
 
 [connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
