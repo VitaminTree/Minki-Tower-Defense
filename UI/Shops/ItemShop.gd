@@ -51,9 +51,16 @@ func get_useable_random_item() -> SlotData:
 
 
 func give_item(index: int) -> void:
+	if not stock.validate_index(index):
+		print("Null shop node")
+		return
+	var cost = stock.slot_datas[index].item_data.price
+	if not GameData.money >= cost:
+		print("Can't afford this item.\nItem price: %f\nCurrent Balance: %f" % [cost, GameData.money])
+		return
 	var return_value = PlayerInventory.Backpack.fill_slot(stock.slot_datas[index])
 	if return_value >= 0:
-		SignalMessenger.MONEY_PAYMENT.emit(-1 * stock.slot_datas[index].item_data.price)
+		SignalMessenger.MONEY_PAYMENT.emit(-1 * cost)
 		stock.slot_datas[index] = null
 		inventory_panel.update_inventory(stock, inventory_panel.StorageType)
 		SignalMessenger.INVENTORY_UPDATED.emit(PlayerInventory.Backpack, 0)
