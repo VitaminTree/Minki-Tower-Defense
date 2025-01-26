@@ -13,7 +13,7 @@ radius = 40.1995
 script = ExtResource("1_jclqs")
 healthpoints = 100
 speed = 175
-damage = 10
+damage = 25
 payment = 500
 
 [node name="Sprite" type="Sprite2D" parent="."]

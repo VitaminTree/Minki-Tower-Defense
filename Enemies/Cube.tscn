@@ -13,6 +13,7 @@ size = Vector2(59, 74)
 script = ExtResource("1_46ooh")
 healthpoints = 12
 speed = 100
+damage = 10
 payment = 8
 
 [node name="Sprite" type="Sprite2D" parent="."]
