@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyyratlwbwhu1"]
+
+[ext_resource type="Script" path="res://Misc Scripts/BasicEnemy.gd" id="1_46ooh"]
+[ext_resource type="Texture2D" uid="uid://bwqleubm8km0a" path="res://Assets/cube.png" id="2_wqixg"]
+[ext_resource type="Texture2D" uid="uid://m7lidhgd7rey" path="res://Assets/bar.png" id="3_x1tf2"]
+[ext_resource type="Texture2D" uid="uid://cbtrbcplow8qf" path="res://Assets/red_texture.png" id="4_hnnqc"]
+[ext_resource type="PackedScene" uid="uid://bnghs4d856mgw" path="res://Components/EnemyAnimations.tscn" id="5_gi67f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvhyx"]
+size = Vector2(59, 74)
+
+[node name="Cube" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_46ooh")
+healthpoints = 12
+speed = 100
+payment = 8
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = ExtResource("2_wqixg")
+
+[node name="WispCollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_uvhyx")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+clip_contents = true
+offset_left = -50.0
+offset_top = -54.0
+offset_right = 50.0
+offset_bottom = -44.0
+step = 0.0
+value = 99.0
+texture_over = ExtResource("3_x1tf2")
+texture_progress = ExtResource("4_hnnqc")
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("5_gi67f")]
