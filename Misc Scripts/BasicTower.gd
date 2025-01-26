@@ -112,7 +112,8 @@ func refresh_targets(area: Area2D) -> Node2D:
 	var enemiesInRange = []
 	
 	for i in objectsInRange:
-		if "enemy" in i.name:
+		#if "enemy" in i.name:
+		if i.is_in_group("Enemy"):
 			enemiesInRange.append(i)
 	
 	return target_last(enemiesInRange)

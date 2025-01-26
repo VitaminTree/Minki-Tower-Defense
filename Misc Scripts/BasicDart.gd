@@ -26,7 +26,8 @@ func _physics_process(delta: float) -> void:
 			item.run_projectile_upgrade(self, delta)
 
 func _on_body_entered(body: Node2D) -> void:
-	if "enemy" in body.name:
+	#if "enemy" in body.name:
+	if body.is_in_group("Enemy"):
 		body.health -= dartDamage
 		penetration -= 1
 		on_hit_effect(body)
