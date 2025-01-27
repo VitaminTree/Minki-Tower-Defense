@@ -16,10 +16,8 @@ var overWater: bool = false
 var overPath: bool = false
 
 func _ready() -> void:
-	#$VBoxContainer/PriceLabel.text = str(price)
 	$VBoxContainer/TextureRect.texture = texture
 	SignalMessenger.connect("SPIRIT_UPDATED", can_afford)
-	#SignalMessenger.connect("BALANCE_UPDATED", can_afford)
 	SignalMessenger.connect("MOUSE_OVER_WATER", toggle_water)
 	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
 	SignalMessenger.SPIRIT_PAYMENT.emit(0) # hack to check balance at game start
@@ -75,6 +73,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			var path = get_tree().get_root().get_node("Main/Towers")
 			
 			tempTower.global_position = get_viewport().get_mouse_position()
+			# Convert float positions to ints
 			tempTower.position.x = int(tempTower.position.x)
 			tempTower.position.y = int(tempTower.position.y)
 			path.add_child(tempTower)
