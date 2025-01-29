@@ -52,3 +52,7 @@ signal SHOP_ITEM_CLICKED(index: int)
 signal SHOP_DISCARD_INTERACTED(inventory_data: Inventory)
 
 signal PAUSE_CLICKED
+
+# Tower Panel is the one the player clicks to put a new tower onto the map
+signal TOWER_PANEL_CLICK_PRESSED(index: int)
+signal TOWER_PANEL_CLICK_RELEASED(index: int, mouse_held: bool)

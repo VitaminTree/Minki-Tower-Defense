@@ -2,7 +2,8 @@ extends CanvasLayer
 
 @onready var tower_panel = preload("res://UI/In Game UI/MinkiShopPanel.tscn")
 @onready var inventory_panel = $InventoryPanel
-@onready var shop_panel = $ShopPanel/FlowContainer
+@onready var tower_bench_panel = $"Tower Bench Panel/FlowContainer"
+
 
 @onready var tower_groups = {
 	"Bloons" : "res://UI/Shops/TowerShop/BloonsTowerPanels.tscn",
@@ -37,7 +38,7 @@ func load_slots() -> void:
 			var tower_ref = load(GameData.TOWER_REFERENCES[rook][0])
 			panel.unit = tower_ref
 			panel.texture = load(GameData.TOWER_REFERENCES[rook][1])
-			shop_panel.add_child(panel)
+			tower_bench_panel.add_child(panel)
 			ActiveTowers.add_tower(tower_ref.instantiate())
 	else:
 		print("Misspelled: %s" % GameData.tower_group)

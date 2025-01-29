@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=10 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
 [ext_resource type="Script" path="res://UI/In Game UI/Resource Panel.gd" id="2_smqts"]
 [ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="3_rrbvd"]
 [ext_resource type="PackedScene" uid="uid://b5ddaq3ros3ja" path="res://UI/In Game UI/SpiritIcon.tscn" id="4_xdhk0"]
+[ext_resource type="Script" path="res://UI/In Game UI/TowerBenchManager.gd" id="6_cehon"]
 [ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/Inventory/inventory_panel.tscn" id="13_smvxm"]
 [ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="15_6m54n"]
 [ext_resource type="Script" path="res://UI/In Game UI/SummonShopButton.gd" id="15_plkbj"]
@@ -73,7 +74,7 @@ layout_mode = 2
 [node name="Spirit5" parent="Resource Panel/HBoxContainer/SpiritsContainer" instance=ExtResource("4_xdhk0")]
 layout_mode = 2
 
-[node name="ShopPanel" type="Panel" parent="."]
+[node name="Tower Bench Panel" type="Panel" parent="."]
 process_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -85,8 +86,9 @@ offset_top = -540.0
 offset_bottom = 540.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("6_cehon")
 
-[node name="FlowContainer" type="FlowContainer" parent="ShopPanel"]
+[node name="FlowContainer" type="FlowContainer" parent="Tower Bench Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -178,6 +180,7 @@ theme_override_font_sizes/font_size = 24
 text = "Placing a tower or an item uses energy
 You regain energy when the wave is cleared"
 
+[connection signal="child_entered_tree" from="Tower Bench Panel/FlowContainer" to="Tower Bench Panel" method="_on_flow_container_child_entered_tree"]
 [connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
 [connection signal="pressed" from="removeButton" to="Resource Panel" method="_on_remove_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="ShopButton" method="_on_pressed"]
