@@ -23,6 +23,10 @@ func load_towers() -> void:
 		
 		current_tower.position.x = tower.location[0]
 		current_tower.position.y = tower.location[1]
+		
+		current_tower.type_index = tower.slot
+		SignalMessenger.TOWER_ADDED.emit(current_tower.type_index)
+		
 		var i: int = 0
 		current_tower.selected = true
 		for item in tower.upgrades:

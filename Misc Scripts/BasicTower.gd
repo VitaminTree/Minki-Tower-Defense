@@ -9,6 +9,7 @@ class_name Tower extends StaticBody2D
 var upgradesApplied: Array[bool] = [false,false,false]
 var backpack: Inventory
 var inventory_created: bool = false 
+var type_index: int
 var data: TowerData
 
 # Tower's default, unmodified stats
@@ -83,6 +84,7 @@ func reset_tower_specs() -> void:
 func set_data() -> void:
 	data = TowerData.new()
 	data.Name = Name
+	data.slot = type_index
 	data.location[0] = int(global_position.x)
 	data.location[1] = int(global_position.y)
 	data.upgrades = upgrades

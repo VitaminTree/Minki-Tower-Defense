@@ -139,6 +139,10 @@ func load_gamestate(data: Dictionary) -> void:
 	for key in towers_dict:
 		var tower_data = TowerData.new()
 		tower_data.Name = towers_dict[key]["name"]
+		
+		if towers_dict[key].has("slot"):
+			tower_data.slot = towers_dict[key]["slot"]
+			
 		tower_data.location[0] = int(towers_dict[key]["position"][0])
 		tower_data.location[1] = int(towers_dict[key]["position"][1])
 		

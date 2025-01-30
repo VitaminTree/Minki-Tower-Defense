@@ -1,6 +1,7 @@
 class_name TowerData extends Resource
 
 @export var Name: String = ""
+@export var slot: int = 0
 @export var location: Array[int] = [0,0]
 @export var upgrades: Array[ItemData] = []
 @export var upgradecount: Array[bool] = [false,false,false]
@@ -34,6 +35,7 @@ func save_data() -> Dictionary:
 	
 	var dict = {
 		"name" : Name,
+		"slot" : slot,
 		"position" : location,
 		"upgrades" : item_dict,
 		"upgradecount" : upgrade_dict

@@ -38,6 +38,8 @@ signal INVENTORY_UPDATED(inventory_data: Inventory, inventory_type: int)
 signal TOWER_UPGRADED(item: ItemData, index: int)
 signal TOWER_UPGRADE_INTERACTED(inventory_data: Inventory, index: int)
 signal TOWER_DOWNGRADED(index: int)
+signal TOWER_REMOVED(index: int)
+signal TOWER_ADDED(index: int) #For when a tower is placed not via the bench manager i.e. when loaded from a savefile
 
 # When a tower is clicked, emit this signal
 # PlayerInventory will connect and determine if the currently held item can be upgraded 

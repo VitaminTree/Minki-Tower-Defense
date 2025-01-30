@@ -35,6 +35,8 @@ func _ready() -> void:
 	SignalMessenger.connect("SPIRIT_UPDATED", can_afford)
 	SignalMessenger.connect("MOUSE_OVER_WATER", toggle_water)
 	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
+	SignalMessenger.connect("TOWER_REMOVED", decrement_slot)
+	SignalMessenger.connect("TOWER_ADDED", increment_slot)
 	
 	set_process(false)
 	set_process_input(false)
@@ -107,6 +109,7 @@ func place_tower(location: Vector2) -> void:
 		held_tower.position.x = int(held_tower.position.x)
 		held_tower.position.y = int(held_tower.position.y)
 		held_tower.reparent(path)
+		held_tower.type_index = held_index 
 		held_tower.set_data()
 		GameData.towers.append(held_tower.data)
 		held_tower.get_node("Area").hide()
@@ -130,4 +133,16 @@ func upgrade_limit(index: int, count: int = 1) -> int:
 		return -1
 	limits[index] += count
 	return limits[index]
-	
+
+
+func decrement_slot(index: int) -> void:
+	if index < 0 or index >= current.size():
+		print("SIGNAL WARNING (1): slot doesn't exist!")
+		return
+	current[index] -= 1
+
+func increment_slot(index: int) -> void:
+	if index < 0 or index >= current.size():
+		print("SIGNAL WARNING (2): slot doesn't exist!")
+		return
+	current[index] += 1
