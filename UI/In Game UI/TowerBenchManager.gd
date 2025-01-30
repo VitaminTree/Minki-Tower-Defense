@@ -9,6 +9,8 @@ var tower_count: int = 0
 var held_tower: Tower = null
 var held_index: int = -1
 
+var short_pressed: bool = false
+
 var validClick: bool = false 
 var validSpot: bool = false
 var canPurchase: bool = false
@@ -39,15 +41,32 @@ func _ready() -> void:
 	SignalMessenger.connect("TOWER_ADDED", increment_slot)
 	
 	set_process(false)
-	set_process_input(false)
 	SignalMessenger.SPIRIT_PAYMENT.emit(0) # hack to check balance at game start
 
 
 func _input(event) -> void:
+	if event.is_action_pressed("hotkey_01"):
+		on_panel_click(0)
+		return
+	if event.is_action_pressed("hotkey_02"):
+		on_panel_click(1)
+		return
+	if event.is_action_pressed("hotkey_03"):
+		on_panel_click(2)
+		return
+	if event.is_action_pressed("hotkey_04"):
+		on_panel_click(3)
+		return
+	if event.is_action_pressed("hotkey_05"):
+		on_panel_click(4)
+		return
 	if event is InputEventMouseButton:
-		place_tower(get_viewport().get_mouse_position())
-		print("Placed!")
-		set_process_input(false)
+		if event.button_index == MOUSE_BUTTON_LEFT and short_pressed:
+			place_tower(get_viewport().get_mouse_position())
+			print("Placed!")
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+			clear_held_data()
+			print("Canceled!")
 
 # When Active, display the green or red boc over towers, if a tower is being held.
 # Try to disable whenever there isn't a tower being held
@@ -63,9 +82,8 @@ func _process(_delta):
 func on_panel_release(index: int, long_click: bool) -> void:
 	if canPurchase and current[index] < limits[index]:
 		if not long_click:
-			set_process_input(true)
-			return
-		else:
+			short_pressed = true
+		elif held_tower:
 			place_tower(get_viewport().get_mouse_position())
 			print("Dropped!")
 
@@ -73,6 +91,7 @@ func on_panel_release(index: int, long_click: bool) -> void:
 func on_panel_click(index: int) -> void:
 	if held_tower:
 		clear_held_data()
+		print("Canceled!")
 		return
 	if canPurchase and current[index] < limits[index]:
 		held_tower = container.get_child(index).unit.instantiate()
@@ -91,6 +110,7 @@ func valid_spot(tower: Tower) -> bool:
 
 
 func clear_held_data() -> void:
+	short_pressed = false
 	held_tower = null
 	container.get_child(held_index).is_held = false
 	held_index = -1
@@ -99,11 +119,12 @@ func clear_held_data() -> void:
 		container.remove_child(node)
 		node.free()
 	set_process(false)
-	set_process_input(false)
 
 
 func place_tower(location: Vector2) -> void:
 	print(location)
+	if not held_tower:
+		return
 	if valid_spot(held_tower):
 		var path = get_tree().get_root().get_node("Main/Towers")
 		held_tower.position.x = int(held_tower.position.x)
