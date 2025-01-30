@@ -92,7 +92,6 @@ func on_panel_click(index: int) -> void:
 	if held_tower:
 		clear_held_data()
 		print("Canceled!")
-		return
 	if canPurchase and current[index] < limits[index]:
 		held_tower = container.get_child(index).unit.instantiate()
 		held_index = index
