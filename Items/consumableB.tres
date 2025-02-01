@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableB" load_steps=3 format=3 uid="uid://b2xu6s220fl0k"]
+
+[ext_resource type="Script" path="res://Items/Consumable_B.gd" id="1_0ofmv"]
+[ext_resource type="Texture2D" uid="uid://2kw15fle60yt" path="res://Assets/B.png" id="2_uut6v"]
+
+[resource]
+script = ExtResource("1_0ofmv")
+name = "Test Item B"
+ID = 2
+description = "None Available"
+texture = ExtResource("2_uut6v")
+consumable = true
+price = 100
+tags = Array[Resource("res://Items/Tags/Tag.gd")]([])

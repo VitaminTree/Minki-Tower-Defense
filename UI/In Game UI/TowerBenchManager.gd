@@ -39,7 +39,7 @@ func _ready() -> void:
 	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
 	SignalMessenger.connect("TOWER_REMOVED", decrement_slot)
 	SignalMessenger.connect("TOWER_ADDED", increment_slot)
-	
+	SignalMessenger.connect("TOWER_LIMIT_UPGRADED", upgrade_limit)
 	set_process(false)
 	SignalMessenger.SPIRIT_PAYMENT.emit(0) # hack to check balance at game start
 
@@ -60,7 +60,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("hotkey_05"):
 		on_panel_click(4)
 		return
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and held_tower:
 		if event.button_index == MOUSE_BUTTON_LEFT and short_pressed:
 			place_tower(get_viewport().get_mouse_position())
 			print("Placed!")
@@ -105,7 +105,7 @@ func valid_spot(tower: Tower) -> bool:
 	var check_ground = tower.Ground and not overPath and not overWater
 	var check_water = tower.Water and overWater
 	var check_path = tower.Path and overPath
-	return (check_ground or check_water or check_path) and tower.global_position.x <= 1640
+	return (check_ground or check_water or check_path) and tower.global_position.x <= 1480
 
 
 func clear_held_data() -> void:
@@ -135,7 +135,9 @@ func place_tower(location: Vector2) -> void:
 		held_tower.get_node("Area").hide()
 		held_tower.get_node("BulletRangeVisual").hide()
 		held_tower.process_mode = Node.PROCESS_MODE_INHERIT
+		
 		current[held_index] += 1
+		draw_slot_flames(held_index)
 		SignalMessenger.SPIRIT_PAYMENT.emit(-1)
 	clear_held_data()
 
@@ -152,6 +154,7 @@ func upgrade_limit(index: int, count: int = 1) -> int:
 	if index < 0 or index >= limits.size():
 		return -1
 	limits[index] += count
+	draw_slot_flames(index)
 	return limits[index]
 
 
@@ -160,9 +163,14 @@ func decrement_slot(index: int) -> void:
 		print("SIGNAL WARNING (1): slot doesn't exist!")
 		return
 	current[index] -= 1
+	draw_slot_flames(index)
 
 func increment_slot(index: int) -> void:
 	if index < 0 or index >= current.size():
 		print("SIGNAL WARNING (2): slot doesn't exist!")
 		return
 	current[index] += 1
+	draw_slot_flames(index)
+
+func draw_slot_flames(index: int) -> void:
+	container.get_child(index).draw_flames(limits[index], current[index])

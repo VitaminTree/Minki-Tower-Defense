@@ -129,6 +129,11 @@ func on_inventory_interact(backpack_data: Inventory, index: int, button: int) ->
 			grabbed_slot_data = backpack_data.grab_slot(index)
 		[_, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = backpack_data.set_slot(grabbed_slot_data, index)
+		[null, MOUSE_BUTTON_RIGHT]:
+			var result = backpack_data.use_item(index)
+			print(result)
+			if result:
+				backpack_data.set_slot(null, index)
 	
 	update_inventory(backpack_data)
 	update_grabbed()

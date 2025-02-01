@@ -144,5 +144,10 @@ func swap_slots(first: int, second: int) -> void:
 func transfer_slot(_other_inventory: Inventory, _index: int) -> void:
 	pass
 
+func use_item(index: int) -> bool:
+	if validate_index(index):
+		return slot_datas[index].item_data.use_item()
+	return false
+
 
 

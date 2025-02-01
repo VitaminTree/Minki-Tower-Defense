@@ -25,10 +25,12 @@ func add_tag(tower: Tower, new_tag: Tag) -> void:
 	else:
 		tag_dict[new_tag] += 1
 
-
+# Used by shop to determine if item is acceptable for a tower
 func tags_match(item: ItemData) -> bool:
 	for tower in list:
 		var tag_check = true
+		if item.tags.size() < 1:
+			tag_check = false
 		for tag in item.tags:
 			if not list[tower].has(tag):
 				tag_check = false
@@ -36,11 +38,13 @@ func tags_match(item: ItemData) -> bool:
 			return true
 	return false
 
-
+# used by item to determine which towers it is good for
 func matches(item: ItemData) -> Array:
 	var arr = []
 	for tower in list:
 		var valid = true
+		if item.tags.size() < 1:
+			valid = false
 		for tag in item.tags:
 			if not list[tower].has(tag):
 				valid = false

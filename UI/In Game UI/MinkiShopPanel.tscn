@@ -1,33 +1,109 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg4juqoye2wvi"]
+[gd_scene load_steps=6 format=3 uid="uid://bg4juqoye2wvi"]
 
 [ext_resource type="Script" path="res://UI/In Game UI/TowerBenchPanel.gd" id="1_hb7al"]
+[ext_resource type="Texture2D" uid="uid://c42kxw8tukv5g" path="res://Assets/rocks.png" id="2_2dy8p"]
 [ext_resource type="Texture2D" uid="uid://dtbt8e2rrnyc4" path="res://Assets/Minki.png" id="2_k6280"]
+[ext_resource type="Texture2D" uid="uid://8675bskqy8x3" path="res://Assets/Spirit.png" id="4_7qqsw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8oace"]
+resource_local_to_scene = true
 
 [node name="TowerPanel" type="Panel"]
-custom_minimum_size = Vector2(120, 160)
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(450, 150)
+offset_right = 450.0
+offset_bottom = 150.0
+size_flags_horizontal = 3
 mouse_filter = 1
 script = ExtResource("1_hb7al")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 10.0
-offset_right = 110.0
-offset_bottom = 160.0
-theme_override_constants/separation = 10
-alignment = 1
+[node name="Control" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2dy8p")
+expand_mode = 5
+stretch_mode = 6
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_top = -53.0
+offset_right = 151.0
+offset_bottom = 48.2774
+grow_vertical = 2
 texture = ExtResource("2_k6280")
 expand_mode = 5
+stretch_mode = 4
 
-[node name="PriceLabel" type="Label" parent="VBoxContainer"]
+[node name="PriceLabel" type="Label" parent="."]
 visible = false
 clip_contents = true
 layout_mode = 2
+offset_left = 131.0
+offset_top = 5.0
+offset_right = 132.0
+offset_bottom = 43.0
 theme_override_font_sizes/font_size = 25
 text = "250"
 horizontal_alignment = 1
 clip_text = true
+
+[node name="flame1" type="TextureRect" parent="."]
+modulate = Color(0, 1, 0.866667, 1)
+material = SubResource("ShaderMaterial_8oace")
+layout_mode = 0
+offset_left = 157.0
+offset_top = 17.0
+offset_right = 221.0
+offset_bottom = 81.0
+texture = ExtResource("4_7qqsw")
+
+[node name="flame2" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 1, 0.866667, 1)
+material = SubResource("ShaderMaterial_8oace")
+offset_left = 213.0
+offset_top = 59.0
+offset_right = 277.0
+offset_bottom = 123.0
+texture = ExtResource("4_7qqsw")
+
+[node name="flame3" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 1, 0.866667, 1)
+material = SubResource("ShaderMaterial_8oace")
+offset_left = 267.0
+offset_top = 17.0
+offset_right = 331.0
+offset_bottom = 81.0
+texture = ExtResource("4_7qqsw")
+
+[node name="flame4" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 1, 0.866667, 1)
+material = SubResource("ShaderMaterial_8oace")
+offset_left = 316.0
+offset_top = 62.0
+offset_right = 380.0
+offset_bottom = 126.0
+texture = ExtResource("4_7qqsw")
+
+[node name="flame5" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 1, 0.866667, 1)
+material = SubResource("ShaderMaterial_8oace")
+offset_left = 360.0
+offset_top = 14.0
+offset_right = 424.0
+offset_bottom = 78.0
+texture = ExtResource("4_7qqsw")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

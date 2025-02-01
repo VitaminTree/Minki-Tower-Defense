@@ -3,9 +3,17 @@ extends Panel
 #@export var price: int = 250
 @export var unit: PackedScene
 @export var texture: CompressedTexture2D
-#
+
 #@onready var green: StyleBoxFlat = preload("res://validPlacement.tres")
 #@onready var red: StyleBoxFlat = preload("res://InvalidPlacement.tres")
+
+@onready var one = $flame1
+@onready var two = $flame2
+@onready var three = $flame3
+@onready var four = $flame4
+@onready var five = $flame5
+
+var flame_array
 
 var is_held: bool = false
 var click_holding: bool = false
@@ -19,11 +27,33 @@ var time: float = 0.0
 #var overPath: bool = false
 
 func _ready() -> void:
-	$VBoxContainer/TextureRect.texture = texture
+	flame_array = [one, two, three, four, five]
+	$TextureRect.texture = texture
 #	SignalMessenger.connect("SPIRIT_UPDATED", can_afford)
 #	SignalMessenger.connect("MOUSE_OVER_WATER", toggle_water)
 #	SignalMessenger.connect("MOUSE_OVER_PATH", toggle_path)
 	SignalMessenger.SPIRIT_PAYMENT.emit(0) # hack to check balance at game start
+
+
+func draw_flames(total: int, used: int) -> void:
+	if used > total:
+		print("Warning: used (%s) greater than total (%s)" % [used, total])
+		used = total
+	
+	var shader = load("res://grayscale.gdshader")
+	var available = total - used
+	var index = 0
+	for flame in flame_array:
+		if index < total:
+			flame_array[index].visible = true
+			if available == 0:
+				flame_array[index].material.shader = shader
+			else:
+				flame_array[index].material = ShaderMaterial.new()
+				available -= 1
+		else:
+			flame_array[index].visible = false
+		index += 1
 
 
 #func can_afford(balance: int)-> void:
