@@ -347,6 +347,18 @@ libraries = {
 "": SubResource("AnimationLibrary_wpxg2")
 }
 
+[node name="Label3" type="Label" parent="."]
+offset_left = 1486.0
+offset_top = 990.0
+offset_right = 1903.0
+offset_bottom = 1064.0
+theme_override_colors/font_color = Color(0.552941, 0.74902, 0.941176, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "Click the button on the right 
+or press 'Q' to open the tower menu"
+
 [connection signal="child_entered_tree" from="Tower Bench Panel/FlowContainer" to="Tower Bench Panel" method="_on_flow_container_child_entered_tree"]
 [connection signal="pressed" from="Tower Bench Button" to="Tower Bench Panel" method="toggle_visibilty"]
 [connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
