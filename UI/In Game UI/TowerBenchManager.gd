@@ -4,6 +4,9 @@ extends Panel
 @onready var red: StyleBoxFlat = preload("res://InvalidPlacement.tres")
 @onready var container = $FlowContainer
 
+var is_open: bool = false
+var hotkey_used: bool = false
+
 var tower_count: int = 0
 
 var held_tower: Tower = null
@@ -16,6 +19,7 @@ var validSpot: bool = false
 var canPurchase: bool = false
 var overWater: bool = false
 var overPath: bool = false
+var outOfBounds: bool = false
 
 var current: Array = []
 var limits: Array = []
@@ -29,6 +33,9 @@ func toggle_water(state: bool) -> void:
 func toggle_path(state: bool) -> void:
 	overPath = state
 
+func toggle_map(state: bool) -> void:
+	outOfBounds = state
+
 func _ready() -> void:
 	tower_count = container.get_child_count()
 	print("towers: %s" % tower_count)
@@ -40,30 +47,41 @@ func _ready() -> void:
 	SignalMessenger.connect("TOWER_REMOVED", decrement_slot)
 	SignalMessenger.connect("TOWER_ADDED", increment_slot)
 	SignalMessenger.connect("TOWER_LIMIT_UPGRADED", upgrade_limit)
+	SignalMessenger.connect("MOUSE_OUT_OF_BOUNDS", toggle_map)
 	set_process(false)
 	SignalMessenger.SPIRIT_PAYMENT.emit(0) # hack to check balance at game start
 
 
 func _input(event) -> void:
+	if event.is_action_pressed("toggle_towers"):
+		toggle_visibilty()
 	if event.is_action_pressed("hotkey_01"):
+		short_pressed = true
 		on_panel_click(0)
 		return
 	if event.is_action_pressed("hotkey_02"):
+		short_pressed = true
 		on_panel_click(1)
 		return
 	if event.is_action_pressed("hotkey_03"):
+		short_pressed = true
 		on_panel_click(2)
 		return
 	if event.is_action_pressed("hotkey_04"):
+		short_pressed = true
 		on_panel_click(3)
 		return
 	if event.is_action_pressed("hotkey_05"):
+		short_pressed = true
 		on_panel_click(4)
 		return
 	if event is InputEventMouseButton and held_tower:
-		if event.button_index == MOUSE_BUTTON_LEFT and short_pressed:
-			place_tower(get_viewport().get_mouse_position())
-			print("Placed!")
+		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			var result = place_tower(get_viewport().get_mouse_position())
+			if result:
+				print("Placed!")
+			elif not is_open:
+				toggle_visibilty()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 			clear_held_data()
 			print("Canceled!")
@@ -81,18 +99,23 @@ func _process(_delta):
 
 func on_panel_release(index: int, long_click: bool) -> void:
 	if canPurchase and current[index] < limits[index]:
-		if not long_click:
-			short_pressed = true
+		if not long_click:	# Short click release 
+			return
 		elif held_tower:
-			place_tower(get_viewport().get_mouse_position())
-			print("Dropped!")
-
+			short_pressed = false
+			var result = place_tower(get_viewport().get_mouse_position())
+			if result:
+				print("Dropped!")
+			else:
+				toggle_visibilty()
 
 func on_panel_click(index: int) -> void:
 	if held_tower:
 		clear_held_data()
 		print("Canceled!")
 	if canPurchase and current[index] < limits[index]:
+		if is_open:
+			toggle_visibilty()
 		held_tower = container.get_child(index).unit.instantiate()
 		held_index = index
 		set_process(true)
@@ -105,7 +128,7 @@ func valid_spot(tower: Tower) -> bool:
 	var check_ground = tower.Ground and not overPath and not overWater
 	var check_water = tower.Water and overWater
 	var check_path = tower.Path and overPath
-	return (check_ground or check_water or check_path) and tower.global_position.x <= 1480
+	return (check_ground or check_water or check_path) and not outOfBounds
 
 
 func clear_held_data() -> void:
@@ -120,10 +143,11 @@ func clear_held_data() -> void:
 	set_process(false)
 
 
-func place_tower(location: Vector2) -> void:
+func place_tower(location: Vector2) -> bool:
 	print(location)
 	if not held_tower:
-		return
+		print("No tower?")
+		return false
 	if valid_spot(held_tower):
 		var path = get_tree().get_root().get_node("Main/Towers")
 		held_tower.position.x = int(held_tower.position.x)
@@ -139,7 +163,10 @@ func place_tower(location: Vector2) -> void:
 		current[held_index] += 1
 		draw_slot_flames(held_index)
 		SignalMessenger.SPIRIT_PAYMENT.emit(-1)
+		clear_held_data()
+		return true
 	clear_held_data()
+	return false
 
 
 func _on_flow_container_child_entered_tree(_node):
@@ -174,3 +201,12 @@ func increment_slot(index: int) -> void:
 
 func draw_slot_flames(index: int) -> void:
 	container.get_child(index).draw_flames(limits[index], current[index])
+
+
+func toggle_visibilty():
+	if is_open:
+		$"../AnimationPlayer".play("Tower Menu Close")
+		is_open = false
+	else:
+		$"../AnimationPlayer".play("Tower Menu Open")
+		is_open = true

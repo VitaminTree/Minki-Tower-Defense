@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=16 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
@@ -6,9 +6,174 @@
 [ext_resource type="Texture2D" uid="uid://b7k4d4uoey1ly" path="res://Assets/money.png" id="3_rrbvd"]
 [ext_resource type="PackedScene" uid="uid://b5ddaq3ros3ja" path="res://UI/In Game UI/SpiritIcon.tscn" id="4_xdhk0"]
 [ext_resource type="Script" path="res://UI/In Game UI/TowerBenchManager.gd" id="6_cehon"]
+[ext_resource type="Texture2D" uid="uid://bn45adxw2i3n4" path="res://Assets/close.png" id="10_3cl2h"]
+[ext_resource type="Texture2D" uid="uid://cfl56aqr80mty" path="res://Assets/open.png" id="10_icn6r"]
 [ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/Inventory/inventory_panel.tscn" id="13_smvxm"]
 [ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="15_6m54n"]
 [ext_resource type="Script" path="res://UI/In Game UI/SummonShopButton.gd" id="15_plkbj"]
+
+[sub_resource type="Animation" id="Animation_fxj0t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower Bench Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tower Bench Button:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tower Bench Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1860, 440)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tower Bench Button:texture_normal")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_icn6r")]
+}
+
+[sub_resource type="Animation" id="Animation_timye"]
+resource_name = "Tower Menu Close"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower Bench Button:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tower Bench Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1480, 0), Vector2(1920, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tower Bench Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1420, 440), Vector2(1860, 440)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tower Bench Button:texture_normal")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("10_3cl2h"), ExtResource("10_icn6r")]
+}
+
+[sub_resource type="Animation" id="Animation_tpsbp"]
+resource_name = "Tower Menu Open"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower Bench Button:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tower Bench Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1920, 0), Vector2(1480, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tower Bench Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1860, 440), Vector2(1420, 440)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tower Bench Button:texture_normal")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("10_icn6r"), ExtResource("10_3cl2h")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpxg2"]
+_data = {
+"RESET": SubResource("Animation_fxj0t"),
+"Tower Menu Close": SubResource("Animation_timye"),
+"Tower Menu Open": SubResource("Animation_tpsbp")
+}
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -16,9 +181,9 @@ layer = 2
 script = ExtResource("1_1pvg4")
 
 [node name="Resource Panel" type="Panel" parent="."]
-offset_left = 900.0
-offset_right = 1587.0
-offset_bottom = 58.0
+offset_left = 770.0
+offset_right = 1470.0
+offset_bottom = 60.0
 script = ExtResource("2_smqts")
 Money = 100
 
@@ -76,16 +241,9 @@ layout_mode = 2
 
 [node name="Tower Bench Panel" type="Panel" parent="."]
 process_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -440.0
-offset_top = -540.0
-offset_bottom = 540.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 1920.0
+offset_right = 2360.0
+offset_bottom = 1080.0
 script = ExtResource("6_cehon")
 
 [node name="FlowContainer" type="FlowContainer" parent="Tower Bench Panel"]
@@ -100,6 +258,13 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 vertical = true
+
+[node name="Tower Bench Button" type="TextureButton" parent="."]
+offset_left = 1860.0
+offset_top = 440.0
+offset_right = 1920.0
+offset_bottom = 640.0
+texture_normal = ExtResource("10_icn6r")
 
 [node name="InventoryPanel" parent="." node_paths=PackedStringArray("grabbed_slot") instance=ExtResource("13_smvxm")]
 anchors_preset = 7
@@ -126,20 +291,18 @@ mouse_filter = 2
 
 [node name="AddButton" type="Button" parent="."]
 process_mode = 1
-visible = false
 offset_left = 577.0
-offset_top = 12.0
+offset_top = 67.0
 offset_right = 707.0
-offset_bottom = 73.0
+offset_bottom = 128.0
 text = "Add Spirit"
 
 [node name="removeButton" type="Button" parent="."]
 process_mode = 1
-visible = false
 offset_left = 730.0
-offset_top = 14.0
+offset_top = 73.0
 offset_right = 880.0
-offset_bottom = 67.0
+offset_bottom = 126.0
 text = "Remove Spirit"
 
 [node name="ShopButton" type="Button" parent="."]
@@ -147,9 +310,9 @@ process_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -409.0
-offset_right = -168.0
-offset_bottom = 42.0
+offset_left = -440.0
+offset_right = -200.0
+offset_bottom = 45.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "Summon Shop (0/2)"
@@ -179,7 +342,13 @@ theme_override_font_sizes/font_size = 24
 text = "Placing a tower or an item uses energy
 You regain energy when the wave is cleared"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wpxg2")
+}
+
 [connection signal="child_entered_tree" from="Tower Bench Panel/FlowContainer" to="Tower Bench Panel" method="_on_flow_container_child_entered_tree"]
+[connection signal="pressed" from="Tower Bench Button" to="Tower Bench Panel" method="toggle_visibilty"]
 [connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
 [connection signal="pressed" from="removeButton" to="Resource Panel" method="_on_remove_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="ShopButton" method="_on_pressed"]

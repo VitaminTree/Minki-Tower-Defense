@@ -83,6 +83,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			click_holding = true
 			SignalMessenger.TOWER_PANEL_CLICK_PRESSED.emit(get_index())
 		if event.is_action_released("Left Mouse Click"):
+			print(time)
 			click_holding = false
 			if time < 0.3:
 				SignalMessenger.TOWER_PANEL_CLICK_RELEASED.emit(get_index(), false)

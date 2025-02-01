@@ -25,6 +25,7 @@ signal ALL_LIVES_LOST
 
 signal MOUSE_OVER_PATH(state: bool)
 signal MOUSE_OVER_WATER(state: bool)
+signal MOUSE_OUT_OF_BOUNDS(state: bool)
 
 # Unused
 signal STATUS_APPLIED

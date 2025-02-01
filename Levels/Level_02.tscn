@@ -45,6 +45,13 @@ texture_repeat = 2
 position = Vector2(808, -310)
 polygon = PackedVector2Array(204, 310, 446, 310, 436, 459, 417, 498, 410, 530, 351, 657, 319, 710, 253, 606, 223, 545, 183, 497, 195, 477, 199, 375)
 
+[node name="Bounds" type="Node2D" parent="Track"]
+
+[node name="UpperLeft" type="Marker2D" parent="Track/Bounds"]
+
+[node name="LowerRight" type="Marker2D" parent="Track/Bounds"]
+position = Vector2(1920, 1080)
+
 [node name="PathSpawner" type="Node2D" parent="."]
 position = Vector2(1, 0)
 script = ExtResource("4_x3r24")
