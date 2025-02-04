@@ -46,6 +46,7 @@ signal TOWER_ADDED(index: int) #For when a tower is placed not via the bench man
 # PlayerInventory will connect and determine if the currently held item can be upgraded 
 signal TOWER_UPGRADE_QUERY(inventory_data: Inventory, tags: Array[Tag])
 
+signal NEXT_SECTION_WAVES(destination: int)
 signal ENEMY_LEFT
 signal WAVE_OVER
 

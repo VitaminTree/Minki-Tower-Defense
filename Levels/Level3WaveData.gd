@@ -1,0 +1,32 @@
+extends Node
+
+@onready var wispBasic = preload("res://Enemies/Wisp.tscn")
+
+var wave_table = []
+
+@onready
+var section_one = [
+	Wave.new([
+		Spawn.new(1, 0, [wispBasic]),
+		Spawn.new(5, 1, [wispBasic])
+	]),
+	Wave.new([
+		Spawn.new(1, 0, [wispBasic]),
+		Spawn.new(1, 1, [null]),
+		Spawn.new(2, 0.25, [wispBasic]),
+		Spawn.new(1, 1, [null]),
+		Spawn.new(3, 0.25, [wispBasic]),
+		Spawn.new(1, 1, [null]),
+		Spawn.new(4, 0.25, [wispBasic])
+	]),
+	Wave.new([
+		Spawn.new(12, 0.5, [wispBasic])
+	])
+	]
+var section_two = []
+var section_three = []
+var section_four = []
+var section_five = []
+
+func _ready() -> void:
+	wave_table = [section_one, section_one, section_one, section_one, section_one]

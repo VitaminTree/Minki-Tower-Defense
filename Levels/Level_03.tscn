@@ -1,0 +1,275 @@
+[gd_scene load_steps=21 format=3 uid="uid://gqw46gsq30ar"]
+
+[ext_resource type="Script" path="res://Levels/LevelInstantiation.gd" id="1_p3wu5"]
+[ext_resource type="Texture2D" uid="uid://dujym7m2fr1s2" path="res://Assets/park.png" id="2_1qugs"]
+[ext_resource type="Script" path="res://Levels/LevelTerrain.gd" id="3_x4t0e"]
+[ext_resource type="Script" path="res://Levels/PathSpawner.gd" id="4_ya1sp"]
+[ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/In Game UI/ui.tscn" id="5_6peu4"]
+[ext_resource type="Script" path="res://Levels/Level3WaveData.gd" id="5_kwtrb"]
+[ext_resource type="Script" path="res://UI/In Game UI/PauseButton.gd" id="6_skvhi"]
+[ext_resource type="Texture2D" uid="uid://brq4bd3eg3oaj" path="res://Assets/arrowLeftRight.png" id="7_4n16k"]
+[ext_resource type="Script" path="res://Levels/Level3Camera.gd" id="7_s1gh6"]
+[ext_resource type="Texture2D" uid="uid://ddfbqy1oubycv" path="res://Assets/arrowUpDown.png" id="8_8m0y2"]
+[ext_resource type="Texture2D" uid="uid://dma87i1ohgxie" path="res://Assets/arrowDiagonal.png" id="9_dvd1m"]
+
+[sub_resource type="Curve2D" id="Curve2D_s8aae"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -4, -6, 0, 0, 0, 0, 418, 229, 0, 0, 0, 0, 479, 325, 0, 0, 0, 0, 489, 461, 0, 0, 0, 0, 488, 588, 0, 0, 0, 0, 530, 711, 0, 0, 0, 0, 674, 836, 0, 0, 0, 0, 820, 847, 0, 0, 0, 0, 970, 851, 0, 0, 0, 0, 1121, 812, 0, 0, 0, 0, 1205, 704, 0, 0, 0, 0, 1232, 476, 0, 0, 0, 0, 1159, 337, 0, 0, 0, 0, 1020, 217, 0, 0, 0, 0, 783, 213, 0, 0, 0, 0, 582, 309, 0, 0, 0, 0, 491, 463, 0, 0, 0, 0, 487, 584, 0, 0, 0, 0, 531, 709, 0, 0, 0, 0, 697, 838, 0, 0, 0, 0, 828, 891, 0, 0, 0, 0, 837, 1110)
+}
+point_count = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_audou"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3pnm6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u6pes"]
+resource_name = "transition_1to2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1845, 229)]
+}
+
+[sub_resource type="Animation" id="Animation_wpf46"]
+resource_name = "transition_1to4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(120, 610)]
+}
+
+[sub_resource type="Animation" id="Animation_3udf6"]
+resource_name = "transition_2to3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1845, 229), Vector2(1882, 1219)]
+}
+
+[sub_resource type="Animation" id="Animation_2kbfm"]
+resource_name = "transition_3to5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1882, 1219), Vector2(451, 1659)]
+}
+
+[sub_resource type="Animation" id="Animation_caxfr"]
+resource_name = "transition_4to5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 610), Vector2(451, 1659)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ectw8"]
+_data = {
+"RESET": SubResource("Animation_3pnm6"),
+"transition_1to2": SubResource("Animation_u6pes"),
+"transition_1to4": SubResource("Animation_wpf46"),
+"transition_2to3": SubResource("Animation_3udf6"),
+"transition_3to5": SubResource("Animation_2kbfm"),
+"transition_4to5": SubResource("Animation_caxfr")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_p3wu5")
+level_name = "One"
+
+[node name="Track" type="Sprite2D" parent="."]
+position = Vector2(-64, -78)
+texture = ExtResource("2_1qugs")
+centered = false
+script = ExtResource("3_x4t0e")
+metadata/_edit_lock_ = true
+
+[node name="Path" type="Area2D" parent="Track"]
+
+[node name="Water" type="Area2D" parent="Track"]
+
+[node name="WaterCollision" type="CollisionPolygon2D" parent="Track/Water"]
+texture_repeat = 2
+position = Vector2(1630.8, -1423.21)
+scale = Vector2(2.98063, 3.82225)
+polygon = PackedVector2Array(83.2709, 584.787, 203.38, 579.031, 310.74, 609.38, 379.182, 662.228, 429.507, 717.693, 444.269, 791.995, 420.784, 854.261, 379.182, 846.936, 328.186, 847.459, 267.46, 850.86, 203.044, 861.325, 180.566, 839.087, 100.381, 804.814, -30.799, 768.971, -43.548, 759.553, -49.2515, 720.832, -50.5935, 665.106, -33.483, 634.496, -9.99799, 613.043)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Track/Water"]
+polygon = PackedVector2Array(2244, 2193, 2244, 2193, 2319, 2156, 2453, 2122, 2662, 2094, 2790, 2101, 2908, 2131, 3050, 2425, 3064, 2561, 3008, 2790, 2911, 2856, 2736, 2881, 2445, 2881, 2294, 2859, 2187, 2830, 2104, 2685, 2158, 2419)
+
+[node name="Bounds" type="Node2D" parent="Track"]
+
+[node name="UpperLeft" type="Marker2D" parent="Track/Bounds"]
+
+[node name="LowerRight" type="Marker2D" parent="Track/Bounds"]
+position = Vector2(1920, 1080)
+
+[node name="PathSpawner" type="Node2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("4_ya1sp")
+
+[node name="Path2D" type="Path2D" parent="PathSpawner"]
+curve = SubResource("Curve2D_s8aae")
+
+[node name="Timer" type="Timer" parent="PathSpawner"]
+one_shot = true
+
+[node name="WaveData" type="Node" parent="."]
+script = ExtResource("5_kwtrb")
+
+[node name="Towers" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("5_6peu4")]
+
+[node name="PauseButton" type="Button" parent="."]
+offset_right = 153.0
+offset_bottom = 77.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 50
+text = "pause"
+script = ExtResource("6_skvhi")
+
+[node name="NextLevelButton" type="Button" parent="."]
+offset_left = 905.0
+offset_top = 984.0
+offset_right = 1120.0
+offset_bottom = 1047.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 40
+text = "Next Wave"
+
+[node name="CurrentWaveLabel" type="Label" parent="."]
+offset_left = 870.0
+offset_top = 905.0
+offset_right = 1195.0
+offset_bottom = 977.0
+theme_override_font_sizes/font_size = 25
+text = "Click to begin"
+label_settings = SubResource("LabelSettings_audou")
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("7_s1gh6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ectw8")
+}
+
+[node name="GOTO Part 2 Button" type="TextureButton" parent="."]
+offset_left = 1597.0
+offset_top = 344.0
+offset_right = 1853.0
+offset_bottom = 600.0
+texture_normal = ExtResource("7_4n16k")
+
+[node name="GOTO Part 3 Button" type="TextureButton" parent="."]
+offset_left = 3238.0
+offset_top = 1034.0
+offset_right = 3494.0
+offset_bottom = 1290.0
+texture_normal = ExtResource("8_8m0y2")
+
+[node name="GOTO Part 5 from 3 Button" type="TextureButton" parent="."]
+offset_left = 1909.0
+offset_top = 1844.0
+offset_right = 2165.0
+offset_bottom = 2100.0
+texture_normal = ExtResource("9_dvd1m")
+flip_h = true
+
+[node name="GOTO Part 5 from 4 Button" type="TextureButton" parent="."]
+offset_left = 845.0
+offset_top = 1448.0
+offset_right = 1101.0
+offset_bottom = 1704.0
+texture_normal = ExtResource("9_dvd1m")
+
+[node name="GOTO Part 4 Button" type="TextureButton" parent="."]
+offset_left = 725.0
+offset_top = 805.0
+offset_right = 981.0
+offset_bottom = 1061.0
+texture_normal = ExtResource("8_8m0y2")
+
+[node name="NextLevelButton2" type="Button" parent="."]
+offset_left = 2888.0
+offset_top = 1233.0
+offset_right = 3103.0
+offset_bottom = 1296.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 40
+text = "Next Wave"
+
+[node name="CurrentWaveLabel2" type="Label" parent="."]
+offset_left = 2853.0
+offset_top = 1154.0
+offset_right = 3178.0
+offset_bottom = 1226.0
+theme_override_font_sizes/font_size = 25
+text = "Click to begin"
+label_settings = SubResource("LabelSettings_audou")
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="Track/Path" to="Track" method="_on_path_mouse_entered"]
+[connection signal="mouse_exited" from="Track/Path" to="Track" method="_on_path_mouse_exited"]
+[connection signal="mouse_entered" from="Track/Water" to="Track" method="_on_water_mouse_entered"]
+[connection signal="mouse_exited" from="Track/Water" to="Track" method="_on_water_mouse_exited"]
+[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pressed"]
+[connection signal="pressed" from="NextLevelButton" to="PathSpawner" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="GOTO Part 2 Button" to="Camera2D" method="_on_goto_part_2_button_pressed"]
+[connection signal="pressed" from="GOTO Part 3 Button" to="Camera2D" method="_on_goto_part_3_button_pressed"]
+[connection signal="pressed" from="GOTO Part 5 from 3 Button" to="Camera2D" method="_on_goto_part_5_from_3_button_pressed"]
+[connection signal="pressed" from="GOTO Part 5 from 4 Button" to="Camera2D" method="_on_goto_part_5_from_4_button_pressed"]
+[connection signal="pressed" from="GOTO Part 4 Button" to="Camera2D" method="_on_goto_part_4_button_pressed"]
+[connection signal="pressed" from="NextLevelButton2" to="PathSpawner" method="_on_next_level_button_pressed"]

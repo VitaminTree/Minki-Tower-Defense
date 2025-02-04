@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://2qe36a42fa8h"]
+[gd_scene load_steps=10 format=3 uid="uid://2qe36a42fa8h"]
 
 [ext_resource type="Script" path="res://Levels/LevelInstantiation.gd" id="1_cfbia"]
 [ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="2_1y2ag"]
 [ext_resource type="Script" path="res://Levels/LevelTerrain.gd" id="3_d3mi3"]
 [ext_resource type="Script" path="res://Levels/PathSpawner.gd" id="4_x3r24"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/In Game UI/ui.tscn" id="5_6oh2x"]
+[ext_resource type="Script" path="res://Levels/Level2WaveData.gd" id="5_c6nao"]
 [ext_resource type="Script" path="res://UI/In Game UI/PauseButton.gd" id="6_oktv8"]
 
 [sub_resource type="Curve2D" id="Curve2D_h0l0p"]
@@ -61,6 +62,9 @@ curve = SubResource("Curve2D_h0l0p")
 
 [node name="Timer" type="Timer" parent="PathSpawner"]
 one_shot = true
+
+[node name="WaveData" type="Node" parent="."]
+script = ExtResource("5_c6nao")
 
 [node name="Towers" type="Node2D" parent="."]
 

@@ -12,10 +12,14 @@ extends Node2D
 @onready var label = $"../CurrentWaveLabel"
 @onready var button = $"../NextLevelButton"
 
+@onready var wave_data = $"../WaveData"
+
+var currentSection: int = 1 # index starting at 1 bc "section one" is more natural than "section zero", sue me. 
 var currentWave: int = 0
 var pathIndex: int = 0
 var shop_ready: bool = false
 @export var totalEnemies: int = 0
+
 
 @onready
 var waves = [
@@ -86,6 +90,7 @@ var waves = [
 	]
 
 func _ready() -> void:
+	SignalMessenger.connect("NEXT_SECTION_WAVES", set_current_section)
 	SignalMessenger.connect("SHOP_READY", ready_shop)
 	SignalMessenger.connect("ENEMY_LEFT", on_enemy_removal)
 	if GameData.NEW_GAME:
@@ -93,6 +98,8 @@ func _ready() -> void:
 	else:
 		currentWave = GameData.WavesCleared
 
+func set_current_section(section: int) -> void:
+	currentSection = section
 
 func wave_completion() -> void:
 	GameData.isWaveActive = false
@@ -105,7 +112,6 @@ func wave_completion() -> void:
 		get_tree().paused = true
 		var shop_menu = shop.instantiate()
 		get_tree().get_root().get_node("Main").add_child(shop_menu)
-		
 
 
 func on_enemy_removal() -> void:
@@ -128,14 +134,15 @@ func count_enemies_in_wave(wave: Wave) -> int:
 
 func _on_next_level_button_pressed() -> void:
 	button.disabled = true
-	if currentWave >= waves.size():
+	var section_waves = wave_data.wave_table[currentSection-1]
+	if currentWave >= section_waves.size():
 		label.text = "You win"
 	else:
 		GameData.isWaveActive = true
-		label.text = "Wave %d of %d" % [(currentWave + 1), waves.size()]
-		totalEnemies = count_enemies_in_wave(waves[currentWave])
+		label.text = "Wave %d of %d" % [(currentWave + 1), section_waves.size()]
+		totalEnemies = count_enemies_in_wave(section_waves[currentWave])
 		print("Total enemies: %d" % [totalEnemies])
-		summon_wave(waves[currentWave])
+		summon_wave(section_waves[currentWave])
 		currentWave += 1
 
 
@@ -159,6 +166,11 @@ func summon_distributed(seconds: float, summon: PackedScene) -> void:
 	child_path.get_child(pathFollowCount-1).add_child(temp)
 	# If the level has multiple paths, increment pathIndex so it'll point to a different one for next time
 	pathIndex = (pathIndex+1)%(get_child_count()-1)
+
+
+func summon_specific(seoncds: float, summon: PackedScene, route: Path2D) -> void:
+	pass
+
 
 func summon_wave(wave: Wave) -> void:
 	
