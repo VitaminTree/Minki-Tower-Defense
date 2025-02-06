@@ -77,7 +77,9 @@ func _input(event) -> void:
 		return
 	if event is InputEventMouseButton and held_tower:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			var result = place_tower(get_viewport().get_mouse_position())
+			var camera = get_viewport().get_camera_2d().position
+			var mouse = get_global_mouse_position()
+			var result = place_tower(camera+mouse)
 			if result:
 				print("Placed!")
 			elif not is_open:
@@ -103,7 +105,9 @@ func on_panel_release(index: int, long_click: bool) -> void:
 			return
 		elif held_tower:
 			short_pressed = false
-			var result = place_tower(get_viewport().get_mouse_position())
+			var camera = get_viewport().get_camera_2d().position
+			var mouse = get_global_mouse_position()
+			var result = place_tower(camera+mouse)
 			if result:
 				print("Dropped!")
 			else:
@@ -145,14 +149,15 @@ func clear_held_data() -> void:
 
 func place_tower(location: Vector2) -> bool:
 	print(location)
+	print(held_tower.position)
 	if not held_tower:
 		print("No tower?")
 		return false
 	if valid_spot(held_tower):
 		var path = get_tree().get_root().get_node("Main/Towers")
-		held_tower.position.x = int(held_tower.position.x)
-		held_tower.position.y = int(held_tower.position.y)
 		held_tower.reparent(path)
+		held_tower.position.x = int(location.x)
+		held_tower.position.y = int(location.y)
 		held_tower.type_index = held_index 
 		held_tower.set_data()
 		GameData.towers.append(held_tower.data)
