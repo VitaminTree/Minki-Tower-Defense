@@ -90,6 +90,7 @@ var waves = [
 	]
 
 func _ready() -> void:
+	SignalMessenger.connect("WAVE_START", _on_next_level_button_pressed)
 	SignalMessenger.connect("NEXT_SECTION_WAVES", set_current_section)
 	SignalMessenger.connect("SHOP_READY", ready_shop)
 	SignalMessenger.connect("ENEMY_LEFT", on_enemy_removal)
@@ -100,6 +101,7 @@ func _ready() -> void:
 
 func set_current_section(section: int) -> void:
 	currentSection = section
+	currentWave = 0
 
 func wave_completion() -> void:
 	GameData.isWaveActive = false
@@ -133,7 +135,6 @@ func count_enemies_in_wave(wave: Wave) -> int:
 
 
 func _on_next_level_button_pressed() -> void:
-	button.disabled = true
 	var section_waves = wave_data.wave_table[currentSection-1]
 	if currentWave >= section_waves.size():
 		label.text = "You win"
@@ -168,14 +169,24 @@ func summon_distributed(seconds: float, summon: PackedScene) -> void:
 	pathIndex = (pathIndex+1)%(get_child_count()-1)
 
 
-func summon_specific(seoncds: float, summon: PackedScene, route: Path2D) -> void:
-	pass
-
+func summon_specific(seconds: float, summon: PackedScene, route: Path2D) -> void:
+	get_node("Timer").start(seconds)
+	await get_node("Timer").timeout
+	if not summon:
+		return
+	var route_follow = PathFollow2D.new()
+	route_follow.rotates = false
+	route_follow.loop = false
+	route.add_child(route_follow)
+	var mob = summon.instantiate()
+	var mobCount = route.get_child_count()
+	route.get_child(mobCount-1).add_child(mob)
 
 func summon_wave(wave: Wave) -> void:
 	
 	for spawn in wave.spawns:
 		for i in range(spawn.repeat):
 			for enemy in spawn.enemies:
-				await summon_distributed(spawn.interval, enemy)
+				#await summon_distributed(spawn.interval, enemy)
+				await summon_specific(spawn.interval, enemy, wave_data.path_table[currentSection-1][0])
 

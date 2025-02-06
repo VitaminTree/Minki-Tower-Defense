@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=19 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://UI/In Game UI/TowerBenchManager.gd" id="6_cehon"]
 [ext_resource type="Texture2D" uid="uid://bn45adxw2i3n4" path="res://Assets/close.png" id="10_3cl2h"]
 [ext_resource type="Texture2D" uid="uid://cfl56aqr80mty" path="res://Assets/open.png" id="10_icn6r"]
+[ext_resource type="Script" path="res://UI/In Game UI/PauseButton.gd" id="12_m0cr3"]
+[ext_resource type="Script" path="res://UI/In Game UI/NextLevelButton.gd" id="13_35sqt"]
 [ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/Inventory/inventory_panel.tscn" id="13_smvxm"]
 [ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="15_6m54n"]
 [ext_resource type="Script" path="res://UI/In Game UI/SummonShopButton.gd" id="15_plkbj"]
@@ -174,6 +176,10 @@ _data = {
 "Tower Menu Close": SubResource("Animation_timye"),
 "Tower Menu Open": SubResource("Animation_tpsbp")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_ac72v"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -359,8 +365,38 @@ theme_override_font_sizes/font_size = 24
 text = "Click the button on the right 
 or press 'Q' to open the tower menu"
 
+[node name="PauseButton" type="Button" parent="."]
+offset_right = 153.0
+offset_bottom = 77.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 50
+text = "pause"
+script = ExtResource("12_m0cr3")
+
+[node name="NextLevelButton" type="Button" parent="."]
+offset_left = 905.0
+offset_top = 984.0
+offset_right = 1120.0
+offset_bottom = 1047.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 40
+text = "Next Wave"
+script = ExtResource("13_35sqt")
+
+[node name="CurrentWaveLabel" type="Label" parent="."]
+offset_left = 870.0
+offset_top = 905.0
+offset_right = 1195.0
+offset_bottom = 977.0
+theme_override_font_sizes/font_size = 25
+text = "Click to begin"
+label_settings = SubResource("LabelSettings_ac72v")
+horizontal_alignment = 1
+
 [connection signal="child_entered_tree" from="Tower Bench Panel/FlowContainer" to="Tower Bench Panel" method="_on_flow_container_child_entered_tree"]
 [connection signal="pressed" from="Tower Bench Button" to="Tower Bench Panel" method="toggle_visibilty"]
 [connection signal="pressed" from="AddButton" to="Resource Panel" method="_on_add_button_pressed"]
 [connection signal="pressed" from="removeButton" to="Resource Panel" method="_on_remove_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="ShopButton" method="_on_pressed"]
+[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pressed"]
+[connection signal="pressed" from="NextLevelButton" to="NextLevelButton" method="_on_pressed"]

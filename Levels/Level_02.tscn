@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://2qe36a42fa8h"]
+[gd_scene load_steps=9 format=3 uid="uid://2qe36a42fa8h"]
 
 [ext_resource type="Script" path="res://Levels/LevelInstantiation.gd" id="1_cfbia"]
 [ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="2_1y2ag"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Levels/PathSpawner.gd" id="4_x3r24"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/In Game UI/ui.tscn" id="5_6oh2x"]
 [ext_resource type="Script" path="res://Levels/Level2WaveData.gd" id="5_c6nao"]
-[ext_resource type="Script" path="res://UI/In Game UI/PauseButton.gd" id="6_oktv8"]
 
 [sub_resource type="Curve2D" id="Curve2D_h0l0p"]
 _data = {
@@ -70,14 +69,6 @@ script = ExtResource("5_c6nao")
 
 [node name="UI" parent="." instance=ExtResource("5_6oh2x")]
 
-[node name="PauseButton" type="Button" parent="."]
-offset_right = 153.0
-offset_bottom = 77.0
-mouse_filter = 1
-theme_override_font_sizes/font_size = 50
-text = "pause"
-script = ExtResource("6_oktv8")
-
 [node name="NextLevelButton" type="Button" parent="."]
 offset_left = 905.0
 offset_top = 984.0
@@ -101,5 +92,4 @@ horizontal_alignment = 1
 [connection signal="mouse_exited" from="Track/Path" to="Track" method="_on_path_mouse_exited"]
 [connection signal="mouse_entered" from="Track/Water" to="Track" method="_on_water_mouse_entered"]
 [connection signal="mouse_exited" from="Track/Water" to="Track" method="_on_water_mouse_exited"]
-[connection signal="pressed" from="PauseButton" to="PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="NextLevelButton" to="PathSpawner" method="_on_next_level_button_pressed"]
