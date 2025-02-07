@@ -3,8 +3,13 @@ class_name Level extends Node2D
 @onready var tower_node = $Towers
 @export var level_name = ""
 
+@export_category("Camera Bounds")
+@export var upper_left: Marker2D
+@export var lower_right: Marker2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalMessenger.connect("CLEAR_OOB_TOWERS", clear_out_of_bounds_towers)
 	GameData.LevelName = level_name
 	if not GameData.NEW_GAME:
 		load_towers()
@@ -42,3 +47,12 @@ func load_towers() -> void:
 		
 		current_tower.get_node("Area").hide()
 		current_tower.get_node("BulletRangeVisual").hide()
+
+func clear_out_of_bounds_towers() -> void:
+	for tower in tower_node.get_children():
+		var location = tower.position
+		if location.x < upper_left.position.x \
+			or location.x > lower_right.position.x \
+			or location.y < upper_left.position.y \
+			or location.y > lower_right.position.y:
+			tower.contextMenu._on_sell_button_pressed()

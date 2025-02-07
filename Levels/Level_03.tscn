@@ -163,9 +163,11 @@ _data = {
 "transition_4to5": SubResource("Animation_caxfr")
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("upper_left", "lower_right")]
 script = ExtResource("1_p3wu5")
 level_name = "One"
+upper_left = NodePath("Camera2D/Bounds/UpperLeft")
+lower_right = NodePath("Camera2D/Bounds/LowerRight")
 
 [node name="Track" type="Sprite2D" parent="."]
 position = Vector2(-64, -78)
@@ -186,13 +188,6 @@ polygon = PackedVector2Array(83.2709, 584.787, 203.38, 579.031, 310.74, 609.38, 
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Track/Water"]
 polygon = PackedVector2Array(2244, 2193, 2244, 2193, 2319, 2156, 2453, 2122, 2662, 2094, 2790, 2101, 2908, 2131, 3050, 2425, 3064, 2561, 3008, 2790, 2911, 2856, 2736, 2881, 2445, 2881, 2294, 2859, 2187, 2830, 2104, 2685, 2158, 2419)
-
-[node name="Bounds" type="Node2D" parent="Track"]
-
-[node name="UpperLeft" type="Marker2D" parent="Track/Bounds"]
-
-[node name="LowerRight" type="Marker2D" parent="Track/Bounds"]
-position = Vector2(1920, 1080)
 
 [node name="WaveData" type="Node" parent="."]
 script = ExtResource("5_kwtrb")
@@ -253,9 +248,19 @@ text = "Click to begin"
 label_settings = SubResource("LabelSettings_audou")
 horizontal_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("UL", "LR")]
 anchor_mode = 0
 script = ExtResource("7_s1gh6")
+UL = NodePath("Bounds/UpperLeft")
+LR = NodePath("Bounds/LowerRight")
+
+[node name="Bounds" type="Node2D" parent="Camera2D"]
+position = Vector2(-64, -78)
+
+[node name="UpperLeft" type="Marker2D" parent="Camera2D/Bounds"]
+
+[node name="LowerRight" type="Marker2D" parent="Camera2D/Bounds"]
+position = Vector2(1920, 1080)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -41,6 +41,7 @@ signal TOWER_UPGRADE_INTERACTED(inventory_data: Inventory, index: int)
 signal TOWER_DOWNGRADED(index: int)
 signal TOWER_REMOVED(index: int)
 signal TOWER_ADDED(index: int) #For when a tower is placed not via the bench manager i.e. when loaded from a savefile
+signal CLEAR_OOB_TOWERS()
 
 # When a tower is clicked, emit this signal
 # PlayerInventory will connect and determine if the currently held item can be upgraded 
@@ -48,6 +49,7 @@ signal TOWER_UPGRADE_QUERY(inventory_data: Inventory, tags: Array[Tag])
 
 signal WAVE_START
 signal NEXT_SECTION_WAVES(destination: int)
+signal THIS_SECTION_FINISHED
 signal ENEMY_LEFT
 signal WAVE_OVER
 

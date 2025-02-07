@@ -137,6 +137,7 @@ func count_enemies_in_wave(wave: Wave) -> int:
 func _on_next_level_button_pressed() -> void:
 	var section_waves = wave_data.wave_table[currentSection-1]
 	if currentWave >= section_waves.size():
+		SignalMessenger.THIS_SECTION_FINISHED.emit()
 		label.text = "You win"
 	else:
 		GameData.isWaveActive = true

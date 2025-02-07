@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2qe36a42fa8h"]
+[gd_scene load_steps=10 format=3 uid="uid://2qe36a42fa8h"]
 
 [ext_resource type="Script" path="res://Levels/LevelInstantiation.gd" id="1_cfbia"]
 [ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="2_1y2ag"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Levels/PathSpawner.gd" id="4_x3r24"]
 [ext_resource type="PackedScene" uid="uid://ca1qui65w5ckj" path="res://UI/In Game UI/ui.tscn" id="5_6oh2x"]
 [ext_resource type="Script" path="res://Levels/Level2WaveData.gd" id="5_c6nao"]
+[ext_resource type="Script" path="res://Misc Scripts/basicLevelCamera.gd" id="7_salj3"]
 
 [sub_resource type="Curve2D" id="Curve2D_h0l0p"]
 _data = {
@@ -45,13 +46,6 @@ texture_repeat = 2
 position = Vector2(808, -310)
 polygon = PackedVector2Array(204, 310, 446, 310, 436, 459, 417, 498, 410, 530, 351, 657, 319, 710, 253, 606, 223, 545, 183, 497, 195, 477, 199, 375)
 
-[node name="Bounds" type="Node2D" parent="Track"]
-
-[node name="UpperLeft" type="Marker2D" parent="Track/Bounds"]
-
-[node name="LowerRight" type="Marker2D" parent="Track/Bounds"]
-position = Vector2(1920, 1080)
-
 [node name="PathSpawner" type="Node2D" parent="."]
 position = Vector2(1, 0)
 script = ExtResource("4_x3r24")
@@ -87,6 +81,20 @@ theme_override_font_sizes/font_size = 25
 text = "Click to begin"
 label_settings = SubResource("LabelSettings_1qlvx")
 horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("UL", "LR")]
+anchor_mode = 0
+script = ExtResource("7_salj3")
+UL = NodePath("Bounds/UpperLeft")
+LR = NodePath("Bounds/LowerRight")
+
+[node name="Bounds" type="Node2D" parent="Camera2D"]
+position = Vector2(-64, -78)
+
+[node name="UpperLeft" type="Marker2D" parent="Camera2D/Bounds"]
+
+[node name="LowerRight" type="Marker2D" parent="Camera2D/Bounds"]
+position = Vector2(1920, 1080)
 
 [connection signal="mouse_entered" from="Track/Path" to="Track" method="_on_path_mouse_entered"]
 [connection signal="mouse_exited" from="Track/Path" to="Track" method="_on_path_mouse_exited"]

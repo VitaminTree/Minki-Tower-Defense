@@ -33,10 +33,15 @@ var section_one = [
 		Spawn.new(12, 0.5, [wispBasic])
 	])
 	]
-var section_two = []
+@onready
+var section_two = [
+	Wave.new([
+		Spawn.new(1,0,[wispBasic])
+	])
+	]
 var section_three = []
 var section_four = []
 var section_five = []
 
 func _ready() -> void:
-	wave_table = [section_one, section_one, section_one, section_one, section_one]
+	wave_table = [section_two, section_one, section_one, section_one, section_one]
