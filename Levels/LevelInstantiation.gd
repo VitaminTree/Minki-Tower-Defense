@@ -49,10 +49,11 @@ func load_towers() -> void:
 		current_tower.get_node("BulletRangeVisual").hide()
 
 func clear_out_of_bounds_towers() -> void:
+	var camera = get_viewport().get_camera_2d().position
 	for tower in tower_node.get_children():
 		var location = tower.position
-		if location.x < upper_left.position.x \
-			or location.x > lower_right.position.x \
-			or location.y < upper_left.position.y \
-			or location.y > lower_right.position.y:
+		if location.x < camera.x + upper_left.position.x \
+			or location.x > camera.x + lower_right.position.x \
+			or location.y < camera.y + upper_left.position.y \
+			or location.y > camera.y +lower_right.position.y:
 			tower.contextMenu._on_sell_button_pressed()

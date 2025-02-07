@@ -248,9 +248,10 @@ text = "Click to begin"
 label_settings = SubResource("LabelSettings_audou")
 horizontal_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("UL", "LR")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("animation_player", "UL", "LR")]
 anchor_mode = 0
 script = ExtResource("7_s1gh6")
+animation_player = NodePath("../AnimationPlayer")
 UL = NodePath("Bounds/UpperLeft")
 LR = NodePath("Bounds/LowerRight")
 

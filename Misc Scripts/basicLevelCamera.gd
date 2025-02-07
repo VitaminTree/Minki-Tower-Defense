@@ -1,5 +1,7 @@
 class_name LevelCamera extends Camera2D
 
+@export var animation_player: AnimationPlayer
+
 @export_category("Camera Boundary")
 @export var UL: Marker2D 
 @export var LR: Marker2D
@@ -18,3 +20,17 @@ func _process(_delta) -> void:
 			print("Returned to the screen")
 			SignalMessenger.MOUSE_OUT_OF_BOUNDS.emit(false)
 			out_of_bounds = false
+
+
+func transition(animation_name: String) -> void:
+	if not animation_player:
+		print("AnimationPlayer not set")
+		return
+	if not animation_player.has_animation(animation_name):
+		print("Could not find animation with name: \"$s\"" % animation_name)
+		return
+	animation_player.play(animation_name)
+	await animation_player.animation_finished
+	SignalMessenger.CLEAR_OOB_TOWERS.emit()
+	
+	
