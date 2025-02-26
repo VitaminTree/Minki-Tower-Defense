@@ -50,7 +50,7 @@ polygon = PackedVector2Array(204, 310, 446, 310, 436, 459, 417, 498, 410, 530, 3
 position = Vector2(1, 0)
 script = ExtResource("4_x3r24")
 
-[node name="Path2D" type="Path2D" parent="PathSpawner"]
+[node name="Section1" type="Path2D" parent="PathSpawner"]
 curve = SubResource("Curve2D_h0l0p")
 
 [node name="Timer" type="Timer" parent="PathSpawner"]
@@ -64,6 +64,7 @@ script = ExtResource("5_c6nao")
 [node name="UI" parent="." instance=ExtResource("5_6oh2x")]
 
 [node name="NextLevelButton" type="Button" parent="."]
+visible = false
 offset_left = 905.0
 offset_top = 984.0
 offset_right = 1120.0
@@ -73,6 +74,7 @@ theme_override_font_sizes/font_size = 40
 text = "Next Wave"
 
 [node name="CurrentWaveLabel" type="Label" parent="."]
+visible = false
 offset_left = 870.0
 offset_top = 908.0
 offset_right = 1195.0

@@ -45,3 +45,8 @@ var section_five = []
 
 func _ready() -> void:
 	wave_table = [section_two, section_one, section_one, section_one, section_one]
+
+func get_wave_count(section: int) -> int:
+	if section < 0 or section >= wave_table.size():
+		return 0
+	return wave_table[section].size()

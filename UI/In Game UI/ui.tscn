@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ca1qui65w5ckj"]
+[gd_scene load_steps=20 format=3 uid="uid://ca1qui65w5ckj"]
 
 [ext_resource type="Script" path="res://UI/In Game UI/ui.gd" id="1_1pvg4"]
 [ext_resource type="Texture2D" uid="uid://2rfih732dfip" path="res://Assets/heart.png" id="2_q3xfb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://UI/In Game UI/PauseButton.gd" id="12_m0cr3"]
 [ext_resource type="Script" path="res://UI/In Game UI/NextLevelButton.gd" id="13_35sqt"]
 [ext_resource type="PackedScene" uid="uid://cnll5myl1ee0f" path="res://UI/Inventory/inventory_panel.tscn" id="13_smvxm"]
+[ext_resource type="Script" path="res://UI/In Game UI/CurrentWaveLabel.gd" id="14_nb4pf"]
 [ext_resource type="PackedScene" uid="uid://bfjfakf71xh17" path="res://UI/Inventory/slot.tscn" id="15_6m54n"]
 [ext_resource type="Script" path="res://UI/In Game UI/SummonShopButton.gd" id="15_plkbj"]
 
@@ -373,7 +374,7 @@ theme_override_font_sizes/font_size = 50
 text = "pause"
 script = ExtResource("12_m0cr3")
 
-[node name="NextLevelButton" type="Button" parent="."]
+[node name="NextLevelButton" type="Button" parent="." node_paths=PackedStringArray("label")]
 offset_left = 905.0
 offset_top = 984.0
 offset_right = 1120.0
@@ -382,6 +383,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Next Wave"
 script = ExtResource("13_35sqt")
+label = NodePath("../CurrentWaveLabel")
 
 [node name="CurrentWaveLabel" type="Label" parent="."]
 offset_left = 870.0
@@ -392,6 +394,7 @@ theme_override_font_sizes/font_size = 25
 text = "Click to begin"
 label_settings = SubResource("LabelSettings_ac72v")
 horizontal_alignment = 1
+script = ExtResource("14_nb4pf")
 
 [connection signal="child_entered_tree" from="Tower Bench Panel/FlowContainer" to="Tower Bench Panel" method="_on_flow_container_child_entered_tree"]
 [connection signal="pressed" from="Tower Bench Button" to="Tower Bench Panel" method="toggle_visibilty"]

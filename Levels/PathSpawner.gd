@@ -106,8 +106,14 @@ func set_current_section(section: int) -> void:
 func wave_completion() -> void:
 	GameData.isWaveActive = false
 	GameData.WavesCleared = currentWave
-	button.disabled = false
 	SignalMessenger.SPIRIT_PAYMENT.emit(5)
+	
+	var section_waves = wave_data.wave_table[currentSection-1]
+	if currentWave >= section_waves.size():
+		SignalMessenger.THIS_SECTION_FINISHED.emit()
+	else:
+		button.disabled = false
+	
 	if shop_ready == true:
 		shop_ready = false
 		SignalMessenger.SHOP_SUMMONED.emit()
@@ -141,9 +147,12 @@ func _on_next_level_button_pressed() -> void:
 		label.text = "You win"
 	else:
 		GameData.isWaveActive = true
-		label.text = "Wave %d of %d" % [(currentWave + 1), section_waves.size()]
+#		label.text = "Wave %d of %d" % [(currentWave + 1), section_waves.size()]
 		totalEnemies = count_enemies_in_wave(section_waves[currentWave])
 		print("Total enemies: %d" % [totalEnemies])
+		var total = wave_data.get_wave_count(currentSection-1)
+		print("Total waves: %s" % total)
+		SignalMessenger.RETURN_WAVE_COUNT.emit(total)
 		summon_wave(section_waves[currentWave])
 		currentWave += 1
 

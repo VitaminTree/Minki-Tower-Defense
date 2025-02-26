@@ -10,6 +10,11 @@ extends Node
 var wave_table = []
 
 @onready
+var path_table = [
+	[$"../PathSpawner/Section1"]
+]
+
+@onready
 var waves = [
 	Wave.new([
 		Spawn.new(1, 0, [wispBasic])
@@ -79,3 +84,8 @@ var waves = [
 
 func _ready() -> void:
 	wave_table = [waves]
+
+func get_wave_count(section: int) -> int:
+	if section < 0 or section >= wave_table.size():
+		return 0
+	return wave_table[section].size()

@@ -49,6 +49,7 @@ signal TOWER_UPGRADE_QUERY(inventory_data: Inventory, tags: Array[Tag])
 
 signal WAVE_START
 signal NEXT_SECTION_WAVES(destination: int)
+signal RETURN_WAVE_COUNT(count: int)	# On wave start, sends the wave total so that the label can be updated
 signal THIS_SECTION_FINISHED
 signal ENEMY_LEFT
 signal WAVE_OVER
