@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5ntw3x4enfrn"]
+
+[ext_resource type="Texture2D" uid="uid://da21r1uslkmly" path="res://Assets/trophy.png" id="1_28soj"]
+[ext_resource type="Texture2D" uid="uid://c6n8xj1lie00m" path="res://Assets/ribbon.png" id="2_lwj7c"]
+[ext_resource type="Script" path="res://Button.gd" id="3_3lorg"]
+
+[sub_resource type="Gradient" id="Gradient_5rtjc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.058104, 0.59633, 0.642202)
+colors = PackedColorArray(0.86504, 0.649488, 0.276423, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ngk1n"]
+gradient = SubResource("Gradient_5rtjc")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.487179, 0.534188)
+
+[sub_resource type="SystemFont" id="SystemFont_1ipyk"]
+font_names = PackedStringArray("Cursive")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_fbotx"]
+font = SubResource("SystemFont_1ipyk")
+font_size = 80
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Certificate" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 374.0
+offset_top = 174.0
+offset_right = 374.0
+offset_bottom = 174.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1232.0
+offset_bottom = 672.0
+color = Color(0.854902, 0.776471, 0.709804, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1216.0
+offset_bottom = 656.0
+color = Color(0.603922, 0.215686, 0.254902, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1192.0
+offset_bottom = 632.0
+color = Color(0.854902, 0.776471, 0.709804, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 393.0
+offset_top = 42.0
+offset_right = 841.0
+offset_bottom = 434.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ngk1n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 129.0
+offset_right = 737.0
+offset_bottom = 385.0
+texture = ExtResource("1_28soj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 400.0
+offset_right = 909.0
+offset_bottom = 516.0
+text = "A winner is You!"
+label_settings = SubResource("LabelSettings_fbotx")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 424.0
+offset_right = 1208.0
+offset_bottom = 680.0
+texture = ExtResource("2_lwj7c")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 534.0
+offset_right = 672.0
+offset_bottom = 597.0
+theme_override_font_sizes/font_size = 40
+text = "Finish"
+script = ExtResource("3_3lorg")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

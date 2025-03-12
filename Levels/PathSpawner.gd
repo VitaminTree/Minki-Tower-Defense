@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var shop = preload("res://UI/Shops/ItemShop.tscn")
+@onready var winscreen = preload("res://certificate.tscn")
 
 @onready var wispBasic = preload("res://Enemies/Wisp.tscn")
 @onready var dragoonBasic = preload("res://Enemies/Dragoon.tscn")
@@ -110,7 +111,12 @@ func wave_completion() -> void:
 	
 	var section_waves = wave_data.wave_table[currentSection-1]
 	if currentWave >= section_waves.size():
-		SignalMessenger.THIS_SECTION_FINISHED.emit()
+		if check_level_completed():
+			var win_menu = winscreen.instantiate()
+			get_tree().get_root().get_node("Main").get_node("Camera2D").add_child(win_menu)
+			print("Winner!!!")
+		else:
+			SignalMessenger.THIS_SECTION_FINISHED.emit()
 	else:
 		button.disabled = false
 	
@@ -120,6 +126,11 @@ func wave_completion() -> void:
 		get_tree().paused = true
 		var shop_menu = shop.instantiate()
 		get_tree().get_root().get_node("Main").add_child(shop_menu)
+
+
+# Basic for now,but may support alternative win conditions
+func check_level_completed() -> bool:
+	return currentSection >= wave_data.wave_table.size()
 
 
 func on_enemy_removal() -> void:
