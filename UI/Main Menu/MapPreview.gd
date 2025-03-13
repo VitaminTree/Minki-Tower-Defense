@@ -5,7 +5,8 @@ extends CanvasLayer
 
 const maps = {
 	"One" : "res://Assets/Track.png",
-	"Two" : "res://Assets/river.png"
+	"Two" : "res://Assets/river.png",
+	"Three" : "res://Assets/park_preview.png"
 }
 
 func _ready() -> void:

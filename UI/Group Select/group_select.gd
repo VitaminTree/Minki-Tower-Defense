@@ -7,7 +7,8 @@ extends CanvasLayer
 
 const maps = {
 	"One" : "res://Levels/Level_01.tscn",
-	"Two" : "res://Levels/Level_02.tscn"
+	"Two" : "res://Levels/Level_02.tscn",
+	"Three" : "res://Levels/Level_03.tscn"
 }
 
 var index = 0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://m5xxgibw6n6i"]
+[gd_scene load_steps=8 format=3 uid="uid://m5xxgibw6n6i"]
 
 [ext_resource type="Texture2D" uid="uid://ba28nvkk4dirn" path="res://Assets/Track.png" id="1_ipntm"]
 [ext_resource type="PackedScene" uid="uid://btre0xf6ager1" path="res://UI/Pause Menu/ProgressPreview.tscn" id="2_56de2"]
 [ext_resource type="Script" path="res://UI/Main Menu/LevelSelect.gd" id="3_mr8pk"]
 [ext_resource type="Texture2D" uid="uid://c0qu1tcwyrl8o" path="res://Assets/river.png" id="4_n33f5"]
+[ext_resource type="Texture2D" uid="uid://c0vkoqd27epeg" path="res://Assets/park_preview.png" id="5_61npy"]
 [ext_resource type="Script" path="res://UI/Main Menu/MainMenuButtons.gd" id="5_wtkrq"]
 [ext_resource type="Script" path="res://Components/FileLoader.gd" id="6_i6jcw"]
 
@@ -40,21 +41,28 @@ script = ExtResource("3_mr8pk")
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect"]
 offset_left = 756.0
 offset_top = 436.0
-offset_right = 1816.0
-offset_bottom = 706.0
+offset_right = 1861.0
+offset_bottom = 838.0
 theme_override_constants/separation = 100
 
 [node name="Icon01" type="TextureButton" parent="LevelSelect/HBoxContainer"]
-custom_minimum_size = Vector2(480, 270)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 texture_normal = ExtResource("1_ipntm")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Icon02" type="TextureButton" parent="LevelSelect/HBoxContainer"]
-custom_minimum_size = Vector2(480, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 texture_normal = ExtResource("4_n33f5")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Icon03" type="TextureButton" parent="LevelSelect/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture_normal = ExtResource("5_61npy")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -64,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = 173.0
-offset_right = 97.0
-offset_bottom = 226.0
+offset_left = -126.0
+offset_top = 75.0
+offset_right = 16.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
@@ -79,14 +87,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 548.0
-offset_top = 173.0
-offset_right = 690.0
-offset_bottom = 226.0
+offset_left = 267.0
+offset_top = 75.0
+offset_right = 409.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Level 02"
+
+[node name="label03" type="Label" parent="LevelSelect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 688.0
+offset_top = 76.0
+offset_right = 830.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Level 03
+"
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -134,6 +158,7 @@ text = "Quit"
 
 [connection signal="pressed" from="LevelSelect/HBoxContainer/Icon01" to="LevelSelect" method="_on_icon_01_pressed"]
 [connection signal="pressed" from="LevelSelect/HBoxContainer/Icon02" to="LevelSelect" method="_on_icon_02_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/Icon03" to="LevelSelect" method="_on_icon_03_pressed"]
 [connection signal="pressed" from="HBoxContainer/NewGameButton" to="HBoxContainer/ContinueButton" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ContinueButton" to="HBoxContainer/ContinueButton" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/OptionsButton" to="HBoxContainer/ContinueButton" method="_on_options_button_pressed"]
