@@ -165,7 +165,7 @@ _data = {
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("upper_left", "lower_right")]
 script = ExtResource("1_p3wu5")
-level_name = "One"
+level_name = "Three"
 upper_left = NodePath("Camera2D/Bounds/UpperLeft")
 lower_right = NodePath("Camera2D/Bounds/LowerRight")
 

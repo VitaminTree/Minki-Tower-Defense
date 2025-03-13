@@ -32,7 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Preview" parent="." instance=ExtResource("2_56de2")]
-visible = false
+layer = 2
 
 [node name="LevelSelect" type="CanvasLayer" parent="."]
 visible = false

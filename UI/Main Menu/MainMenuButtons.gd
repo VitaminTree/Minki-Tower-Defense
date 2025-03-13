@@ -5,16 +5,19 @@ extends Button
 
 const maps = {
 	"One" : "res://Levels/Level_01.tscn",
-	"Two" : "res://Levels/Level_02.tscn"
+	"Two" : "res://Levels/Level_02.tscn",
+	"Three" : "res://Levels/Level_03.tscn"
 }
 
 func _ready() -> void:
 	if GameData.NEW_GAME:
+		print("no save found")
 		disabled = true
-		preview.hide()
+		preview.visible = false
 	else:
+		print("save found")
 		disabled = false
-		preview.show()
+		preview.visible = true
 
 
 func _on_continue_button_pressed():
